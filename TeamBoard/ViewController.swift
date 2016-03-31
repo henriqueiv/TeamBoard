@@ -13,6 +13,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let key = "43611b805c9d34e882d8c802e3734678"
+        let token = ""
+        let client = TrelloHTTPClient(appKey: key, authToken: token)
     }
 
     override func didReceiveMemoryWarning() {

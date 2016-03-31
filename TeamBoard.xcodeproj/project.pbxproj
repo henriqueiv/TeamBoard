@@ -7,19 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57A93E8A06F5CD41D78E018C /* libPods-TeamBoard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FCDAB71867FD6FE06805A4 /* libPods-TeamBoard.a */; };
 		621359EF1CADBC3500353EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621359EE1CADBC3500353EE8 /* AppDelegate.swift */; };
 		621359F11CADBC3500353EE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621359F01CADBC3500353EE8 /* ViewController.swift */; };
 		621359F41CADBC3500353EE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621359F21CADBC3500353EE8 /* Main.storyboard */; };
 		621359F61CADBC3500353EE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 621359F51CADBC3500353EE8 /* Assets.xcassets */; };
+		6214A9051CADC50100EBD427 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6214A8FE1CADC50100EBD427 /* LICENSE */; };
+		6214A9061CADC50100EBD427 /* NSDate+MTDates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6214A9011CADC50100EBD427 /* NSDate+MTDates.m */; };
+		6214A9071CADC50100EBD427 /* NSDateComponents+MTDates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6214A9031CADC50100EBD427 /* NSDateComponents+MTDates.m */; };
+		6214A9081CADC50100EBD427 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 6214A9041CADC50100EBD427 /* README.md */; };
+		62A38D3B1CADC11E00948BAD /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D271CADC11E00948BAD /* NSDictionary+Extensions.m */; };
+		62A38D3C1CADC11E00948BAD /* UIColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D291CADC11E00948BAD /* UIColor+Extensions.m */; };
+		62A38D3D1CADC11E00948BAD /* TRLBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D2C1CADC11E00948BAD /* TRLBoard.m */; };
+		62A38D3E1CADC11E00948BAD /* TRLCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D2E1CADC11E00948BAD /* TRLCard.m */; };
+		62A38D3F1CADC11E00948BAD /* TRLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D301CADC11E00948BAD /* TRLLabel.m */; };
+		62A38D401CADC11E00948BAD /* TRLList.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D321CADC11E00948BAD /* TRLList.m */; };
+		62A38D411CADC11E00948BAD /* TRLMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D341CADC11E00948BAD /* TRLMember.m */; };
+		62A38D421CADC11E00948BAD /* TRLOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D361CADC11E00948BAD /* TRLOrganization.m */; };
+		62A38D431CADC11E00948BAD /* TrelloDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D381CADC11E00948BAD /* TrelloDataManager.m */; };
+		62A38D441CADC11E00948BAD /* TrelloHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D3A1CADC11E00948BAD /* TrelloHTTPClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61A9C8155577289C04892DD7 /* Pods-TeamBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBoard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamBoard/Pods-TeamBoard.debug.xcconfig"; sourceTree = "<group>"; };
 		621359EB1CADBC3500353EE8 /* TeamBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		621359EE1CADBC3500353EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		621359F01CADBC3500353EE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		621359F31CADBC3500353EE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		621359F51CADBC3500353EE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		621359F71CADBC3500353EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6214A8FE1CADC50100EBD427 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		6214A9001CADC50100EBD427 /* NSDate+MTDates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MTDates.h"; sourceTree = "<group>"; };
+		6214A9011CADC50100EBD427 /* NSDate+MTDates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MTDates.m"; sourceTree = "<group>"; };
+		6214A9021CADC50100EBD427 /* NSDateComponents+MTDates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+MTDates.h"; sourceTree = "<group>"; };
+		6214A9031CADC50100EBD427 /* NSDateComponents+MTDates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateComponents+MTDates.m"; sourceTree = "<group>"; };
+		6214A9041CADC50100EBD427 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		62A38D261CADC11E00948BAD /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extensions.h"; sourceTree = "<group>"; };
+		62A38D271CADC11E00948BAD /* NSDictionary+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extensions.m"; sourceTree = "<group>"; };
+		62A38D281CADC11E00948BAD /* UIColor+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extensions.h"; sourceTree = "<group>"; };
+		62A38D291CADC11E00948BAD /* UIColor+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extensions.m"; sourceTree = "<group>"; };
+		62A38D2B1CADC11E00948BAD /* TRLBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLBoard.h; sourceTree = "<group>"; };
+		62A38D2C1CADC11E00948BAD /* TRLBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLBoard.m; sourceTree = "<group>"; };
+		62A38D2D1CADC11E00948BAD /* TRLCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLCard.h; sourceTree = "<group>"; };
+		62A38D2E1CADC11E00948BAD /* TRLCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLCard.m; sourceTree = "<group>"; };
+		62A38D2F1CADC11E00948BAD /* TRLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLLabel.h; sourceTree = "<group>"; };
+		62A38D301CADC11E00948BAD /* TRLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLLabel.m; sourceTree = "<group>"; };
+		62A38D311CADC11E00948BAD /* TRLList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLList.h; sourceTree = "<group>"; };
+		62A38D321CADC11E00948BAD /* TRLList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLList.m; sourceTree = "<group>"; };
+		62A38D331CADC11E00948BAD /* TRLMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLMember.h; sourceTree = "<group>"; };
+		62A38D341CADC11E00948BAD /* TRLMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLMember.m; sourceTree = "<group>"; };
+		62A38D351CADC11E00948BAD /* TRLOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLOrganization.h; sourceTree = "<group>"; };
+		62A38D361CADC11E00948BAD /* TRLOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLOrganization.m; sourceTree = "<group>"; };
+		62A38D371CADC11E00948BAD /* TrelloDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrelloDataManager.h; sourceTree = "<group>"; };
+		62A38D381CADC11E00948BAD /* TrelloDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrelloDataManager.m; sourceTree = "<group>"; };
+		62A38D391CADC11E00948BAD /* TrelloHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrelloHTTPClient.h; sourceTree = "<group>"; };
+		62A38D3A1CADC11E00948BAD /* TrelloHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrelloHTTPClient.m; sourceTree = "<group>"; };
+		62A38D451CADC1B300948BAD /* TeamBoard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TeamBoard-Bridging-Header.h"; path = "Supporting Files/TeamBoard-Bridging-Header.h"; sourceTree = "<group>"; };
+		C7FCDAB71867FD6FE06805A4 /* libPods-TeamBoard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeamBoard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E51EF530273F0E948D7868A7 /* Pods-TeamBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBoard.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamBoard/Pods-TeamBoard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +72,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57A93E8A06F5CD41D78E018C /* libPods-TeamBoard.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57B1D859BB3711FCC68B75B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				61A9C8155577289C04892DD7 /* Pods-TeamBoard.debug.xcconfig */,
+				E51EF530273F0E948D7868A7 /* Pods-TeamBoard.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		621359E21CADBC3500353EE8 = {
 			isa = PBXGroup;
 			children = (
 				621359ED1CADBC3500353EE8 /* TeamBoard */,
 				621359EC1CADBC3500353EE8 /* Products */,
+				57B1D859BB3711FCC68B75B5 /* Pods */,
+				E4B4362B4C60B73C8E595570 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,13 +109,89 @@
 		621359ED1CADBC3500353EE8 /* TeamBoard */ = {
 			isa = PBXGroup;
 			children = (
+				62A38D241CADC11E00948BAD /* TrelloKit */,
 				621359EE1CADBC3500353EE8 /* AppDelegate.swift */,
 				621359F01CADBC3500353EE8 /* ViewController.swift */,
 				621359F21CADBC3500353EE8 /* Main.storyboard */,
 				621359F51CADBC3500353EE8 /* Assets.xcassets */,
 				621359F71CADBC3500353EE8 /* Info.plist */,
+				62A38D451CADC1B300948BAD /* TeamBoard-Bridging-Header.h */,
 			);
 			path = TeamBoard;
+			sourceTree = "<group>";
+		};
+		6214A8FD1CADC50100EBD427 /* MTDates */ = {
+			isa = PBXGroup;
+			children = (
+				6214A8FE1CADC50100EBD427 /* LICENSE */,
+				6214A8FF1CADC50100EBD427 /* MTDates */,
+				6214A9041CADC50100EBD427 /* README.md */,
+			);
+			name = MTDates;
+			path = TeamBoard/MTDates;
+			sourceTree = SOURCE_ROOT;
+		};
+		6214A8FF1CADC50100EBD427 /* MTDates */ = {
+			isa = PBXGroup;
+			children = (
+				6214A9001CADC50100EBD427 /* NSDate+MTDates.h */,
+				6214A9011CADC50100EBD427 /* NSDate+MTDates.m */,
+				6214A9021CADC50100EBD427 /* NSDateComponents+MTDates.h */,
+				6214A9031CADC50100EBD427 /* NSDateComponents+MTDates.m */,
+			);
+			path = MTDates;
+			sourceTree = "<group>";
+		};
+		62A38D241CADC11E00948BAD /* TrelloKit */ = {
+			isa = PBXGroup;
+			children = (
+				6214A8FD1CADC50100EBD427 /* MTDates */,
+				62A38D251CADC11E00948BAD /* Extensions */,
+				62A38D2A1CADC11E00948BAD /* Models */,
+				62A38D371CADC11E00948BAD /* TrelloDataManager.h */,
+				62A38D381CADC11E00948BAD /* TrelloDataManager.m */,
+				62A38D391CADC11E00948BAD /* TrelloHTTPClient.h */,
+				62A38D3A1CADC11E00948BAD /* TrelloHTTPClient.m */,
+			);
+			path = TrelloKit;
+			sourceTree = "<group>";
+		};
+		62A38D251CADC11E00948BAD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				62A38D261CADC11E00948BAD /* NSDictionary+Extensions.h */,
+				62A38D271CADC11E00948BAD /* NSDictionary+Extensions.m */,
+				62A38D281CADC11E00948BAD /* UIColor+Extensions.h */,
+				62A38D291CADC11E00948BAD /* UIColor+Extensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		62A38D2A1CADC11E00948BAD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				62A38D2B1CADC11E00948BAD /* TRLBoard.h */,
+				62A38D2C1CADC11E00948BAD /* TRLBoard.m */,
+				62A38D2D1CADC11E00948BAD /* TRLCard.h */,
+				62A38D2E1CADC11E00948BAD /* TRLCard.m */,
+				62A38D2F1CADC11E00948BAD /* TRLLabel.h */,
+				62A38D301CADC11E00948BAD /* TRLLabel.m */,
+				62A38D311CADC11E00948BAD /* TRLList.h */,
+				62A38D321CADC11E00948BAD /* TRLList.m */,
+				62A38D331CADC11E00948BAD /* TRLMember.h */,
+				62A38D341CADC11E00948BAD /* TRLMember.m */,
+				62A38D351CADC11E00948BAD /* TRLOrganization.h */,
+				62A38D361CADC11E00948BAD /* TRLOrganization.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E4B4362B4C60B73C8E595570 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7FCDAB71867FD6FE06805A4 /* libPods-TeamBoard.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,9 +201,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 621359FA1CADBC3500353EE8 /* Build configuration list for PBXNativeTarget "TeamBoard" */;
 			buildPhases = (
+				A5FEE85EDB03F92D661DDFAA /* Check Pods Manifest.lock */,
 				621359E71CADBC3500353EE8 /* Sources */,
 				621359E81CADBC3500353EE8 /* Frameworks */,
 				621359E91CADBC3500353EE8 /* Resources */,
+				8C925F7D809FF42CF0A90978 /* Embed Pods Frameworks */,
+				BA298EF31400BA35F5F21A47 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -119,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6214A9051CADC50100EBD427 /* LICENSE in Resources */,
 				621359F61CADBC3500353EE8 /* Assets.xcassets in Resources */,
 				621359F41CADBC3500353EE8 /* Main.storyboard in Resources */,
 			);
@@ -126,13 +263,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8C925F7D809FF42CF0A90978 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeamBoard/Pods-TeamBoard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5FEE85EDB03F92D661DDFAA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BA298EF31400BA35F5F21A47 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeamBoard/Pods-TeamBoard-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		621359E71CADBC3500353EE8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62A38D3F1CADC11E00948BAD /* TRLLabel.m in Sources */,
+				62A38D431CADC11E00948BAD /* TrelloDataManager.m in Sources */,
+				62A38D3D1CADC11E00948BAD /* TRLBoard.m in Sources */,
+				62A38D401CADC11E00948BAD /* TRLList.m in Sources */,
 				621359F11CADBC3500353EE8 /* ViewController.swift in Sources */,
+				62A38D411CADC11E00948BAD /* TRLMember.m in Sources */,
+				62A38D421CADC11E00948BAD /* TRLOrganization.m in Sources */,
 				621359EF1CADBC3500353EE8 /* AppDelegate.swift in Sources */,
+				62A38D3B1CADC11E00948BAD /* NSDictionary+Extensions.m in Sources */,
+				62A38D3E1CADC11E00948BAD /* TRLCard.m in Sources */,
+				62A38D441CADC11E00948BAD /* TrelloHTTPClient.m in Sources */,
+				6214A9071CADC50100EBD427 /* NSDateComponents+MTDates.m in Sources */,
+				6214A9081CADC50100EBD427 /* README.md in Sources */,
+				62A38D3C1CADC11E00948BAD /* UIColor+Extensions.m in Sources */,
+				6214A9061CADC50100EBD427 /* NSDate+MTDates.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +433,7 @@
 		};
 		621359FB1CADBC3500353EE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61A9C8155577289C04892DD7 /* Pods-TeamBoard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -242,11 +441,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.bepid.poa.TeamBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TeamBoard/Supporting Files/TeamBoard-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		621359FC1CADBC3500353EE8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E51EF530273F0E948D7868A7 /* Pods-TeamBoard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -254,6 +455,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.bepid.poa.TeamBoard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TeamBoard/Supporting Files/TeamBoard-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -276,6 +478,7 @@
 				621359FC1CADBC3500353EE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
