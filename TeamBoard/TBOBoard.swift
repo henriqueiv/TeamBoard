@@ -16,6 +16,20 @@ class TBOBoard: NSObject {
     
     convenience init(dictionary: [String : AnyObject]){
        self.init()
+        id = dictionary["id"] as? String
+        name = dictionary["name"] as? String
+        if let jsonMembers = dictionary["memberships"] as? [[String: AnyObject]] {
+            for jsonMember in jsonMembers {
+                let member = TBOMember(dictionary: jsonMember)
+                members?.append(member)
+            }
+        }
+        if let jsonLists = dictionary["lists"] as? [[String: AnyObject]] {
+            for jsonList in jsonLists {
+                let list = TBOList(dictionary: jsonList)
+                lists?.append(list)
+            }
+        }
     }
     
 }
