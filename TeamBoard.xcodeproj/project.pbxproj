@@ -7,25 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		57A93E8A06F5CD41D78E018C /* libPods-TeamBoard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7FCDAB71867FD6FE06805A4 /* libPods-TeamBoard.a */; };
 		621359EF1CADBC3500353EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621359EE1CADBC3500353EE8 /* AppDelegate.swift */; };
 		621359F11CADBC3500353EE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621359F01CADBC3500353EE8 /* ViewController.swift */; };
 		621359F41CADBC3500353EE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621359F21CADBC3500353EE8 /* Main.storyboard */; };
 		621359F61CADBC3500353EE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 621359F51CADBC3500353EE8 /* Assets.xcassets */; };
-		6214A9051CADC50100EBD427 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6214A8FE1CADC50100EBD427 /* LICENSE */; };
-		6214A9061CADC50100EBD427 /* NSDate+MTDates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6214A9011CADC50100EBD427 /* NSDate+MTDates.m */; };
-		6214A9071CADC50100EBD427 /* NSDateComponents+MTDates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6214A9031CADC50100EBD427 /* NSDateComponents+MTDates.m */; };
-		6214A9081CADC50100EBD427 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 6214A9041CADC50100EBD427 /* README.md */; };
-		62A38D3B1CADC11E00948BAD /* NSDictionary+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D271CADC11E00948BAD /* NSDictionary+Extensions.m */; };
-		62A38D3C1CADC11E00948BAD /* UIColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D291CADC11E00948BAD /* UIColor+Extensions.m */; };
-		62A38D3D1CADC11E00948BAD /* TRLBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D2C1CADC11E00948BAD /* TRLBoard.m */; };
-		62A38D3E1CADC11E00948BAD /* TRLCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D2E1CADC11E00948BAD /* TRLCard.m */; };
-		62A38D3F1CADC11E00948BAD /* TRLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D301CADC11E00948BAD /* TRLLabel.m */; };
-		62A38D401CADC11E00948BAD /* TRLList.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D321CADC11E00948BAD /* TRLList.m */; };
-		62A38D411CADC11E00948BAD /* TRLMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D341CADC11E00948BAD /* TRLMember.m */; };
-		62A38D421CADC11E00948BAD /* TRLOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D361CADC11E00948BAD /* TRLOrganization.m */; };
-		62A38D431CADC11E00948BAD /* TrelloDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D381CADC11E00948BAD /* TrelloDataManager.m */; };
-		62A38D441CADC11E00948BAD /* TrelloHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A38D3A1CADC11E00948BAD /* TrelloHTTPClient.m */; };
+		62B637931CAEC15A005BC35C /* CompanyRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B637921CAEC15A005BC35C /* CompanyRankingViewController.swift */; };
+		E5EF3FF315B98ABE49FBEA36 /* Pods_TeamBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531C979FE6BF789D5A59DA7 /* Pods_TeamBoard.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,34 +23,9 @@
 		621359F31CADBC3500353EE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		621359F51CADBC3500353EE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		621359F71CADBC3500353EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6214A8FE1CADC50100EBD427 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		6214A9001CADC50100EBD427 /* NSDate+MTDates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+MTDates.h"; sourceTree = "<group>"; };
-		6214A9011CADC50100EBD427 /* NSDate+MTDates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MTDates.m"; sourceTree = "<group>"; };
-		6214A9021CADC50100EBD427 /* NSDateComponents+MTDates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+MTDates.h"; sourceTree = "<group>"; };
-		6214A9031CADC50100EBD427 /* NSDateComponents+MTDates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateComponents+MTDates.m"; sourceTree = "<group>"; };
-		6214A9041CADC50100EBD427 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		62A38D261CADC11E00948BAD /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extensions.h"; sourceTree = "<group>"; };
-		62A38D271CADC11E00948BAD /* NSDictionary+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extensions.m"; sourceTree = "<group>"; };
-		62A38D281CADC11E00948BAD /* UIColor+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extensions.h"; sourceTree = "<group>"; };
-		62A38D291CADC11E00948BAD /* UIColor+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extensions.m"; sourceTree = "<group>"; };
-		62A38D2B1CADC11E00948BAD /* TRLBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLBoard.h; sourceTree = "<group>"; };
-		62A38D2C1CADC11E00948BAD /* TRLBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLBoard.m; sourceTree = "<group>"; };
-		62A38D2D1CADC11E00948BAD /* TRLCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLCard.h; sourceTree = "<group>"; };
-		62A38D2E1CADC11E00948BAD /* TRLCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLCard.m; sourceTree = "<group>"; };
-		62A38D2F1CADC11E00948BAD /* TRLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLLabel.h; sourceTree = "<group>"; };
-		62A38D301CADC11E00948BAD /* TRLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLLabel.m; sourceTree = "<group>"; };
-		62A38D311CADC11E00948BAD /* TRLList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLList.h; sourceTree = "<group>"; };
-		62A38D321CADC11E00948BAD /* TRLList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLList.m; sourceTree = "<group>"; };
-		62A38D331CADC11E00948BAD /* TRLMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLMember.h; sourceTree = "<group>"; };
-		62A38D341CADC11E00948BAD /* TRLMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLMember.m; sourceTree = "<group>"; };
-		62A38D351CADC11E00948BAD /* TRLOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRLOrganization.h; sourceTree = "<group>"; };
-		62A38D361CADC11E00948BAD /* TRLOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRLOrganization.m; sourceTree = "<group>"; };
-		62A38D371CADC11E00948BAD /* TrelloDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrelloDataManager.h; sourceTree = "<group>"; };
-		62A38D381CADC11E00948BAD /* TrelloDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrelloDataManager.m; sourceTree = "<group>"; };
-		62A38D391CADC11E00948BAD /* TrelloHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrelloHTTPClient.h; sourceTree = "<group>"; };
-		62A38D3A1CADC11E00948BAD /* TrelloHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrelloHTTPClient.m; sourceTree = "<group>"; };
 		62A38D451CADC1B300948BAD /* TeamBoard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TeamBoard-Bridging-Header.h"; path = "Supporting Files/TeamBoard-Bridging-Header.h"; sourceTree = "<group>"; };
-		C7FCDAB71867FD6FE06805A4 /* libPods-TeamBoard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeamBoard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		62B637921CAEC15A005BC35C /* CompanyRankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompanyRankingViewController.swift; path = CompanyRanking/CompanyRankingViewController.swift; sourceTree = "<group>"; };
+		C531C979FE6BF789D5A59DA7 /* Pods_TeamBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E51EF530273F0E948D7868A7 /* Pods-TeamBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBoard.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamBoard/Pods-TeamBoard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57A93E8A06F5CD41D78E018C /* libPods-TeamBoard.a in Frameworks */,
+				E5EF3FF315B98ABE49FBEA36 /* Pods_TeamBoard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +71,8 @@
 		621359ED1CADBC3500353EE8 /* TeamBoard */ = {
 			isa = PBXGroup;
 			children = (
-				62A38D241CADC11E00948BAD /* TrelloKit */,
+				62B637911CAEC130005BC35C /* TeamRanking */,
+				62B6378F1CAEC120005BC35C /* CompanyRanking */,
 				621359EE1CADBC3500353EE8 /* AppDelegate.swift */,
 				621359F01CADBC3500353EE8 /* ViewController.swift */,
 				621359F21CADBC3500353EE8 /* Main.storyboard */,
@@ -120,76 +83,25 @@
 			path = TeamBoard;
 			sourceTree = "<group>";
 		};
-		6214A8FD1CADC50100EBD427 /* MTDates */ = {
+		62B6378F1CAEC120005BC35C /* CompanyRanking */ = {
 			isa = PBXGroup;
 			children = (
-				6214A8FE1CADC50100EBD427 /* LICENSE */,
-				6214A8FF1CADC50100EBD427 /* MTDates */,
-				6214A9041CADC50100EBD427 /* README.md */,
+				62B637921CAEC15A005BC35C /* CompanyRankingViewController.swift */,
 			);
-			name = MTDates;
-			path = TeamBoard/MTDates;
-			sourceTree = SOURCE_ROOT;
-		};
-		6214A8FF1CADC50100EBD427 /* MTDates */ = {
-			isa = PBXGroup;
-			children = (
-				6214A9001CADC50100EBD427 /* NSDate+MTDates.h */,
-				6214A9011CADC50100EBD427 /* NSDate+MTDates.m */,
-				6214A9021CADC50100EBD427 /* NSDateComponents+MTDates.h */,
-				6214A9031CADC50100EBD427 /* NSDateComponents+MTDates.m */,
-			);
-			path = MTDates;
+			name = CompanyRanking;
 			sourceTree = "<group>";
 		};
-		62A38D241CADC11E00948BAD /* TrelloKit */ = {
+		62B637911CAEC130005BC35C /* TeamRanking */ = {
 			isa = PBXGroup;
 			children = (
-				6214A8FD1CADC50100EBD427 /* MTDates */,
-				62A38D251CADC11E00948BAD /* Extensions */,
-				62A38D2A1CADC11E00948BAD /* Models */,
-				62A38D371CADC11E00948BAD /* TrelloDataManager.h */,
-				62A38D381CADC11E00948BAD /* TrelloDataManager.m */,
-				62A38D391CADC11E00948BAD /* TrelloHTTPClient.h */,
-				62A38D3A1CADC11E00948BAD /* TrelloHTTPClient.m */,
 			);
-			path = TrelloKit;
-			sourceTree = "<group>";
-		};
-		62A38D251CADC11E00948BAD /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				62A38D261CADC11E00948BAD /* NSDictionary+Extensions.h */,
-				62A38D271CADC11E00948BAD /* NSDictionary+Extensions.m */,
-				62A38D281CADC11E00948BAD /* UIColor+Extensions.h */,
-				62A38D291CADC11E00948BAD /* UIColor+Extensions.m */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		62A38D2A1CADC11E00948BAD /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				62A38D2B1CADC11E00948BAD /* TRLBoard.h */,
-				62A38D2C1CADC11E00948BAD /* TRLBoard.m */,
-				62A38D2D1CADC11E00948BAD /* TRLCard.h */,
-				62A38D2E1CADC11E00948BAD /* TRLCard.m */,
-				62A38D2F1CADC11E00948BAD /* TRLLabel.h */,
-				62A38D301CADC11E00948BAD /* TRLLabel.m */,
-				62A38D311CADC11E00948BAD /* TRLList.h */,
-				62A38D321CADC11E00948BAD /* TRLList.m */,
-				62A38D331CADC11E00948BAD /* TRLMember.h */,
-				62A38D341CADC11E00948BAD /* TRLMember.m */,
-				62A38D351CADC11E00948BAD /* TRLOrganization.h */,
-				62A38D361CADC11E00948BAD /* TRLOrganization.m */,
-			);
-			path = Models;
+			name = TeamRanking;
 			sourceTree = "<group>";
 		};
 		E4B4362B4C60B73C8E595570 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C7FCDAB71867FD6FE06805A4 /* libPods-TeamBoard.a */,
+				C531C979FE6BF789D5A59DA7 /* Pods_TeamBoard.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -255,7 +167,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6214A9051CADC50100EBD427 /* LICENSE in Resources */,
 				621359F61CADBC3500353EE8 /* Assets.xcassets in Resources */,
 				621359F41CADBC3500353EE8 /* Main.storyboard in Resources */,
 			);
@@ -316,21 +227,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62A38D3F1CADC11E00948BAD /* TRLLabel.m in Sources */,
-				62A38D431CADC11E00948BAD /* TrelloDataManager.m in Sources */,
-				62A38D3D1CADC11E00948BAD /* TRLBoard.m in Sources */,
-				62A38D401CADC11E00948BAD /* TRLList.m in Sources */,
+				62B637931CAEC15A005BC35C /* CompanyRankingViewController.swift in Sources */,
 				621359F11CADBC3500353EE8 /* ViewController.swift in Sources */,
-				62A38D411CADC11E00948BAD /* TRLMember.m in Sources */,
-				62A38D421CADC11E00948BAD /* TRLOrganization.m in Sources */,
 				621359EF1CADBC3500353EE8 /* AppDelegate.swift in Sources */,
-				62A38D3B1CADC11E00948BAD /* NSDictionary+Extensions.m in Sources */,
-				62A38D3E1CADC11E00948BAD /* TRLCard.m in Sources */,
-				62A38D441CADC11E00948BAD /* TrelloHTTPClient.m in Sources */,
-				6214A9071CADC50100EBD427 /* NSDateComponents+MTDates.m in Sources */,
-				6214A9081CADC50100EBD427 /* README.md in Sources */,
-				62A38D3C1CADC11E00948BAD /* UIColor+Extensions.m in Sources */,
-				6214A9061CADC50100EBD427 /* NSDate+MTDates.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

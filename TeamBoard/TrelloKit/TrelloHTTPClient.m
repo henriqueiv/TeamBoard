@@ -25,7 +25,7 @@
 
 - (instancetype)initWithAppKey:(NSString *)appKey authToken:(NSString *)token
 {
-    self = [super initWithBaseURL:[NSURL URLWithString:@"https://api.trello.com/1/"]];
+    self = [super initWithBaseURL:[NSURL URLWithString:@"https://trello.com/1/"]];
     if (self) {
         self.appKey = appKey;
         self.authToken = token;

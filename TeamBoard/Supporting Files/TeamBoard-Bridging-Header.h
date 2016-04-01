@@ -9,7 +9,7 @@
 #ifndef TeamBoard_Bridging_Header_h
 #define TeamBoard_Bridging_Header_h
 
-#import "TrelloDataManager.h"
-#import "TrelloHTTPClient.h"
+//#import "TrelloDataManager.h"
+//#import "TrelloHTTPClient.h"
 
 #endif /* TeamBoard_Bridging_Header_h */
