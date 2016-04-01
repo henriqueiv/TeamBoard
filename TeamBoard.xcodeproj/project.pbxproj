@@ -12,6 +12,10 @@
 		621359F41CADBC3500353EE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621359F21CADBC3500353EE8 /* Main.storyboard */; };
 		621359F61CADBC3500353EE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 621359F51CADBC3500353EE8 /* Assets.xcassets */; };
 		62B637931CAEC15A005BC35C /* CompanyRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B637921CAEC15A005BC35C /* CompanyRankingViewController.swift */; };
+		84D167E31CAEEC1A00E790B3 /* TBOCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D167E21CAEEC1A00E790B3 /* TBOCard.swift */; };
+		84D167E51CAEEC2100E790B3 /* TBOBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D167E41CAEEC2100E790B3 /* TBOBoard.swift */; };
+		84D167E71CAEEC2A00E790B3 /* TBOList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D167E61CAEEC2A00E790B3 /* TBOList.swift */; };
+		84D167ED1CAEF31700E790B3 /* TBOMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D167EC1CAEF31700E790B3 /* TBOMember.swift */; };
 		E5EF3FF315B98ABE49FBEA36 /* Pods_TeamBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531C979FE6BF789D5A59DA7 /* Pods_TeamBoard.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +29,10 @@
 		621359F71CADBC3500353EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62A38D451CADC1B300948BAD /* TeamBoard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TeamBoard-Bridging-Header.h"; path = "Supporting Files/TeamBoard-Bridging-Header.h"; sourceTree = "<group>"; };
 		62B637921CAEC15A005BC35C /* CompanyRankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompanyRankingViewController.swift; path = CompanyRanking/CompanyRankingViewController.swift; sourceTree = "<group>"; };
+		84D167E21CAEEC1A00E790B3 /* TBOCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOCard.swift; sourceTree = "<group>"; };
+		84D167E41CAEEC2100E790B3 /* TBOBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOBoard.swift; sourceTree = "<group>"; };
+		84D167E61CAEEC2A00E790B3 /* TBOList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOList.swift; sourceTree = "<group>"; };
+		84D167EC1CAEF31700E790B3 /* TBOMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOMember.swift; sourceTree = "<group>"; };
 		C531C979FE6BF789D5A59DA7 /* Pods_TeamBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E51EF530273F0E948D7868A7 /* Pods-TeamBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBoard.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamBoard/Pods-TeamBoard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +87,10 @@
 				621359F51CADBC3500353EE8 /* Assets.xcassets */,
 				621359F71CADBC3500353EE8 /* Info.plist */,
 				62A38D451CADC1B300948BAD /* TeamBoard-Bridging-Header.h */,
+				84D167EC1CAEF31700E790B3 /* TBOMember.swift */,
+				84D167E41CAEEC2100E790B3 /* TBOBoard.swift */,
+				84D167E61CAEEC2A00E790B3 /* TBOList.swift */,
+				84D167E21CAEEC1A00E790B3 /* TBOCard.swift */,
 			);
 			path = TeamBoard;
 			sourceTree = "<group>";
@@ -229,7 +241,11 @@
 			files = (
 				62B637931CAEC15A005BC35C /* CompanyRankingViewController.swift in Sources */,
 				621359F11CADBC3500353EE8 /* ViewController.swift in Sources */,
+				84D167ED1CAEF31700E790B3 /* TBOMember.swift in Sources */,
 				621359EF1CADBC3500353EE8 /* AppDelegate.swift in Sources */,
+				84D167E71CAEEC2A00E790B3 /* TBOList.swift in Sources */,
+				84D167E51CAEEC2100E790B3 /* TBOBoard.swift in Sources */,
+				84D167E31CAEEC1A00E790B3 /* TBOCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
