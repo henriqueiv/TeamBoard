@@ -18,7 +18,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        authorizeWithOAuth()
+        var t = TBOBoard()
+        t.loadBoards()
+    
+        
+        //authorizeWithOAuth()
         
         // Do any additional setup after loading the view, typically from a nib.
         

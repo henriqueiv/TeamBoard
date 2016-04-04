@@ -14,8 +14,17 @@ class TBOBoard: NSObject {
     var members : [TBOMember]?  // from GET /1/members/<id>/boards
     var lists : [TBOList]?      // from GET /1/boards/<id>/lists
     
-    convenience init(dictionary: [String : AnyObject]){
-       self.init()
+//    convenience init(dictionary: [String : AnyObject]){
+//       self.init()
+//    }
+    
+    func loadBoards(){
+        let path = NSBundle.mainBundle().pathForResource("member", ofType: "json")
+        let jsonData = NSData(contentsOfFile: path!)
+        do{
+        let jsonResult = try NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.MutableContainers) as! [NSDictionary]
+                    print(jsonResult)
+        }catch{}
     }
     
 }
