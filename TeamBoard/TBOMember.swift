@@ -6,14 +6,16 @@
 //
 //
 
-import Foundation
+import UIKit
 
 class TBOMember: NSObject {
     var id : String?
-    var name : String?
+    var username : String?
+    var picture : UIImage?
     
     init(dictionary: [String : AnyObject]){
-        
+        id = dictionary["id"] as? String
+        username = dictionary["username"] as? String
+        // TODO: get picture
     }
-    
 }

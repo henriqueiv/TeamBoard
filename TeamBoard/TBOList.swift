@@ -13,7 +13,15 @@ class TBOList: NSObject {
     var name : String?
     var cards : [TBOCard]?
     
-    init(dictionary: [String : AnyObject]){
-        
+    convenience init(dictionary: [String : AnyObject]){
+        self.init()
+        id = dictionary["id"] as? String
+        name = dictionary["name"] as? String
+        if let jsonCards = dictionary["cards"] as? [[String: AnyObject]] {
+            for jsonCard in jsonCards {
+                let card = TBOCard(dictionary: jsonCard)
+                cards?.append(card)
+            }
+        }
     }
 }

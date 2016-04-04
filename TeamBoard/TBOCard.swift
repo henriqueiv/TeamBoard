@@ -13,7 +13,16 @@ class TBOCard: NSObject {
     var name : String?
     var members : [TBOMember]?
     
-    init(dictionary: [String : AnyObject]){
-        
+    // XXX: Dictionary below needs members only(idMember field are not its concern)
+    convenience init(dictionary: [String : AnyObject]){
+        self.init()
+        id = dictionary["id"] as? String
+        name = dictionary["name"] as? String
+        if let jsonMembers = dictionary["members"] as? [[String: AnyObject]] {
+            for jsonMember in jsonMembers {
+                let member = TBOMember(dictionary: jsonMember)
+                members?.append(member)
+            }
+        }
     }
 }
