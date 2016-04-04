@@ -5,5 +5,6 @@ platform :tvos, '9.0'
 
 target 'TeamBoard' do
 	pod 'Alamofire', '~> 3.0'
+    pod 'Kanna', '~> 1.0.0'
 end
 

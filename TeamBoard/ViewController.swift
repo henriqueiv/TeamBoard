@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Kanna
 
 class ViewController: UIViewController {
     
@@ -15,6 +16,7 @@ class ViewController: UIViewController {
     let secret = "aeb284fb3e27508b77b2006af08e673d08696ae2324bb87718ed1d8baaa4791a"
     let token = "951818ea31c3ae149cc0fb067c9a96bf9d4dda8e68c8cf0171737b035faacdb3"
     let AppName = "Satan%20App"
+    let baseURL = "https://trello.com/1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,44 +43,156 @@ class ViewController: UIViewController {
     
     private func authorizeWithOAuth() {
         //        https://trello.com/1/token/approve
-        let baseURL = "https://trello.com/1"
-        let requestTokenAction = "OAuthGetRequestToken"
-        let authorizeTokenAction = "OAuthAuthorizeToken"
-        let getAccessTokenAction = "OAuthGetAccessToken"
+        
         
         let urlString = "\(baseURL)/connect?key=\(key)&name=\(AppName)&response_type=token&expires=never"
         print(urlString)
         
-        //        let urlString = baseURL + requestTokenAction
         let parms = [
             "key":key,
             "name":AppName,
-            "respose_type":"token",
+            "response_type":"token",
             "expires":"never"
         ]
         
-        let headers = ["":""]
-        Alamofire.request(.GET, "\(baseURL)/connect", parameters: parms, encoding: .URLEncodedInURL).response { (request, response, data, error) in
-            print(request)
-            print(response)
-            print(data)
-            print(error)
-        }
-        
-        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
-        request.HTTPMethod = "GET"
-        
-        let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-        session.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) in
-            print(response)
+        let url = "\(baseURL)/connect"
+        Alamofire.request(.GET, url, parameters: parms, encoding: .URLEncodedInURL).responseString { (response:Response<String, NSError>) in
+            switch response.result {
+            case .Success(let html):
+                if let extractedData = self.extractDataFromHTML(html) {
+                    //                    self.clickLogInWithParms(extractedData)
+                    self.clickAllowWithParms(extractedData)
+                }
+                
+                
+            case .Failure(let error):
+                print(error)
+            }
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func clickLogInWithParms(parms:[String:String]) {
+        let url = "\(baseURL)/login"
+        
+        let parameters = [
+            "returnUrl" : parms["returnUrl"]!,
+            "requestKey" : parms["requestKey"]!,
+            "user" : "henrique_indalencio@hotmail.com",
+            "password" : "senha123"
+        ]
+        Alamofire.request(.POST, url, parameters: parameters).responseString { (response:Response<String, NSError>) in
+            switch response.result {
+            case .Success(let html):
+                let isGoogleLogin = false
+                let email = "henrique_indalencio@hotmail.com"
+                let password = "senha123"
+                let requestKey = parms["requestKey"]!
+                
+                self.loginWithEmail(email, password, isGoogleLogin, requestKey)
+                print(html)
+                
+            case .Failure(let error):
+                print(error)
+            }
+        }
     }
     
+    private func clickAllowWithParms(parms:[String:String]) {
+        let url = "https://trello.com/1/token/approve"
+        var parameters = parms
+        parameters["returnUrl"] = nil
+        parameters["action"] = nil
+        Alamofire.request(.POST, url, parameters: parameters).responseString { (response:Response<String, NSError>) in
+            switch response.result {
+            case .Success(let html):
+                let isGoogleLogin = false
+                let email = "henrique_indalencio@hotmail.com"
+                let password = "senha123"
+                let requestKey = parms["requestKey"]!
+                
+                self.loginWithEmail(email, password, isGoogleLogin, requestKey)
+                print(html)
+                
+            case .Failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func loginWithEmail(email:String, _ password:String, _ isGoogleAccount:Bool, _ requestKey:String) {
+        if isGoogleAccount {
+            googleLoginWithEmail(email, andPassword: password)
+        } else {
+            loginWithEmail(email, andPassword: password, andRequestKey: requestKey)
+        }
+    }
+    
+    private func googleLoginWithEmail(email:String, andPassword password:String) {
+        
+    }
+    
+    private func loginWithEmail(email:String, andPassword password:String, andRequestKey requestKey:String) {
+        // https://trello.com/login?returnUrl=%2F1%2Fconnect%3FrequestKey%3D3beaeb64cae241505b848c4dfc0e93a4
+        let baseURL = "https://trello.com/1"
+        let url = "\(baseURL)/authentication"
+        print(url)
+        
+        let parms:[String : String] = [
+            //            "requestKey":requestKey,
+            "factors[user]":"henrique_indalencio@hotmail.com",
+            "factors[password]":"senha123",
+            "method":"password"
+        ]
+        let headers = [
+            "Accept":"*/*",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+        ]
+        
+        Alamofire.request(.POST, url, parameters: parms, encoding: .URL, headers: headers).responseString { (response:Response<String, NSError>) in
+            switch response.result {
+            case .Success(let html):
+                print(html)
+                
+            case .Failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func extractDataFromHTML(html:String) -> [String:String]? {
+        guard let doc = Kanna.HTML(html: html, encoding: NSUTF8StringEncoding) else {
+            return nil
+        }
+        guard let form = doc.at_xpath("//*[@id=\"surface\"]/div[2]/div[1]/form"), formAction = form["action"] else {
+            assertionFailure("NAO CONSEGUIU PEGAR A ACTION DO FORM")
+            return nil
+        }
+        
+        guard let inputBtnAllow = doc.at_xpath("//*[@id=\"surface\"]/div[2]/div[1]/form/a[1]"), hrefReturnURL = inputBtnAllow["href"] else {
+            assertionFailure("NAO CONSEGUIU PEGAR O hrefReturnURL")
+            return nil
+        }
+        
+        guard let inputRequestKey = doc.at_xpath("//*[@id=\"surface\"]/div[2]/div[1]/form/input[2]"), requestKey = inputRequestKey["value"] else {
+            assertionFailure("NAO CONSEGUIU PEGAR O REQUEST KEY")
+            return nil
+        }
+        
+        guard let inputSignature = doc.at_xpath("//*[@id=\"surface\"]/div[2]/div[1]/form/input[3]"), signature = inputSignature["value"] else {
+            assertionFailure("NAO CONSEGUIU PEGAR O SIGNATURE")
+            return nil
+        }
+        
+        let collectedData = [
+            "returnUrl":hrefReturnURL,
+            "action":formAction,
+            "requestKey":requestKey,
+            "signature":signature,
+            "approve":"Allow"
+        ]
+        
+        return collectedData
+    }
     
 }
 

@@ -11,6 +11,7 @@
 		621359F11CADBC3500353EE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621359F01CADBC3500353EE8 /* ViewController.swift */; };
 		621359F41CADBC3500353EE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621359F21CADBC3500353EE8 /* Main.storyboard */; };
 		621359F61CADBC3500353EE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 621359F51CADBC3500353EE8 /* Assets.xcassets */; };
+		6220CEDA1CAEF154009C91CC /* TrelloManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220CED91CAEF154009C91CC /* TrelloManager.swift */; };
 		62B637931CAEC15A005BC35C /* CompanyRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B637921CAEC15A005BC35C /* CompanyRankingViewController.swift */; };
 		E5EF3FF315B98ABE49FBEA36 /* Pods_TeamBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C531C979FE6BF789D5A59DA7 /* Pods_TeamBoard.framework */; };
 /* End PBXBuildFile section */
@@ -23,6 +24,8 @@
 		621359F31CADBC3500353EE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		621359F51CADBC3500353EE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		621359F71CADBC3500353EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6220CED91CAEF154009C91CC /* TrelloManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrelloManager.swift; path = TrelloManager/TrelloManager.swift; sourceTree = "<group>"; };
+		6292840D1CAF158600780083 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		62A38D451CADC1B300948BAD /* TeamBoard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TeamBoard-Bridging-Header.h"; path = "Supporting Files/TeamBoard-Bridging-Header.h"; sourceTree = "<group>"; };
 		62B637921CAEC15A005BC35C /* CompanyRankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompanyRankingViewController.swift; path = CompanyRanking/CompanyRankingViewController.swift; sourceTree = "<group>"; };
 		C531C979FE6BF789D5A59DA7 /* Pods_TeamBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +74,7 @@
 		621359ED1CADBC3500353EE8 /* TeamBoard */ = {
 			isa = PBXGroup;
 			children = (
+				6220CED81CAEF13C009C91CC /* TrelloManager */,
 				62B637911CAEC130005BC35C /* TeamRanking */,
 				62B6378F1CAEC120005BC35C /* CompanyRanking */,
 				621359EE1CADBC3500353EE8 /* AppDelegate.swift */,
@@ -81,6 +85,14 @@
 				62A38D451CADC1B300948BAD /* TeamBoard-Bridging-Header.h */,
 			);
 			path = TeamBoard;
+			sourceTree = "<group>";
+		};
+		6220CED81CAEF13C009C91CC /* TrelloManager */ = {
+			isa = PBXGroup;
+			children = (
+				6220CED91CAEF154009C91CC /* TrelloManager.swift */,
+			);
+			name = TrelloManager;
 			sourceTree = "<group>";
 		};
 		62B6378F1CAEC120005BC35C /* CompanyRanking */ = {
@@ -101,6 +113,7 @@
 		E4B4362B4C60B73C8E595570 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6292840D1CAF158600780083 /* libxml2.tbd */,
 				C531C979FE6BF789D5A59DA7 /* Pods_TeamBoard.framework */,
 			);
 			name = Frameworks;
@@ -230,6 +243,7 @@
 				62B637931CAEC15A005BC35C /* CompanyRankingViewController.swift in Sources */,
 				621359F11CADBC3500353EE8 /* ViewController.swift in Sources */,
 				621359EF1CADBC3500353EE8 /* AppDelegate.swift in Sources */,
+				6220CEDA1CAEF154009C91CC /* TrelloManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
