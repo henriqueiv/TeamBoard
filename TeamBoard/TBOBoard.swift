@@ -10,7 +10,7 @@ import Foundation
 
 
 
-// Token > Member > Organização > Boards > Members 
+// Token > Member(me) > Organization > Boards > Membership, Members, Lists & Cards
 
 class TBOBoard: NSObject {
     var id : String?            // from GET /1/members/<id>/boards
@@ -23,19 +23,16 @@ class TBOBoard: NSObject {
         id = dictionary["id"] as? String
         name = dictionary["name"] as? String
         if let jsonMembers = dictionary["memberships"] as? [[String: AnyObject]] {
-            var members = [TBOMember]()
-            for jsonMember in jsonMembers {
-                let member = TBOMember(dictionary: jsonMember)
-                members.append(member)
-            }
-            membership = TBOMembership(members: members)
-        }
-        if let jsonLists = dictionary["lists"] as? [[String: AnyObject]] {
-            for jsonList in jsonLists {
-                let list = TBOList(dictionary: jsonList)
-                lists?.append(list)
-            }
-        }
+            membership = TBOMembership(dictionary: jsonMembers)
+        }        
+    }
+    
+    func fetchMembersInBackground(){
+        // TODO: fetch members in membership of board via TRELLO API -- GET /1/boards/[board_id]/members
+    }
+    
+    func fetchListsInBackground(){
+        // TODO: fetch lists(with CARDS) of board via TRELLO API -- GET /1/boards/[board_id]/lists
     }
     
 }

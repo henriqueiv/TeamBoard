@@ -11,6 +11,7 @@ import Foundation
 class TBOJsonParser: NSObject {
     static func getBoards() -> [TBOBoard]? {
         do {
+            // FIXME: trocar linha abaixo pelo getter da API
             let filePath = NSBundle.mainBundle().URLForResource("member_boards", withExtension: "json")!
             if let jsonData = NSData(contentsOfURL: filePath) {
                 var boards = [TBOBoard]()
@@ -34,6 +35,7 @@ class TBOJsonParser: NSObject {
     
     static func getMembersFromBoard() -> [TBOMember]? {
         do {
+            // FIXME: trocar linha abaixo pelo getter da API
             let filePath = NSBundle.mainBundle().URLForResource("board_members", withExtension: "json")!
             if let jsonData = NSData(contentsOfURL: filePath) {
                 var members = [TBOMember]()
@@ -57,6 +59,7 @@ class TBOJsonParser: NSObject {
     
     static func getCards() -> [TBOCard]? {
         do {
+            // FIXME: trocar linha abaixo pelo getter da API
             let filePath = NSBundle.mainBundle().URLForResource("list_cards", withExtension: "json")!
             if let jsonData = NSData(contentsOfURL: filePath) {
                 var cards = [TBOCard]()

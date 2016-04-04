@@ -11,11 +11,17 @@ import UIKit
 class TBOMember: NSObject {
     var id : String?
     var username : String?
+    var fullname : String?
     var picture : UIImage?
     
     init(dictionary: [String : AnyObject]){
         id = dictionary["id"] as? String
         username = dictionary["username"] as? String
-        // TODO: get picture
+        fullname = dictionary["fullname"] as? String
+    }
+    
+    func fetchPicture(completionHandler: (UIImage?,NSError?) -> Void){
+        // TODO: pega a foto
+        completionHandler(nil,nil)
     }
 }

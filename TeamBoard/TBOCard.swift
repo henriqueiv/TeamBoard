@@ -11,7 +11,7 @@ import Foundation
 class TBOCard: NSObject {
     var id : String?
     var name : String?
-    var members : [TBOMember]?
+    var members : [TBOMember]?    
     
     // XXX: Dictionary below needs members only(idMember field are not its concern)
     convenience init(dictionary: [String : AnyObject]){

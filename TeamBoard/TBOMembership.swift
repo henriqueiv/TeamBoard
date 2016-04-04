@@ -21,19 +21,8 @@ class TBOMembership: NSObject {
             if let memberId = jsonMember["idMember"] as? String {
                 let isAdmin = (jsonMember["memberType"] as? String) == "admin"
 //                members.append([member.id! : member])
-//                admins.append([member.id!: isAdmin])
+                admins.append([memberId: isAdmin])
             }
         }
-    }
-    
-    init(members: [TBOMember]){
-        super.init()
-        for member in members {
-            self.members.append([member.id!:member])
-        }
-    }
-    
-    func updateAdmins(){
-        // TODO: update admins
     }
 }
