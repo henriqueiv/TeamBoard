@@ -22,7 +22,7 @@ class TBOBoard: NSObject {
        self.init()
         id = dictionary["id"] as? String
         name = dictionary["name"] as? String
-        if let jsonMembers = dictionary["members"] as? [[String: AnyObject]] {
+        if let jsonMembers = dictionary["memberships"] as? [[String: AnyObject]] {
             var members = [TBOMember]()
             for jsonMember in jsonMembers {
                 let member = TBOMember(dictionary: jsonMember)
