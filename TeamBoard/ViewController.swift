@@ -20,11 +20,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         TrelloManager.sharedInstance.delegate = self
         TrelloManager.sharedInstance.authenticate()
         
-        //        authorizeWithOAuth()
+        //authorizeWithOAuth()
         
         // Do any additional setup after loading the view, typically from a nib.
         
