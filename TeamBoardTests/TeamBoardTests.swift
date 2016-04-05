@@ -27,17 +27,26 @@ class TeamBoardTests: XCTestCase {
     }
     
     func testParser(){
-        let boards = TBOJsonParser.getBoards()
-        XCTAssertNotNil(boards?.first)
-        print(">>>>>> \(boards?.first?.name)")
+//        let boards = TBOJsonParser.getBoards()
+//        XCTAssertNotNil(boards?.first)
+//        print(">>>>>> \(boards?.first?.name)")
+//        
+//        let members = TBOJsonParser.getMembersFromBoard()
+//        XCTAssertNotNil(members?.first)
+//        print("<<<<< \(members?.first?.username)")
+//        
+//        let cards = TBOJsonParser.getCards()
+//        XCTAssertNotNil(cards?.first)
+//        print("##### \(cards?.first?.name)")
+        let expectation = expectationWithDescription(">>>>> Request error <<<<<")
+        TBOJsonParser.getBoards("4eea4ffc91e31d1746000046") { (boards, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(boards)
+//            XCTAssertGreaterThan(boards!.count, 0)
+            expectation.fulfill()
+        }
         
-        let members = TBOJsonParser.getMembersFromBoard()
-        XCTAssertNotNil(members?.first)
-        print("<<<<< \(members?.first?.username)")
-        
-        let cards = TBOJsonParser.getCards()
-        XCTAssertNotNil(cards?.first)
-        print("##### \(cards?.first?.name)")
+        waitForExpectationsWithTimeout(15, handler: nil)
     }
     
     func testPerformanceExample() {
