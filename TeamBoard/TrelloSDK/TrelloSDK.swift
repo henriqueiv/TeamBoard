@@ -11,6 +11,16 @@ import Alamofire
 class TrelloSDK {
     
     
-//    func 
+    func getBoards() {
+        
+    }
+    
+    func getOrganizations() {
+        
+    }
+    
+    func getMembership() {
+        
+    }
     
 }

@@ -27,7 +27,7 @@ class TrelloManager {
     private(set) internal var token: String?
     
     func authenticate() {
-        let obj = PFObject(className: "Authentication")
+        let obj = TBAuthentication()
         obj.saveInBackgroundWithBlock { (suc:Bool, error:NSError?) in
             if error == nil {
                 TrelloManager.sharedInstance.delegate?.didCreateAuthenticationOnServerWithId(obj.objectId!)
@@ -39,23 +39,23 @@ class TrelloManager {
     }
     
     private func checkForToken() {
-        let query = PFQuery(className: "Authentication")
-        query.findObjectsInBackgroundWithBlock { (objs:[PFObject]?, error:NSError?) in
-            if error == nil {
-                if let authentication = objs?.first {
-                    if let token = authentication["token"] as? String {
-                        self.token = token
-                        TrelloManager.sharedInstance.delegate?.didAuthenticate()
-                    } else {
-                        self.checkForToken()
+        if let query = TBAuthentication.query() {
+            query.findObjectsInBackgroundWithBlock { (objs:[PFObject]?, error:NSError?) in
+                if error == nil {
+                    if let authentication = objs?.first {
+                        if let token = authentication["token"] as? String {
+                            self.token = token
+                            TrelloManager.sharedInstance.delegate?.didAuthenticate()
+                        } else {
+                            self.checkForToken()
+                        }
                     }
+                } else {
+                    print("erro ao buscar authentication")
+                    TrelloManager.sharedInstance.delegate?.didFailToAuthenticate()
                 }
-            } else {
-                print("erro ao buscar authentication")
-                TrelloManager.sharedInstance.delegate?.didFailToAuthenticate()
             }
         }
-        
         
     }
     

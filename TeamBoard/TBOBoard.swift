@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 // Token > Member(me) > Organization > Boards > Membership, Members, Lists & Cards
 
 class TBOBoard: NSObject {

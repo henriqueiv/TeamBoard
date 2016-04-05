@@ -9,6 +9,7 @@
 import Foundation
 
 class TBOJsonParser: NSObject {
+    
     static func getBoards() -> [TBOBoard]? {
         do {
             // FIXME: trocar linha abaixo pelo getter da API
