@@ -6,9 +6,9 @@
 //  Copyright © 2016 MC. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 import Kanna
+import UIKit
 
 class ViewController: UIViewController {
     
@@ -20,7 +20,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        authorizeWithOAuth()
+        
+        TrelloManager.sharedInstance.delegate = self
+        TrelloManager.sharedInstance.authenticate()
+        
+        //        authorizeWithOAuth()
         
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -152,6 +156,20 @@ class ViewController: UIViewController {
             switch response.result {
             case .Success(let html):
                 print(html)
+                let authorizationUrl = self.baseURL + "/authorization/session"
+                let parameters = [
+                    "authentication":"",
+                    "dsc":"af4f3620993bf8a207fb6b595f70fb8f744bdb1b0329acbb5cbbcb9bdec252c2"
+                ]
+                //                let headers = ["":""]
+                Alamofire.request(.POST, authorizationUrl, parameters: parameters, encoding: .URL).responseString(completionHandler: { (response:Response<String, NSError>) in
+                    switch response.result {
+                    case .Success(let html):
+                        print(html)
+                    case .Failure(let error):
+                        print(error)
+                    }
+                })
                 
             case .Failure(let error):
                 print(error)
@@ -196,3 +214,40 @@ class ViewController: UIViewController {
     
 }
 
+extension ViewController: TrelloManagerDelegate {
+    
+    func didFailToAuthenticate() {
+        print("fail to authenticate")
+    }
+    
+    func didAuthenticate() {
+        print("authenticated! \(TrelloManager.sharedInstance.token)")
+    }
+    
+    func didCreateAuthenticationOnServerWithId(id:String) {
+        // show qrcode
+        print("criou authentication no server: \(id)")
+        
+        let manager = QRCodeManager.sharedInstance
+        do {
+            let image = try manager.generateQRCodeFromString(id, withFrameSize: CGSize(width: 200, height: 200))
+            print(image)
+        } catch let error as QRCodeManagerError {
+            switch error {
+            case .ErrorCreatingFilter:
+                print("erro ao criar o filtro")
+            case .ErrorGeneratingStringData:
+                print("erro ao gerar data da string")
+            case .ErrorGettingOutputImage:
+                print("erro ao obter a imagem de saída")
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func didFailToCreateAuthenticationOnServer() {
+        print("erro ao criar objeto de autenticacao no servidor!")
+    }
+    
+}
