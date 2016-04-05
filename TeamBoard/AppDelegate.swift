@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let kParseClientKey = "71wrEeeiRT8SVkPeeFC4mB8oFnyuOio5mMD3aB9Q"
     
     func configureParse(launchOptions: [NSObject: AnyObject]?){
+        TBAuthentication.registerSubclass()
+        
         Parse.setApplicationId(kParseApplicationID, clientKey: kParseClientKey)
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: { (success: Bool, error: NSError?) -> Void in
             if error != nil {

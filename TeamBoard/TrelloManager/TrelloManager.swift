@@ -12,7 +12,7 @@ import Parse
 protocol TrelloManagerDelegate: class {
     
     func didAuthenticate()
-    func didFailToAuthenticate()
+    func didFailToAuthenticateWithError(error:NSError)
     func didCreateAuthenticationOnServerWithId(id:String)
     func didFailToCreateAuthenticationOnServer()
     
@@ -31,30 +31,41 @@ class TrelloManager {
         obj.saveInBackgroundWithBlock { (suc:Bool, error:NSError?) in
             if error == nil {
                 TrelloManager.sharedInstance.delegate?.didCreateAuthenticationOnServerWithId(obj.objectId!)
-                self.checkForToken()
+                self.checkForTokenWithId(obj.objectId!)
             } else {
                 print("erro ao salvar obj authentication")
             }
         }
     }
     
-    private func checkForToken() {
+    private func checkForTokenWithId(id:String) {
         if let query = TBAuthentication.query() {
-            query.findObjectsInBackgroundWithBlock { (objs:[PFObject]?, error:NSError?) in
+            query.getFirstObjectInBackgroundWithBlock({ (obj:PFObject?, error:NSError?) in
                 if error == nil {
-                    if let authentication = objs?.first {
-                        if let token = authentication["token"] as? String {
-                            self.token = token
-                            TrelloManager.sharedInstance.delegate?.didAuthenticate()
-                        } else {
-                            self.checkForToken()
+                    if obj == nil {
+                        self.checkForTokenWithId(id)
+                    } else {
+                        if let authentication = obj as? TBAuthentication {
+                            if authentication.token.isEmpty {
+                                self.checkForTokenWithId(id)
+                            } else {
+                                self.token = authentication.token
+                                authentication.deleteInBackgroundWithBlock({ (suc:Bool, error:NSError?) in
+                                    if error == nil {
+                                        print("deletou authentication")
+                                    } else {
+                                        print(error)
+                                    }
+                                })
+                                TrelloManager.sharedInstance.delegate?.didAuthenticate()
+                            }
                         }
                     }
                 } else {
                     print("erro ao buscar authentication")
-                    TrelloManager.sharedInstance.delegate?.didFailToAuthenticate()
+                    TrelloManager.sharedInstance.delegate?.didFailToAuthenticateWithError(error!)
                 }
-            }
+            })
         }
         
     }

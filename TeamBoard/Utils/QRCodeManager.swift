@@ -22,7 +22,7 @@ class QRCodeManager {
         case Low = "L", Medium = "M", High = "Q", Ultra = "H"
     }
     
-    func generateQRCodeFromString(string:String, withFrameSize frameSize:CGSize) throws -> CIImage? {
+    func generateQRCodeFromString(string:String, withFrameSize frameSize:CGSize) throws -> CIImage {
         guard let data = string.dataUsingEncoding(NSISOLatin1StringEncoding, allowLossyConversion: false) else {
             throw QRCodeManagerError.ErrorGeneratingStringData
         }
