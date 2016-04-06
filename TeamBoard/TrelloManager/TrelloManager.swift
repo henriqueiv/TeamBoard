@@ -23,10 +23,11 @@ class TrelloManager {
     static let baseUrl = "https://api.trello.com/1/"
     static let appKeyParameterWithValue = "key=43611b805c9d34e882d8c802e3734678"
     
-    typealias boardsCompletionHandler = ([TBOBoard]?,NSError?)->Void
-    typealias membersCompletionHandler = ([TBOMember]?,NSError?)->Void
-    typealias listsCompletionHandler = ([TBOList]?,NSError?)->Void
-    
+    typealias BoardsCompletionHandler = ([TBOBoard]?,NSError?)->Void
+    typealias MemberCompletionHandler = (TBOMember?,NSError?)->Void
+    typealias MembersCompletionHandler = ([TBOMember]?,NSError?)->Void
+    typealias ListsCompletionHandler = ([TBOList]?,NSError?)->Void
+    typealias OrganizationCompletionHandler = ([TBOOrganization]?,NSError?)->Void
     
     
     weak var delegate: TrelloManagerDelegate?
