@@ -11,8 +11,8 @@ import UIKit
 // MARK: - Architecture
 private extension Selector {
     
-    static let swipeRight = #selector(TutorialViewController.swipeLeft)
-    static let swipeLeft = #selector(TutorialViewController.swipeRight)
+    static let swipeRight = #selector(TutorialViewController.swipeRight)
+    static let swipeLeft = #selector(TutorialViewController.swipeLeft)
     
 }
 
@@ -55,13 +55,13 @@ class TutorialViewController: UIViewController {
         swipeRightRecognizer.direction = .Right
         view.addGestureRecognizer(swipeRightRecognizer)
         
-        let swipeLeftRecognizer = UISwipeGestureRecognizer(target: self, action: .swipeRight)
+        let swipeLeftRecognizer = UISwipeGestureRecognizer(target: self, action: .swipeLeft)
         swipeLeftRecognizer.direction = .Left
         view.addGestureRecognizer(swipeLeftRecognizer)
     }
     
     @objc private func swipeRight() {
-        if currentTipIndex < tips.count {
+        if currentTipIndex < tips.count-1 {
             nextTip()
         } else {
             // TODO: Go to main screen
@@ -83,7 +83,7 @@ class TutorialViewController: UIViewController {
     }
     
     private func previousTip() {
-        currentTipIndex += 1
+        currentTipIndex -= 1
     }
     
 }

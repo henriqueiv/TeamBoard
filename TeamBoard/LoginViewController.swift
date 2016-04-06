@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
     
     private func goToTutorial() {
         let sb = UIStoryboard(name: "Tutorial", bundle: NSBundle.mainBundle())
-        if let vc = sb.instantiateViewControllerWithIdentifier("TutorialViewController") {
+        if let vc = sb.instantiateInitialViewController() as? TutorialViewController {
             presentViewController(vc, animated: true, completion: nil)
         } else {
             assertionFailure("Little friend, did you set the ViewController class as TutorialViewController? :] ")
