@@ -86,12 +86,10 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-TeamBoard/Alamofire.framework"
   install_framework "Pods-TeamBoard/Bolts.framework"
-  install_framework "Pods-TeamBoard/Kanna.framework"
   install_framework "Pods-TeamBoard/Parse.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-TeamBoard/Alamofire.framework"
   install_framework "Pods-TeamBoard/Bolts.framework"
-  install_framework "Pods-TeamBoard/Kanna.framework"
   install_framework "Pods-TeamBoard/Parse.framework"
 fi

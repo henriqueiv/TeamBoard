@@ -8,16 +8,10 @@
 
 import Alamofire
 
-class TBOJsonParser: NSObject {
-    static let baseUrl = "https://api.trello.com/1/"
-    static let appKeyParameterWithValue = "key=43611b805c9d34e882d8c802e3734678"
-    
-    typealias boardsCompletionHandler = ([TBOBoard]?,NSError?)->Void
-    typealias membersCompletionHandler = ([TBOMember]?,NSError?)->Void
-    typealias listsCompletionHandler = ([TBOList]?,NSError?)->Void
-    
-    static func getBoards(organizationID:String,completionHandler: boardsCompletionHandler?){
-        let boardsURL = baseUrl+"organizations/\(organizationID)/boards?"+appKeyParameterWithValue
+extension TrelloManager {    
+    func getBoards(organizationID:String,completionHandler: boardsCompletionHandler?){
+        if let token = token {
+        let boardsURL = TrelloManager.baseUrl+"organizations/\(organizationID)/boards?"+TrelloManager.appKeyParameterWithValue+"lists=all&cards=all&cards_checklists=all&members=all&token=\(token)"
         Alamofire.request(.GET, boardsURL, parameters: nil)
             .responseJSON { response in
                 if (response.result.error == nil) {
@@ -37,10 +31,15 @@ class TBOJsonParser: NSObject {
                     completionHandler?(nil,serviceError)
                 }
         }
+        }
+        else {
+            let serviceError = NSError(domain: "Service Token", code: 1, userInfo: nil)
+            completionHandler?(nil,serviceError)
+        }
     }
 
-    static func getMembersFromBoard(boardID:String,completionHandler: membersCompletionHandler?) {
-        let membersFromBoardURL = baseUrl+"boards/\(boardID)/members?"+appKeyParameterWithValue
+    func getMembersFromBoard(boardID:String,completionHandler: membersCompletionHandler?) {
+        let membersFromBoardURL = TrelloManager.baseUrl+"boards/\(boardID)/members?"+TrelloManager.appKeyParameterWithValue+"&token=\(token!)"
         Alamofire.request(.GET, membersFromBoardURL, parameters: nil)
             .responseJSON { response in
                 if (response.result.error == nil) {
@@ -62,8 +61,8 @@ class TBOJsonParser: NSObject {
         }
     }
 
-    static func getLists(boardID:String,completionHandler:listsCompletionHandler?) {
-        let membersFromBoardURL = baseUrl+"boards/\(boardID)/lists?"+appKeyParameterWithValue
+    func getLists(boardID:String,completionHandler:listsCompletionHandler?) {
+        let membersFromBoardURL = TrelloManager.baseUrl+"boards/\(boardID)/lists?"+TrelloManager.appKeyParameterWithValue+"&token=\(token!)"
         Alamofire.request(.GET, membersFromBoardURL, parameters: nil)
             .responseJSON { response in
                 if (response.result.error == nil) {
