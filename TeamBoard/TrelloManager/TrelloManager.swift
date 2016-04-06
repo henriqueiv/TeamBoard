@@ -26,48 +26,76 @@ class TrelloManager {
     
     private(set) internal var token: String?
     
+    private let CheckTokenLimitAttempts = 1500
+    
+    private var checkTokenAttempts = 0
+    private var cancelTokenCheck = false
+    
+    //    private queue:NSQueue
+    
     func authenticate() {
-        let obj = TBAuthentication()
-        obj.saveInBackgroundWithBlock { (suc:Bool, error:NSError?) in
+        self.checkTokenAttempts = 0
+        let authentication = TBAuthentication()
+        authentication.saveInBackgroundWithBlock { (suc:Bool, error:NSError?) in
             if error == nil {
-                TrelloManager.sharedInstance.delegate?.didCreateAuthenticationOnServerWithId(obj.objectId!)
-                self.checkForTokenWithId(obj.objectId!)
+                let authenticationId = authentication.objectId!
+                TrelloManager.sharedInstance.delegate?.didCreateAuthenticationOnServerWithId(authenticationId)
+                self.checkForTokenWithAuthenticationId(authenticationId)
             } else {
-                print("erro ao salvar obj authentication")
+                print("Error trying to save authentication!")
             }
         }
     }
     
-    private func checkForTokenWithId(id:String) {
+    // TODO: Simplify and remove duplicated code
+    private func checkForTokenWithAuthenticationId(id:String) {
         if let query = TBAuthentication.query() {
-            query.getFirstObjectInBackgroundWithBlock({ (obj:PFObject?, error:NSError?) in
-                if error == nil {
-                    if obj == nil {
-                        self.checkForTokenWithId(id)
-                    } else {
-                        if let authentication = obj as? TBAuthentication {
-                            if authentication.token.isEmpty {
-                                self.checkForTokenWithId(id)
-                            } else {
-                                self.token = authentication.token
-                                authentication.deleteInBackgroundWithBlock({ (suc:Bool, error:NSError?) in
-                                    if error == nil {
-                                        print("deletou authentication")
-                                    } else {
-                                        print(error)
-                                    }
-                                })
-                                TrelloManager.sharedInstance.delegate?.didAuthenticate()
-                            }
-                        }
-                    }
+            query.getObjectInBackgroundWithId(id) { (obj:PFObject?, error:NSError?) in
+                self.checkTokenAttempts += 1
+                let shouldStop = (self.checkTokenAttempts >= self.CheckTokenLimitAttempts) || self.cancelTokenCheck
+                if shouldStop {
+                    self.handleAuthenticationAsPFObject(obj!)
                 } else {
-                    print("erro ao buscar authentication")
-                    TrelloManager.sharedInstance.delegate?.didFailToAuthenticateWithError(error!)
+                    if error == nil {
+                        if obj == nil {
+                            // Object not found, check again
+                            self.checkForTokenWithAuthenticationId(id)
+                        } else {
+                            // Object found, check token
+                            self.handleAuthenticationAsPFObject(obj!)
+                        }
+                    } else {
+                        print("Error trying to get Authentication with id \(id)")
+                        TrelloManager.sharedInstance.delegate?.didFailToAuthenticateWithError(error!)
+                    }
                 }
-            })
+            }
         }
-        
+    }
+    
+    private func handleAuthenticationAsPFObject(obj:PFObject) {
+        if let token = obj["token"] as? String where !token.isEmpty {
+            self.token = token
+            obj.deleteInBackgroundWithBlock(self.deleteAuthentication)
+            TrelloManager.sharedInstance.delegate?.didAuthenticate()
+        } else {
+            print("Empty token for Authorization(id: \(obj.objectId!))")
+            self.checkForTokenWithAuthenticationId(obj.objectId!)
+        }
+    }
+    
+    private func deleteAuthentication(suc:Bool, error:NSError?) {
+        if error == nil {
+            print("Authentication deleted")
+        } else {
+            print("Error while deleting authentication: \(error!)")
+        }
     }
     
 }
+
+
+
+
+
+
