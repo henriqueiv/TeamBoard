@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import Kanna
 import UIKit
 
 class LoginViewController: UIViewController {

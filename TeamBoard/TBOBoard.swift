@@ -28,8 +28,7 @@ class TBOBoard: NSObject {
     }
     
     func fetchMembersInBackground(){
-        // TODO: fetch membership.members of board via TRELLO API -- GET /1/boards/[board_id]/members
-        TBOJsonParser.getMembersFromBoard(id!) { (members, error) in
+        TrelloManager.sharedInstance.getMembersFromBoard(id!) { (members, error) in
             if let _ = error {
               print(">> FetchMembers Error >>\n\(error.debugDescription)")
             }
@@ -44,8 +43,7 @@ class TBOBoard: NSObject {
     }
     
     func fetchListsInBackground(){
-        // TODO: fetch lists(with CARDS) of board via TRELLO API -- GET /1/boards/[board_id]/lists
-        TBOJsonParser.getLists(id!) { (lists, error) in
+        TrelloManager.sharedInstance.getLists(id!) { (lists, error) in
             if let _ = error {
                 print(">> FetchLists Error >>\n\(error.debugDescription)")
             }
