@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="Se2-zP-Bcn">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Tutorial View Controller-->
+        <scene sceneID="ebU-3f-TOt">
+            <objects>
+                <viewController id="Se2-zP-Bcn" customClass="TutorialViewController" customModule="TeamBoard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o0d-YE-O3S"/>
+                        <viewControllerLayoutGuide type="bottom" id="PBf-DF-06j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AAK-Lt-0cM">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial: swipe left/right to go back/next" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdI-WY-YZW">
+                                <rect key="frame" x="808" y="530" width="304" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="mdI-WY-YZW" firstAttribute="centerX" secondItem="AAK-Lt-0cM" secondAttribute="centerX" id="IvS-Wd-ctv"/>
+                            <constraint firstItem="mdI-WY-YZW" firstAttribute="centerY" secondItem="AAK-Lt-0cM" secondAttribute="centerY" id="ebH-G5-ohA"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pl3-Ga-Eo5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="356"/>
+        </scene>
+    </scenes>
+</document>

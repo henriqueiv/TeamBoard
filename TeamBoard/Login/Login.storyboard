@@ -17,19 +17,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="riT-jU-ag6">
-                                <rect key="frame" x="781" y="295" width="400" height="400"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BackgroundLogin" translatesAutoresizingMaskIntoConstraints="NO" id="GaK-Y7-YrM" userLabel="Background image">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="http://inf.ufrgs.br/~hivalcanaia/TrelloBoard?id=1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbh-nD-BH1">
-                                <rect key="frame" x="781" y="703" width="400" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="riT-jU-ag6">
+                                <rect key="frame" x="760" y="295" width="400" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="THe-w5-AZI"/>
+                                    <constraint firstAttribute="width" constant="400" id="i7M-7n-GuD"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="http://inf.ufrgs.br/~hivalcanaia/TrelloBoard?id=1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbh-nD-BH1">
+                                <rect key="frame" x="90" y="722" width="1740" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="fbh-nD-BH1" firstAttribute="leading" secondItem="weK-uM-jfn" secondAttribute="leading" constant="90" id="B5b-iA-mzq"/>
+                            <constraint firstItem="riT-jU-ag6" firstAttribute="top" secondItem="qSb-rg-N40" secondAttribute="bottom" constant="295" id="bTg-wv-Fg0"/>
+                            <constraint firstItem="fbh-nD-BH1" firstAttribute="top" secondItem="riT-jU-ag6" secondAttribute="bottom" constant="27" id="bu0-sx-lej"/>
                             <constraint firstAttribute="trailing" secondItem="fbh-nD-BH1" secondAttribute="trailing" constant="90" id="d5v-SU-AWQ"/>
+                            <constraint firstItem="riT-jU-ag6" firstAttribute="centerX" secondItem="weK-uM-jfn" secondAttribute="centerX" id="eqR-Ns-fh5"/>
                         </constraints>
                     </view>
                     <connections>
@@ -132,4 +142,7 @@
             <point key="canvasLocation" x="1804" y="269"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BackgroundLogin" width="1920" height="1080"/>
+    </resources>
 </document>

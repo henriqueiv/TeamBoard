@@ -11,34 +11,79 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    //    let key = "43611b805c9d34e882d8c802e3734678"
-    //    let secret = "aeb284fb3e27508b77b2006af08e673d08696ae2324bb87718ed1d8baaa4791a"
-    //    let token = "951818ea31c3ae149cc0fb067c9a96bf9d4dda8e68c8cf0171737b035faacdb3"
-    //    let AppName = "Satan%20App"
-    //    let baseURL = "https://trello.com/1"
-    
+    // MARK: IBOutlets
     @IBOutlet weak var qrCodeImageView: UIImageView!
     @IBOutlet weak var loginUrlLabel: UILabel!
     
+    private var activityIndicator:UIActivityIndicatorView?
+    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
+        
         TrelloManager.sharedInstance.delegate = self
         TrelloManager.sharedInstance.authenticate()
-    }    
+    }
+    
+    // MARK: Private helpers
+    private func setupView() {
+        loginUrlLabel.text = ""
+        
+        activityIndicator = UIActivityIndicatorView(frame: qrCodeImageView.frame)
+        activityIndicator!.startAnimating()
+        view.addSubview(activityIndicator!)
+    }
+    
+    private func goToTutorial() {
+        let sb = UIStoryboard(name: "Tutorial", bundle: NSBundle.mainBundle())
+        if let vc = sb.instantiateViewControllerWithIdentifier("TutorialViewController") {
+            presentViewController(vc, animated: true, completion: nil)
+        } else {
+            assertionFailure("Little friend, did you set the ViewController class as TutorialViewController? :] ")
+        }
+    }
+    
+}
+
+extension UILabel {
+    func setTextWithFade(text:String) {
+        let duration:Double = 1
+        UIView.animateWithDuration(duration/2, animations: {
+            self.alpha = 0.0
+        }) { (finished) in
+            self.text = text
+            UIView.animateWithDuration(duration/2) {
+                self.alpha = 1.0
+            }
+        }
+    }
+}
+
+extension UIImageView {
+    func setImageWithFade(image:UIImage) {
+        let duration:Double = 1
+        UIView.animateWithDuration(duration/2, animations: {
+            self.alpha = 0.0
+        }) { (finished) in
+            self.image = image
+            UIView.animateWithDuration(duration/2) {
+                self.alpha = 1.0
+            }
+        }
+    }
 }
 
 // MARK: - TrelloManagerDelegate
 extension LoginViewController: TrelloManagerDelegate {
     
     func didFailToAuthenticateWithError(error:NSError) {
-        print("fail to authenticate: \(error)")
+        loginUrlLabel.setTextWithFade("An error occurred while trying to authenticate. :(")
     }
     
     func didAuthenticate() {
-        print("authenticated! \(TrelloManager.sharedInstance.token)")
-        loginUrlLabel.text = "Authenticated! \(TrelloManager.sharedInstance.token)"
-        qrCodeImageView.image = nil
+        goToTutorial()
     }
     
     func didCreateAuthenticationOnServerWithId(id:String) {
@@ -46,12 +91,14 @@ extension LoginViewController: TrelloManagerDelegate {
         print("criou authentication no server: \(id)")
         
         let manager = QRCodeManager.sharedInstance
+        let loginUrl = "http://inf.ufrgs.br/~hivalcanaia/TrelloBoard?id=\(id)"
         do {
-            let loginUrl = "http://inf.ufrgs.br/~hivalcanaia/TrelloBoard?id=\(id)"
-            let image = try manager.generateQRCodeFromString(loginUrl, withFrameSize: CGSize(width: 200, height: 200))
-            qrCodeImageView.image = UIImage(CIImage: image)
-            loginUrlLabel.text = loginUrl
+            let image = try manager.generateQRCodeFromString(loginUrl, withFrameSize: qrCodeImageView.frame.size)
+            activityIndicator?.stopAnimating()
+            activityIndicator?.removeFromSuperview()
+            qrCodeImageView.setImageWithFade(UIImage(CIImage: image))
             
+            loginUrlLabel.setTextWithFade(loginUrl)
         } catch let error as QRCodeManagerError {
             switch error {
             case .ErrorCreatingFilter:
