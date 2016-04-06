@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import Kanna
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -26,8 +25,7 @@ class LoginViewController: UIViewController {
         
         TrelloManager.sharedInstance.delegate = self
         TrelloManager.sharedInstance.authenticate()
-    }
-    
+    }    
 }
 
 // MARK: - TrelloManagerDelegate

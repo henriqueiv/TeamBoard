@@ -30,13 +30,11 @@ class TBOOrganization: NSObject {
     }
     
     func fetchBoards(completionHandler:([TBOBoard]?,NSError?) -> Void){
-        // TODO: pegar boards via TRELLO API -- GET /1/organizations/[idOrg or name]/boards
-        TBOJsonParser.getBoards(id!, completionHandler: completionHandler)
+        TrelloManager.sharedInstance.getBoards(id!, completionHandler: completionHandler)
     }
     
     func fetchBoardsInBackground(){
-        // TODO: pegar boards via TRELLO API -- GET /1/organizations/[idOrg or name]/boards
-        TBOJsonParser.getBoards(id!) { (boards, error) in
+        TrelloManager.sharedInstance.getBoards(id!) { (boards, error) in
             if let _ = error {
                 print(">> FetchBoards Error >>\n\(error.debugDescription)")
             }

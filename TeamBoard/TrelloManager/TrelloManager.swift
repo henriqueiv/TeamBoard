@@ -20,6 +20,15 @@ protocol TrelloManagerDelegate: class {
 
 class TrelloManager {
     
+    static let baseUrl = "https://api.trello.com/1/"
+    static let appKeyParameterWithValue = "key=43611b805c9d34e882d8c802e3734678"
+    
+    typealias boardsCompletionHandler = ([TBOBoard]?,NSError?)->Void
+    typealias membersCompletionHandler = ([TBOMember]?,NSError?)->Void
+    typealias listsCompletionHandler = ([TBOList]?,NSError?)->Void
+    
+    
+    
     weak var delegate: TrelloManagerDelegate?
     
     static let sharedInstance = TrelloManager()
