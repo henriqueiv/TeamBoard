@@ -67,7 +67,7 @@ class OrganizationSelectionViewController: UIViewController {
     
 }
 
-
+// MARK: - UITableViewDataSource
 extension OrganizationSelectionViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -88,6 +88,7 @@ extension OrganizationSelectionViewController: UITableViewDataSource {
     
 }
 
+// MARK: - UITableViewDelegate
 extension OrganizationSelectionViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

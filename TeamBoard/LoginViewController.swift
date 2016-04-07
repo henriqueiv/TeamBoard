@@ -87,18 +87,17 @@ extension LoginViewController: TrelloManagerDelegate {
     }
     
     func didCreateAuthenticationOnServerWithId(id:String) {
-        // show qrcode
         print("criou authentication no server: \(id)")
         
-        let manager = QRCodeManager.sharedInstance
-        let loginUrl = "http://inf.ufrgs.br/~hivalcanaia/TrelloBoard?id=\(id)"
         do {
+            let manager = QRCodeManager.sharedInstance
+            let loginUrl = "http://inf.ufrgs.br/~hivalcanaia/TrelloBoard?id=\(id)"
             let image = try manager.generateQRCodeFromString(loginUrl, withFrameSize: qrCodeImageView.frame.size)
             activityIndicator?.stopAnimating()
             activityIndicator?.removeFromSuperview()
             qrCodeImageView.setImageWithFade(UIImage(CIImage: image))
             
-            loginUrlLabel.setTextWithFade(loginUrl)
+            loginUrlLabel.setTextWithFade("Scan the QRCode or go to \(loginUrl) to log in")
         } catch let error as QRCodeManagerError {
             switch error {
             case .ErrorCreatingFilter:
