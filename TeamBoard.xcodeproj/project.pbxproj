@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A088ECD1CB6C85A00417953 /* CompanyRanking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A088ECC1CB6C85A00417953 /* CompanyRanking.storyboard */; };
+		0A088ED01CB6D9E100417953 /* CompanyRanking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A088ECE1CB6D9E100417953 /* CompanyRanking.storyboard */; };
+		0A088ED11CB6D9E100417953 /* CompanyRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A088ECF1CB6D9E100417953 /* CompanyRankingViewController.swift */; };
 		0A207EB81CAF10D200EB002A /* member_boards.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A207EB71CAF10D200EB002A /* member_boards.json */; };
-		0A9647D91CB596BA00573D5E /* CompanyRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9647D81CB596BA00573D5E /* CompanyRankingViewController.swift */; };
 		0A9647DB1CB596BC00573D5E /* TBOCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9647DA1CB596BC00573D5E /* TBOCell.swift */; };
 		6206D4CA1CB442C3005E920C /* TBAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6206D4C91CB442C3005E920C /* TBAuthentication.swift */; };
 		6206D4CC1CB448B2005E920C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6206D4CB1CB448B2005E920C /* Login.storyboard */; };
@@ -50,9 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A088ECC1CB6C85A00417953 /* CompanyRanking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompanyRanking.storyboard; sourceTree = "<group>"; };
+		0A088ECE1CB6D9E100417953 /* CompanyRanking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompanyRanking.storyboard; sourceTree = "<group>"; };
+		0A088ECF1CB6D9E100417953 /* CompanyRankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyRankingViewController.swift; sourceTree = "<group>"; };
 		0A207EB71CAF10D200EB002A /* member_boards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = member_boards.json; sourceTree = "<group>"; };
-		0A9647D81CB596BA00573D5E /* CompanyRankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyRankingViewController.swift; sourceTree = "<group>"; };
 		0A9647DA1CB596BC00573D5E /* TBOCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOCell.swift; sourceTree = "<group>"; };
 		61A9C8155577289C04892DD7 /* Pods-TeamBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBoard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamBoard/Pods-TeamBoard.debug.xcconfig"; sourceTree = "<group>"; };
 		6206D4C91CB442C3005E920C /* TBAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TBAuthentication.swift; path = Model/TBAuthentication.swift; sourceTree = "<group>"; };
@@ -231,8 +231,8 @@
 		62B6378F1CAEC120005BC35C /* CompanyRanking */ = {
 			isa = PBXGroup;
 			children = (
-				0A088ECC1CB6C85A00417953 /* CompanyRanking.storyboard */,
-				0A9647D81CB596BA00573D5E /* CompanyRankingViewController.swift */,
+				0A088ECE1CB6D9E100417953 /* CompanyRanking.storyboard */,
+				0A088ECF1CB6D9E100417953 /* CompanyRankingViewController.swift */,
 				0A9647DA1CB596BC00573D5E /* TBOCell.swift */,
 			);
 			name = CompanyRanking;
@@ -318,6 +318,7 @@
 				TargetAttributes = {
 					621359EA1CADBC3500353EE8 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 6D93DA2TT6;
 					};
 					84B96C451CB2F26C00909B00 = {
 						CreatedOnToolsVersion = 7.3;
@@ -350,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84B96C531CB2F9BE00909B00 /* board_members.json in Resources */,
+				0A088ED01CB6D9E100417953 /* CompanyRanking.storyboard in Resources */,
 				621359F61CADBC3500353EE8 /* Assets.xcassets in Resources */,
 				84B96C551CB2FC7000909B00 /* list_cards.json in Resources */,
 				0A088ECD1CB6C85A00417953 /* CompanyRanking.storyboard in Resources */,
@@ -437,8 +439,8 @@
 				625956061CB5969200DA4D33 /* TutorialViewController.swift in Sources */,
 				625956031CB5756B00DA4D33 /* TrelloManager+SDK.swift in Sources */,
 				84D167E71CAEEC2A00E790B3 /* TBOList.swift in Sources */,
+				0A088ED11CB6D9E100417953 /* CompanyRankingViewController.swift in Sources */,
 				84D167E51CAEEC2100E790B3 /* TBOBoard.swift in Sources */,
-				0A9647D91CB596BA00573D5E /* CompanyRankingViewController.swift in Sources */,
 				0A9647DB1CB596BC00573D5E /* TBOCell.swift in Sources */,
 				84D167E31CAEEC1A00E790B3 /* TBOCard.swift in Sources */,
 				84B96C3F1CB2D7B000909B00 /* TBOMembership.swift in Sources */,
