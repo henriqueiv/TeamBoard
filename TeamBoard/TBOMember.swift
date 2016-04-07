@@ -17,7 +17,7 @@ class TBOMember: NSObject {
     init(dictionary: [String : AnyObject]){
         id = dictionary["id"] as? String
         username = dictionary["username"] as? String
-        fullname = dictionary["fullname"] as? String
+        fullname = dictionary["fullName"] as? String
     }
     
     func fetchPicture(completionHandler: (UIImage?,NSError?) -> Void){

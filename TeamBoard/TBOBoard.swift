@@ -23,8 +23,15 @@ class TBOBoard: NSObject {
         if let jsonMembers = dictionary["memberships"] as? [[String: AnyObject]] {
             membership = TBOMembership(dictionary: jsonMembers)
         }
-        fetchMembersInBackground()
-        fetchListsInBackground()
+        lists = [TBOList]()
+        if let jsonLists = dictionary["lists"] as? [[String:AnyObject]] {
+            for jsonList in jsonLists {
+                let list = TBOList(dictionary: jsonList)
+                lists!.append(list)
+            }
+        }
+//        fetchMembersInBackground()
+//        fetchListsInBackground()
     }
     
     func fetchMembersInBackground(){

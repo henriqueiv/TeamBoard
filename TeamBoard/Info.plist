@@ -28,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>UIMainStoryboardFile</key>
-	<string>OrganizationSelection</string>
+	<string>Login</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>arm64</string>

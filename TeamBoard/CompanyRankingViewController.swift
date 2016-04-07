@@ -22,6 +22,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         //iterateCell()
     }
     
+    
 //    func iterateCell(){
 //        //let firstIndexPath = NSIndexPath(forRow: 2, inSection: 0)
 //      //  self.tableView.selectRowAtIndexPath(firstIndexPath, animated: true, scrollPosition: .Top)

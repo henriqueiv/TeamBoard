@@ -27,7 +27,6 @@
 		84B96C3F1CB2D7B000909B00 /* TBOMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C3E1CB2D7B000909B00 /* TBOMembership.swift */; };
 		84B96C411CB2EAD000909B00 /* TBOOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C401CB2EAD000909B00 /* TBOOrganization.swift */; };
 		84B96C491CB2F26C00909B00 /* TeamBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C481CB2F26C00909B00 /* TeamBoardTests.swift */; };
-		84B96C511CB2F35700909B00 /* TBOJsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C501CB2F35700909B00 /* TBOJsonParser.swift */; };
 		84B96C531CB2F9BE00909B00 /* board_members.json in Resources */ = {isa = PBXBuildFile; fileRef = 84B96C521CB2F9BE00909B00 /* board_members.json */; };
 		84B96C551CB2FC7000909B00 /* list_cards.json in Resources */ = {isa = PBXBuildFile; fileRef = 84B96C541CB2FC7000909B00 /* list_cards.json */; };
 		84D167E31CAEEC1A00E790B3 /* TBOCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D167E21CAEEC1A00E790B3 /* TBOCard.swift */; };
@@ -75,7 +74,6 @@
 		84B96C461CB2F26C00909B00 /* TeamBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeamBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B96C481CB2F26C00909B00 /* TeamBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBoardTests.swift; sourceTree = "<group>"; };
 		84B96C4A1CB2F26C00909B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84B96C501CB2F35700909B00 /* TBOJsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOJsonParser.swift; sourceTree = "<group>"; };
 		84B96C521CB2F9BE00909B00 /* board_members.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = board_members.json; sourceTree = "<group>"; };
 		84B96C541CB2FC7000909B00 /* list_cards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = list_cards.json; sourceTree = "<group>"; };
 		84D167E21CAEEC1A00E790B3 /* TBOCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOCard.swift; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 				6206D4C61CB441EE005E920C /* MockData */,
 				6206D4C51CB441DE005E920C /* Model */,
 				6206D4C71CB44211005E920C /* Supporting Files */,
-				84B96C501CB2F35700909B00 /* TBOJsonParser.swift */,
 				62B637911CAEC130005BC35C /* TeamRanking */,
 				6220CED81CAEF13C009C91CC /* TrelloManager */,
 				625956041CB5967300DA4D33 /* Tutorial */,
@@ -425,7 +422,6 @@
 				6259560D1CB6CC9500DA4D33 /* OrganizationSelectionViewController.swift in Sources */,
 				6206D4CA1CB442C3005E920C /* TBAuthentication.swift in Sources */,
 				84D167ED1CAEF31700E790B3 /* TBOMember.swift in Sources */,
-				84B96C511CB2F35700909B00 /* TBOJsonParser.swift in Sources */,
 				625956061CB5969200DA4D33 /* TutorialViewController.swift in Sources */,
 				625956031CB5756B00DA4D33 /* TrelloManager+SDK.swift in Sources */,
 				84D167E71CAEEC2A00E790B3 /* TBOList.swift in Sources */,

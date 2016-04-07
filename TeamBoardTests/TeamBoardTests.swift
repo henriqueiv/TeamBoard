@@ -10,6 +10,9 @@ import XCTest
 @testable import TeamBoard
 
 class TeamBoardTests: XCTestCase, TrelloManagerDelegate {
+    
+    var trelloManagerTest = TrelloManager()
+    
     func didAuthenticate(){
         print("   >>>>> "+TrelloManager.sharedInstance.token!)
         let expectation = expectationWithDescription(">>>>> Request error <<<<<")
@@ -51,8 +54,8 @@ class TeamBoardTests: XCTestCase, TrelloManagerDelegate {
     }
     
     func testParser(){
-        TrelloManager.sharedInstance.delegate = self
-        TrelloManager.sharedInstance.authenticate()
+        trelloManagerTest.delegate = self
+        trelloManagerTest.authenticate()
     }
     
     func testPerformanceExample() {
