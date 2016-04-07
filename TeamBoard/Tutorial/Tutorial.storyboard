@@ -16,16 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial: swipe left/right to go back/next" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdI-WY-YZW">
-                                <rect key="frame" x="808" y="530" width="304" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialTB" translatesAutoresizingMaskIntoConstraints="NO" id="9aT-HS-ReQ">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="mdI-WY-YZW" firstAttribute="centerX" secondItem="AAK-Lt-0cM" secondAttribute="centerX" id="IvS-Wd-ctv"/>
-                            <constraint firstItem="mdI-WY-YZW" firstAttribute="centerY" secondItem="AAK-Lt-0cM" secondAttribute="centerY" id="ebH-G5-ohA"/>
+                            <constraint firstItem="9aT-HS-ReQ" firstAttribute="leading" secondItem="AAK-Lt-0cM" secondAttribute="leading" id="3DG-Oh-Vfs"/>
+                            <constraint firstItem="9aT-HS-ReQ" firstAttribute="top" secondItem="o0d-YE-O3S" secondAttribute="bottom" id="QQ4-rY-sU6"/>
+                            <constraint firstItem="PBf-DF-06j" firstAttribute="top" secondItem="9aT-HS-ReQ" secondAttribute="bottom" id="UuG-Wz-6MM"/>
+                            <constraint firstAttribute="trailing" secondItem="9aT-HS-ReQ" secondAttribute="trailing" id="sCX-PX-mCv"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -34,4 +33,7 @@
             <point key="canvasLocation" x="716" y="356"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tutorialTB" width="1920" height="1080"/>
+    </resources>
 </document>
