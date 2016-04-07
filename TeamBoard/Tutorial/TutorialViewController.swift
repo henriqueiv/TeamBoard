@@ -64,8 +64,12 @@ class TutorialViewController: UIViewController {
         if currentTipIndex < tips.count-1 {
             nextTip()
         } else {
-            // TODO: Go to main screen
             print("Last tip. Go to main screen")
+            
+            // TODO: Go to main screen
+            let sb = UIStoryboard(name: "OrganizationSelection", bundle: NSBundle.mainBundle())
+            let vc = sb.instantiateInitialViewController() as! OrganizationSelectionViewController
+            presentViewController(vc, animated: true, completion: nil)
         }
     }
     

@@ -16,6 +16,12 @@ class OrganizationSelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         /// Fabio's tests
+        
+        setupTableView()
+        loadData()
+    }
+    
+    private func loadData() {
         /// >>>>>> DONT TOUCH THIS <<<<<<
         
         TrelloManager.sharedInstance.getMember { (me, error) in
@@ -28,36 +34,25 @@ class OrganizationSelectionViewController: UIViewController {
                 }
                 for organization in organizations {
                     print("Organization : \(organization.name!)")
+                    self.organizations = organizations
                 }
-                TrelloManager.sharedInstance.getBoards(organizations[0].id!, completionHandler: { (boards, error) in
-                    guard let boards = boards where error == nil else {
-                        return
-                    }
-                    for board in boards {
-                        TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
-                                print("Board: \(board?.name)\nLists: \(board?.lists?.count)")
-                            for list in (board?.lists)! {
-                                print("Cards \(list.name):\(list.cards?.count)")
-                            }
-                        })
-                    }
-                })
+                self.tableView.reloadData()
+                //                TrelloManager.sharedInstance.getBoards(organizations[0].id!, completionHandler: { (boards, error) in
+                //                    guard let boards = boards where error == nil else {
+                //                        return
+                //                    }
+                //                    for board in boards {
+                //                        TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
+                //                                print("Board: \(board?.name)\nLists: \(board?.lists?.count)")
+                //                            for list in (board?.lists)! {
+                //                                print("Cards \(list.name):\(list.cards?.count)")
+                //                            }
+                //                        })
+                //                    }
+                //                })
             })
         }
         
-        setupTableView()
-        loadData()
-    }
-    
-    private func loadData() {
-        for i in 1...10 {
-            let org = TBOOrganization()
-            org.desc = "Organization #\(i)'s description"
-            org.name = "Oganization #\(i)"
-            
-            organizations += [org]
-        }
-        tableView.reloadData()
     }
     
     private func setupTableView() {
