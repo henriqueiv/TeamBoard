@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A088ECD1CB6C85A00417953 /* CompanyRanking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A088ECC1CB6C85A00417953 /* CompanyRanking.storyboard */; };
 		0A207EB81CAF10D200EB002A /* member_boards.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A207EB71CAF10D200EB002A /* member_boards.json */; };
 		0A9647D91CB596BA00573D5E /* CompanyRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9647D81CB596BA00573D5E /* CompanyRankingViewController.swift */; };
 		0A9647DB1CB596BC00573D5E /* TBOCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9647DA1CB596BC00573D5E /* TBOCell.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A088ECC1CB6C85A00417953 /* CompanyRanking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompanyRanking.storyboard; sourceTree = "<group>"; };
 		0A207EB71CAF10D200EB002A /* member_boards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = member_boards.json; sourceTree = "<group>"; };
 		0A9647D81CB596BA00573D5E /* CompanyRankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyRankingViewController.swift; sourceTree = "<group>"; };
 		0A9647DA1CB596BC00573D5E /* TBOCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOCell.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		62B6378F1CAEC120005BC35C /* CompanyRanking */ = {
 			isa = PBXGroup;
 			children = (
+				0A088ECC1CB6C85A00417953 /* CompanyRanking.storyboard */,
 				0A9647D81CB596BA00573D5E /* CompanyRankingViewController.swift */,
 				0A9647DA1CB596BC00573D5E /* TBOCell.swift */,
 			);
@@ -329,6 +332,7 @@
 				84B96C531CB2F9BE00909B00 /* board_members.json in Resources */,
 				621359F61CADBC3500353EE8 /* Assets.xcassets in Resources */,
 				84B96C551CB2FC7000909B00 /* list_cards.json in Resources */,
+				0A088ECD1CB6C85A00417953 /* CompanyRanking.storyboard in Resources */,
 				6206D4CC1CB448B2005E920C /* Login.storyboard in Resources */,
 				625956081CB5975200DA4D33 /* Tutorial.storyboard in Resources */,
 				0A207EB81CAF10D200EB002A /* member_boards.json in Resources */,
