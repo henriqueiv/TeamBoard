@@ -15,6 +15,8 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     let cookies = ["Chocolate Chip":0.25,"Oatmeal":0.26,"Peanut Butter":0.02,"Sugar":0.03]
     var expandedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     
+    var organization:TBOOrganization!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //iterateCell()

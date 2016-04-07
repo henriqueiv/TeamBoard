@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private enum StoryboardName: String, CustomStringConvertible {
         case Login
         case CompanyRanking
+        case OrganizationSelection
         
         var description: String {
             return self.rawValue
@@ -50,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if TrelloManager.sharedInstance.token == nil {
             gotoStoryboard(StoryboardName.Login.rawValue)
         } else {
-            gotoStoryboard(StoryboardName.CompanyRanking.rawValue)
+            gotoStoryboard(StoryboardName.OrganizationSelection.rawValue)
         }
     }
     
