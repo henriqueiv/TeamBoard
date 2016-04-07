@@ -115,6 +115,7 @@ class TrelloManager {
     
     private func logOut() {
         token = ""
+        // TODO: Remove current user from UserDefaults
     }
     
 }
