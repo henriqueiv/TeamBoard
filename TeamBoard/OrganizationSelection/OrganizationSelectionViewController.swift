@@ -35,8 +35,8 @@ class OrganizationSelectionViewController: UIViewController {
                     }
                     for board in boards {
                         TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
-                                print("Board: \(board?.name)\nLists: \(board?.lists?.count)")
-                            for list in (board?.lists)! {
+                                print("Board: \(board!.name!)\nLists: \(board!.lists!.count)")
+                            for list in (board!.lists)! {
                                 print("Cards \(list.name):\(list.cards?.count)")
                             }
                         })
