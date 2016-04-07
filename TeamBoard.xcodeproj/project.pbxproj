@@ -151,8 +151,8 @@
 		6206D4C81CB44282005E920C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				621359F01CADBC3500353EE8 /* LoginViewController.swift */,
 				6206D4CB1CB448B2005E920C /* Login.storyboard */,
+				621359F01CADBC3500353EE8 /* LoginViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -180,12 +180,12 @@
 		621359ED1CADBC3500353EE8 /* TeamBoard */ = {
 			isa = PBXGroup;
 			children = (
-				625956091CB6CC6200DA4D33 /* OrganizationSelection */,
 				621359EE1CADBC3500353EE8 /* AppDelegate.swift */,
 				62B6378F1CAEC120005BC35C /* CompanyRanking */,
 				6206D4C81CB44282005E920C /* Login */,
 				6206D4C61CB441EE005E920C /* MockData */,
 				6206D4C51CB441DE005E920C /* Model */,
+				625956091CB6CC6200DA4D33 /* OrganizationSelection */,
 				6206D4C71CB44211005E920C /* Supporting Files */,
 				84B96C501CB2F35700909B00 /* TBOJsonParser.swift */,
 				62B637911CAEC130005BC35C /* TeamRanking */,
