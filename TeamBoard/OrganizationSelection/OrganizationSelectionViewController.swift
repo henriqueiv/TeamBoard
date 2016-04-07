@@ -26,6 +26,7 @@ class OrganizationSelectionViewController: UIViewController {
                 guard let organizations = organizations where error == nil else {
                     return
                 }
+                print("--- getOrganizations test ----")
                 for organization in organizations {
                     print("Organization : \(organization.name!)")
                 }
@@ -33,11 +34,27 @@ class OrganizationSelectionViewController: UIViewController {
                     guard let boards = boards where error == nil else {
                         return
                     }
+                    print("--- getBoards test ----")
                     for board in boards {
                         TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
-                                print("Board: \(board!.name!)\nLists: \(board!.lists!.count)")
-                            for list in (board!.lists)! {
-                                print("Cards \(list.name):\(list.cards?.count)")
+                            guard let board = board where error == nil else {
+                                return
+                            }
+                            print("--- getBoard test ----")
+                                print("Board: \(board.name!)\nLists: \(board.lists!.count)")
+                            for list in (board.lists)! {
+                                print("Cards \(list.name!):\(list.cards?.count)")
+                            }
+                        })
+                        
+                        TrelloManager.sharedInstance.getCardsFromBoard(board.id!, completionHandler: { (cards, error) in
+                            guard let cards = cards where error == nil else {
+                                return
+                            }
+                            print("--- getCardsFromBoard test ----")
+                            print("Board: \(board.name!)\nCards: \(cards.count)")
+                            for card in cards {
+                                print("Card \(card.name!)")
                             }
                         })
                     }
