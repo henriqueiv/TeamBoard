@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Team Ranking View Controller-->
+        <scene sceneID="beN-2e-QOH">
+            <objects>
+                <viewController id="4Pg-nz-9Lr" customClass="TeamRankingViewController" customModule="TeamBoard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zXO-rr-uRC"/>
+                        <viewControllerLayoutGuide type="bottom" id="CHu-Cf-XC7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5L2-2r-W2a">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gMB-oO-F8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1081" y="655"/>
+        </scene>
+    </scenes>
+</document>
