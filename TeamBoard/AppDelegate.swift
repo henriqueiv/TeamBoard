@@ -14,28 +14,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    let kParseApplicationID = "Q7fNAQmc6l7aFPm36u97w6SWPLbVFmEmw0q9Fnt5"
-    let kParseClientKey = "71wrEeeiRT8SVkPeeFC4mB8oFnyuOio5mMD3aB9Q"
+    private enum StoryboardName: String, CustomStringConvertible {
+        case Login
+        case CompanyRanking
+        
+        var description: String {
+            return self.rawValue
+        }
+    }
     
-    func configureParse(launchOptions: [NSObject: AnyObject]?){
+    private let ParseApplicationID = "Q7fNAQmc6l7aFPm36u97w6SWPLbVFmEmw0q9Fnt5"
+    private let ParseClientKey = "71wrEeeiRT8SVkPeeFC4mB8oFnyuOio5mMD3aB9Q"
+    
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        configureParse(launchOptions)
+        initApp()
+        
+        return true
+    }
+    
+    // MARK: - Private helpers
+    private func configureParse(launchOptions: [NSObject: AnyObject]?){
         TBAuthentication.registerSubclass()
         
-        Parse.setApplicationId(kParseApplicationID, clientKey: kParseClientKey)
+        Parse.setApplicationId(ParseApplicationID, clientKey: ParseClientKey)
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: { (success: Bool, error: NSError?) -> Void in
             if error != nil {
                 print(error?.description)
             }
         })
+        
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        configureParse(launchOptions)
-        
-        
-        return true
+    private func initApp() {
+        if TrelloManager.sharedInstance.token == nil {
+            gotoStoryboard(StoryboardName.Login.rawValue)
+        } else {
+            gotoStoryboard(StoryboardName.CompanyRanking.rawValue)
+        }
     }
     
+    func gotoStoryboard(initialStoryboard:String){
+        let sb = UIStoryboard(name: initialStoryboard, bundle: nil)
+        let vc = sb.instantiateInitialViewController()
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
+    }
 }
 

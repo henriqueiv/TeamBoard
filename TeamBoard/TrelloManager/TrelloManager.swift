@@ -23,18 +23,29 @@ class TrelloManager {
     static let baseUrl = "https://api.trello.com/1/"
     static let appKeyParameterWithValue = "key=43611b805c9d34e882d8c802e3734678"
     
-    typealias BoardsCompletionHandler = ([TBOBoard]?,NSError?)->Void
-    typealias MemberCompletionHandler = (TBOMember?,NSError?)->Void
-    typealias MembersCompletionHandler = ([TBOMember]?,NSError?)->Void
-    typealias ListsCompletionHandler = ([TBOList]?,NSError?)->Void
-    typealias OrganizationCompletionHandler = ([TBOOrganization]?,NSError?)->Void
+    typealias BoardsCompletionHandler = ([TBOBoard]?, NSError?) -> Void
+    typealias MemberCompletionHandler = (TBOMember?, NSError?) -> Void
+    typealias MembersCompletionHandler = ([TBOMember]?, NSError?) -> Void
+    typealias ListsCompletionHandler = ([TBOList]?, NSError?) -> Void
+    typealias OrganizationCompletionHandler = ([TBOOrganization]?, NSError?) -> Void
     
     
     weak var delegate: TrelloManagerDelegate?
     
     static let sharedInstance = TrelloManager()
     
-    private(set) internal var token: String?
+    private let TokenUserDefaultsKey = "TrelloBoard"
+    private(set) internal var token: String? {
+        get {
+            let token = NSUserDefaults.standardUserDefaults().objectForKey(TokenUserDefaultsKey) as? String
+            return token
+        }
+        
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: TokenUserDefaultsKey)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
     
     private let CheckTokenLimitAttempts = 1500
     
@@ -100,6 +111,10 @@ class TrelloManager {
         } else {
             print("Error while deleting authentication: \(error!)")
         }
+    }
+    
+    private func logOut() {
+        token = ""
     }
     
 }
