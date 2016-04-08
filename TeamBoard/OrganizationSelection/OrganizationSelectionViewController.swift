@@ -15,44 +15,21 @@ class OrganizationSelectionViewController: UIViewController {
     private var organizations = [TBOOrganization]()
     
     override func viewDidLoad() {
-        /// Fabio's tests
-        
         setupTableView()
         loadData()
     }
     
     private func loadData() {
-        /// >>>>>> DONT TOUCH THIS <<<<<<
-        
-        TrelloManager.sharedInstance.getMember { (me, error) in
-            guard let _ = me where error == nil else {
+        TrelloManager.sharedInstance.getOrganizations { (organizations, error) in
+            guard let organizations = organizations where error == nil else {
                 return
             }
-            TrelloManager.sharedInstance.getOrganizations({ (organizations, error) in
-                guard let organizations = organizations where error == nil else {
-                    return
-                }
-                for organization in organizations {
-                    print("Organization : \(organization.name!)")
-                    self.organizations = organizations
-                }
-                self.tableView.reloadData()
-                //                TrelloManager.sharedInstance.getBoards(organizations[0].id!, completionHandler: { (boards, error) in
-                //                    guard let boards = boards where error == nil else {
-                //                        return
-                //                    }
-                //                    for board in boards {
-                //                        TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
-                //                                print("Board: \(board?.name)\nLists: \(board?.lists?.count)")
-                //                            for list in (board?.lists)! {
-                //                                print("Cards \(list.name):\(list.cards?.count)")
-                //                            }
-                //                        })
-                //                    }
-                //                })
-            })
+            for organization in organizations {
+                print("Organization : \(organization.name!)")
+                self.organizations = organizations
+            }
+            self.tableView.reloadData()
         }
-        
     }
     
     private func setupTableView() {

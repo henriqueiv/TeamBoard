@@ -83,7 +83,14 @@ extension LoginViewController: TrelloManagerDelegate {
     }
     
     func didAuthenticate() {
-        goToTutorial()
+        TrelloManager.sharedInstance.getMember { (me, error) in
+            guard let _ = me where error == nil else {
+                return
+            }
+            
+            self.goToTutorial()
+        }
+        
     }
     
     func didCreateAuthenticationOnServerWithId(id:String) {
