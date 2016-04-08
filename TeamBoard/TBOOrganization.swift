@@ -18,7 +18,7 @@ class TBOOrganization: NSObject {
     convenience init(dictionary: [String : AnyObject]){
         self.init()
         id = dictionary["id"] as? String
-        name = dictionary["name"] as? String
+        name = dictionary["displayName"] as? String
         desc = dictionary["desc"] as? String
         if let jsonMembers = dictionary["members"] as? [[String : AnyObject]]{
             for jsonMember in jsonMembers {
@@ -26,7 +26,6 @@ class TBOOrganization: NSObject {
                 members.append(member)
             }
         }
-        fetchBoardsInBackground()
     }
     
     func fetchBoards(completionHandler:([TBOBoard]?,NSError?) -> Void){

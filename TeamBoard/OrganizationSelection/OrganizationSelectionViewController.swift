@@ -15,6 +15,53 @@ class OrganizationSelectionViewController: UIViewController {
     private var organizations = [TBOOrganization]()
     
     override func viewDidLoad() {
+        /// Fabio's tests
+        /// >>>>>> DONT TOUCH THIS <<<<<<
+        
+        TrelloManager.sharedInstance.getMember { (me, error) in
+            guard let _ = me where error == nil else {
+                return
+            }
+            TrelloManager.sharedInstance.getOrganizations({ (organizations, error) in
+                guard let organizations = organizations where error == nil else {
+                    return
+                }
+                print("--- getOrganizations test ----")
+                for organization in organizations {
+                    print("Organization : \(organization.name!)")
+                }
+                TrelloManager.sharedInstance.getBoards(organizations[0].id!, completionHandler: { (boards, error) in
+                    guard let boards = boards where error == nil else {
+                        return
+                    }
+                    print("--- getBoards test ----")
+                    for board in boards {
+                        TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
+                            guard let board = board where error == nil else {
+                                return
+                            }
+                            print("--- getBoard test ----")
+                                print("Board: \(board.name!)\nLists: \(board.lists!.count)")
+                            for list in (board.lists)! {
+                                print("Cards \(list.name!):\(list.cards?.count)")
+                            }
+                        })
+                        
+                        TrelloManager.sharedInstance.getCardsFromBoard(board.id!, completionHandler: { (cards, error) in
+                            guard let cards = cards where error == nil else {
+                                return
+                            }
+                            print("--- getCardsFromBoard test ----")
+                            print("Board: \(board.name!)\nCards: \(cards.count)")
+                            for card in cards {
+                                print("Card \(card.name!)")
+                            }
+                        })
+                    }
+                })
+            })
+        }
+        
         setupTableView()
         loadData()
     }
