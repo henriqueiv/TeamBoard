@@ -20,6 +20,25 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         self.iterateCellBoards()
+        
+        
+        // TESTE PRO FRAGA!
+        TrelloManager.sharedInstance.getBoards(organization!.id!) { (boards, error) in
+            guard let boards = boards where error == nil else {
+                return
+            }
+            
+            for board in boards {
+                TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
+                    guard let board = board where error == nil else {
+                        return
+                    }
+                    for member in board.members! {
+                        print(member.fullname)
+                    }
+                })
+            }
+        }
     }
     
     func iterateCellBoards(){
