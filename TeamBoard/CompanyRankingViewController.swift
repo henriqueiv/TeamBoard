@@ -19,30 +19,30 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        iterateCell()
+        self.iterateCellBoards()
     }
     
-    func iterateCell(){
+    func iterateCellBoards(){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while(true){
               for i in 0..<4{
+                                                     sleep(1)
                  let cellPath = NSIndexPath(forRow: i, inSection: 0)
-                 dispatch_async(dispatch_get_main_queue()) {
-                    
+                 dispatch_async(dispatch_get_main_queue()) {               
                     if(i>0){
                         let oldCellPath = NSIndexPath(forRow: i-1, inSection: 0)
                         let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
-                        self.normalCell(cell)
+                        self.normalCellBoard(cell)
                     }else{
                         let oldCellPath = NSIndexPath(forRow: 3, inSection: 0)
                         let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
-                        self.normalCell(cell)
+                        self.normalCellBoard(cell)
                     }
                     self.expandedIndexPath = cellPath
                     let cell = self.tableView.cellForRowAtIndexPath(cellPath) as! TBOCell
-                    self.expandCell(cell)
+                    self.expandCellBoard(cell)
                  }
-                sleep(2)
+               // sleep(2)
                 }
             }
         }
@@ -77,10 +77,11 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("gotoMembers", sender: nil)
         print(self.expandedIndexPath.row)
     }
     
-    func expandCell(cell: TBOCell){
+    func expandCellBoard(cell: TBOCell){
         tableView.beginUpdates()
         cell.teamName.hidden=false
         cell.view.hidden=false
@@ -95,22 +96,24 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         tableView.endUpdates()
     }
     
-    func normalCell(cell:TBOCell){
+    func normalCellBoard(cell:TBOCell){
         cell.teamName.hidden=true
         cell.view.hidden=true
         cell.backgroundColor = UIColor.clearColor()
     }
-    
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
 
-    }
-
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if(indexPath.compare(self.expandedIndexPath) == NSComparisonResult.OrderedSame){
             return 100 + CGFloat(self.cookies.count*65);
         }
         return 89
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "gotoMembers")
+        {
+            let members = (segue.destinationViewController) as! MembersViewController
+        }
     }
 }
 

@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             gotoStoryboard(StoryboardName.OrganizationSelection.rawValue)
         }
-       // gotoStoryboard(StoryboardName.CompanyRanking.rawValue)
+        gotoStoryboard(StoryboardName.CompanyRanking.rawValue)
     }
     
     func gotoStoryboard(initialStoryboard:String){
