@@ -26,6 +26,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while(true){
               for i in 0..<4{
+                sleep(2)
                  let cellPath = NSIndexPath(forRow: i, inSection: 0)
                  dispatch_async(dispatch_get_main_queue()) {
                     
@@ -42,7 +43,6 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
                     let cell = self.tableView.cellForRowAtIndexPath(cellPath) as! TBOCell
                     self.expandCell(cell)
                  }
-                sleep(2)
                 }
             }
         }
