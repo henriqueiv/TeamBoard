@@ -63,6 +63,8 @@ class TrelloManager {
         }
     }
     
+    var member:TBOMember?
+    
     private let CheckTokenLimitAttempts = 1500
     
     private var checkTokenAttempts = 0
@@ -151,6 +153,7 @@ class TrelloManager {
                         if isSuccess {
                             let member = TBOMember(dictionary: jsonData)
                             self.currentUserID = member.id!
+                            self.member = member
                             completionHandler?(member,nil)
                         }
                     }

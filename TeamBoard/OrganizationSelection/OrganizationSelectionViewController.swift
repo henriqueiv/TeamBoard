@@ -11,10 +11,14 @@ import UIKit
 class OrganizationSelectionViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var welcomeLabel: UILabel!
     
     private var organizations = [TBOOrganization]()
     
     override func viewDidLoad() {
+        let fullName = TrelloManager.sharedInstance.member?.fullname
+        welcomeLabel.text = "Welcome\(fullName == nil ? "!" : fullName) :]"
+        
         setupTableView()
         loadData()
     }

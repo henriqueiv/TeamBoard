@@ -351,7 +351,6 @@
 				0A088ED01CB6D9E100417953 /* CompanyRanking.storyboard in Resources */,
 				621359F61CADBC3500353EE8 /* Assets.xcassets in Resources */,
 				84B96C551CB2FC7000909B00 /* list_cards.json in Resources */,
-				0A088ECD1CB6C85A00417953 /* CompanyRanking.storyboard in Resources */,
 				620C8F9E1CB6E40B007F5786 /* TeamRanking.storyboard in Resources */,
 				6259560B1CB6CC7700DA4D33 /* OrganizationSelection.storyboard in Resources */,
 				6206D4CC1CB448B2005E920C /* Login.storyboard in Resources */,
