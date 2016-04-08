@@ -22,10 +22,11 @@ protocol TrelloManagerDelegate: class {
 class TrelloManager {
     
     static let baseUrl = "https://api.trello.com/1/"
-    static let appKeyParameterWithValue = "key=43611b805c9d34e882d8c802e3734678"
+    static let appKey = "43611b805c9d34e882d8c802e3734678"
     
     typealias BoardCompletionHandler = (TBOBoard?,NSError?) -> Void
     typealias BoardsCompletionHandler = ([TBOBoard]?, NSError?) -> Void
+    typealias CardsCompletionHandler = ([TBOCard]?, NSError?) -> Void
     typealias MemberCompletionHandler = (TBOMember?, NSError?) -> Void
     typealias MembersCompletionHandler = ([TBOMember]?, NSError?) -> Void
     typealias ListsCompletionHandler = ([TBOList]?, NSError?) -> Void
@@ -141,8 +142,8 @@ class TrelloManager {
     
     func getMember(completionHandler:MemberCompletionHandler?){
         if let token = token {
-            let memberFromTokenUrl = TrelloManager.baseUrl+"token/\(token)/member?"+TrelloManager.appKeyParameterWithValue
-            Alamofire.request(.GET, memberFromTokenUrl, parameters: nil)
+            let memberFromTokenUrl = TrelloManager.baseUrl+"token/\(token)/member?"
+            Alamofire.request(.GET, memberFromTokenUrl, parameters: ["key":TrelloManager.appKey,"token":token])
                 .responseJSON { response in
                     if (response.result.error == nil) {
                         let isSuccess = response.result.isSuccess
@@ -167,8 +168,8 @@ class TrelloManager {
     
     func getOrganizations(completionHandler: OrganizationCompletionHandler?){
         if let token = token, memberID = currentUserID {
-            let organizationUrl = TrelloManager.baseUrl+"members/\(memberID)/organizations?"+TrelloManager.appKeyParameterWithValue+"&token=\(token)"
-            Alamofire.request(.GET, organizationUrl, parameters: nil)
+            let organizationUrl = TrelloManager.baseUrl+"members/\(memberID)/organizations?"
+            Alamofire.request(.GET, organizationUrl, parameters: ["key":TrelloManager.appKey,"token":token])
                 .responseJSON { response in
                     if (response.result.error == nil) {
                         let isSuccess = response.result.isSuccess
@@ -196,8 +197,8 @@ class TrelloManager {
     
     func getBoards(organizationID:String,completionHandler: BoardsCompletionHandler?){
         if let token = token {
-            let boardsURL = TrelloManager.baseUrl+"organizations/\(organizationID)/boards?"+TrelloManager.appKeyParameterWithValue
-            Alamofire.request(.GET, boardsURL, parameters: ["token":token])
+            let boardsURL = TrelloManager.baseUrl+"organizations/\(organizationID)/boards?"
+            Alamofire.request(.GET, boardsURL, parameters: ["key":TrelloManager.appKey,"token":token])
                 .responseJSON { response in
                     if (response.result.error == nil) {
                         let isSuccess = response.result.isSuccess
@@ -223,10 +224,12 @@ class TrelloManager {
         }
     }
     
+    // FIXME: for some reason it is not returning cards.
+    //        Use getCardsFromBoard to fetch board cards.
     func getBoard(boardID:String,completionHandler: BoardCompletionHandler?){
         if let token = token {
-            let boardsURL = TrelloManager.baseUrl+"boards/\(boardID)?"+TrelloManager.appKeyParameterWithValue
-            Alamofire.request(.GET, boardsURL, parameters: ["lists":"all","cards":"all","card_checklists":"all", "members":"all","token":token])
+            let boardsURL = TrelloManager.baseUrl+"boards/\(boardID)?"
+            Alamofire.request(.GET, boardsURL, parameters: ["lists":"all","cards":"all","card_checklists":"all", "members":"all","key":TrelloManager.appKey,"token":token])
                 .responseJSON { response in
                     if (response.result.error == nil) {
                         let isSuccess = response.result.isSuccess
@@ -248,49 +251,90 @@ class TrelloManager {
         }
     }
     
-    func getMembersFromBoard(boardID:String,completionHandler: MembersCompletionHandler?) {
-        let membersFromBoardURL = TrelloManager.baseUrl+"boards/\(boardID)/members?"+TrelloManager.appKeyParameterWithValue+"&token=\(token!)"
-        Alamofire.request(.GET, membersFromBoardURL, parameters: nil)
-            .responseJSON { response in
-                if (response.result.error == nil) {
-                    let jsonData = response.result.value as! [String : AnyObject]
-                    if jsonData["Success"] != nil {
-                        var members = [TBOMember]()
-                        let jsonMembers = jsonData["members"] as! [[String: AnyObject]]
-                        for jsonMember in jsonMembers {
-                            let member = TBOMember(dictionary: jsonMember)
-                            members.append(member)
+    func getCardsFromBoard(boardID:String,completionHandler: CardsCompletionHandler?){
+        if let token = token {
+            let boardsURL = TrelloManager.baseUrl+"boards/\(boardID)/cards?"
+            Alamofire.request(.GET, boardsURL, parameters: ["checklists":"all", "members":"true","key":TrelloManager.appKey,"token":token])
+                .responseJSON { response in
+                    if (response.result.error == nil) {
+                        let isSuccess = response.result.isSuccess
+                        if isSuccess {
+                            var cards = [TBOCard]()
+                            let jsonCards = response.result.value as! [[String : AnyObject]]
+                            for jsonCard in jsonCards {
+                                let card = TBOCard(dictionary: jsonCard)
+                                cards.append(card)
+                            }
+                            completionHandler?(cards,nil)
                         }
-                        completionHandler?(members,nil)
                     }
-                }
-                else {
-                    let serviceError = NSError(domain: "Service", code: 1, userInfo: nil)
-                    completionHandler?(nil,serviceError)
-                }
+                    else {
+                        let serviceError = NSError(domain: "Service", code: 1, userInfo: nil)
+                        completionHandler?(nil,serviceError)
+                    }
+            }
+        }
+        else {
+            let serviceError = NSError(domain: "Service Token", code: 1, userInfo: nil)
+            completionHandler?(nil,serviceError)
+        }
+    }
+    
+    func getMembersFromBoard(boardID:String,completionHandler: MembersCompletionHandler?) {
+        if let token = token {
+            let membersFromBoardURL = TrelloManager.baseUrl+"boards/\(boardID)/members?"
+            Alamofire.request(.GET, membersFromBoardURL, parameters: ["key":TrelloManager.appKey,"token":token])
+                .responseJSON { response in
+                    if (response.result.error == nil) {
+                        let jsonData = response.result.value as! [String : AnyObject]
+                        if jsonData["Success"] != nil {
+                            var members = [TBOMember]()
+                            let jsonMembers = jsonData["members"] as! [[String: AnyObject]]
+                            for jsonMember in jsonMembers {
+                                let member = TBOMember(dictionary: jsonMember)
+                                members.append(member)
+                            }
+                            completionHandler?(members,nil)
+                        }
+                    }
+                    else {
+                        let serviceError = NSError(domain: "Service", code: 1, userInfo: nil)
+                        completionHandler?(nil,serviceError)
+                    }
+            }
+        }
+        else {
+            let serviceError = NSError(domain: "Service Token", code: 1, userInfo: nil)
+            completionHandler?(nil,serviceError)
         }
     }
     
     func getLists(boardID:String,completionHandler:ListsCompletionHandler?) {
-        let membersFromBoardURL = TrelloManager.baseUrl+"boards/\(boardID)/lists?"+TrelloManager.appKeyParameterWithValue+"&token=\(token!)"
-        Alamofire.request(.GET, membersFromBoardURL, parameters: nil)
-            .responseJSON { response in
-                if (response.result.error == nil) {
-                    let jsonData = response.result.value as! [String : AnyObject]
-                    if jsonData["Success"] != nil {
-                        var lists = [TBOList]()
-                        let jsonLists = jsonData["lists"] as! [[String: AnyObject]]
-                        for jsonList in jsonLists {
-                            let list = TBOList(dictionary: jsonList)
-                            lists.append(list)
+        if let token = token {
+            let membersFromBoardURL = TrelloManager.baseUrl+"boards/\(boardID)/lists?"
+            Alamofire.request(.GET, membersFromBoardURL, parameters: ["key":TrelloManager.appKey,"token":token])
+                .responseJSON { response in
+                    if (response.result.error == nil) {
+                        let jsonData = response.result.value as! [String : AnyObject]
+                        if jsonData["Success"] != nil {
+                            var lists = [TBOList]()
+                            let jsonLists = jsonData["lists"] as! [[String: AnyObject]]
+                            for jsonList in jsonLists {
+                                let list = TBOList(dictionary: jsonList)
+                                lists.append(list)
+                            }
+                            completionHandler?(lists,nil)
                         }
-                        completionHandler?(lists,nil)
                     }
-                }
-                else {
-                    let serviceError = NSError(domain: "Service", code: 1, userInfo: nil)
-                    completionHandler?(nil,serviceError)
-                }
+                    else {
+                        let serviceError = NSError(domain: "Service", code: 1, userInfo: nil)
+                        completionHandler?(nil,serviceError)
+                    }
+            }
+        }
+        else {
+            let serviceError = NSError(domain: "Service Token", code: 1, userInfo: nil)
+            completionHandler?(nil,serviceError)
         }
     }
     

@@ -31,12 +31,16 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
                     
                     if(i>0){
                         let oldCellPath = NSIndexPath(forRow: i-1, inSection: 0)
-                        self.tableView(self.tableView, didDeselectRowAtIndexPath: oldCellPath)
+                        let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
+                        self.normalCell(cell)
                     }else{
                         let oldCellPath = NSIndexPath(forRow: 3, inSection: 0)
-                        self.tableView(self.tableView, didDeselectRowAtIndexPath: oldCellPath)
+                        let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
+                        self.normalCell(cell)
                     }
-                    self.tableView(self.tableView, didSelectRowAtIndexPath: cellPath)
+                    self.expandedIndexPath = cellPath
+                    let cell = self.tableView.cellForRowAtIndexPath(cellPath) as! TBOCell
+                    self.expandCell(cell)
                  }
                 sleep(2)
                 }
@@ -73,32 +77,32 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print(self.expandedIndexPath.row)
+    }
+    
+    func expandCell(cell: TBOCell){
         tableView.beginUpdates()
-        if(indexPath.compare(self.expandedIndexPath) == NSComparisonResult.OrderedSame){
-            //self.expandedIndexPath = nil
-        }else{
-            self.expandedIndexPath = indexPath
-        }
-        let selectedCell:TBOCell = tableView.cellForRowAtIndexPath(indexPath) as! TBOCell
-        selectedCell.teamName.hidden=false
-        selectedCell.view.hidden=false
+        cell.teamName.hidden=false
+        cell.view.hidden=false
         for i in 0..<cookies.count{
             var imageView : UIImageView
             let y = CGFloat(i * 65) + 15
             imageView  = UIImageView(frame:CGRectMake(106, y, 60, 60))
             imageView.image = UIImage(named: "user")!
-            selectedCell.view.addSubview(imageView)
+            cell.view.addSubview(imageView)
         }
-        selectedCell.backgroundColor = UIColor.whiteColor()
+        cell.backgroundColor = UIColor.whiteColor()
         tableView.endUpdates()
     }
     
+    func normalCell(cell:TBOCell){
+        cell.teamName.hidden=true
+        cell.view.hidden=true
+        cell.backgroundColor = UIColor.clearColor()
+    }
+    
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        print(indexPath.row)
-        let selectedCell:TBOCell = tableView.cellForRowAtIndexPath(indexPath) as! TBOCell
-        selectedCell.teamName.hidden=true
-        selectedCell.view.hidden=true
-        selectedCell.backgroundColor = UIColor.clearColor()
+
     }
 
     
@@ -109,6 +113,4 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         return 89
     }
 }
-
-
 
