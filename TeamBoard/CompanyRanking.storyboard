@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="erl-jl-huY">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="erl-jl-huY">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -78,13 +78,20 @@
                                     <outlet property="delegate" destination="erl-jl-huY" id="yum-ga-hxZ"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundLogin" translatesAutoresizingMaskIntoConstraints="NO" id="zel-rd-26c">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="abU-hk-99U" firstAttribute="top" secondItem="nJ0-fy-OeM" secondAttribute="bottom" constant="60" id="AOW-3w-KNe"/>
+                            <constraint firstItem="zel-rd-26c" firstAttribute="leading" secondItem="BAp-DH-qPe" secondAttribute="leading" id="IZH-y4-1Qn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="abU-hk-99U" secondAttribute="trailing" constant="90" id="MoR-M3-5mU"/>
                             <constraint firstItem="K8O-Si-Ku4" firstAttribute="top" secondItem="abU-hk-99U" secondAttribute="bottom" constant="60" id="PKP-Gw-aCt"/>
                             <constraint firstItem="abU-hk-99U" firstAttribute="leading" secondItem="BAp-DH-qPe" secondAttribute="leadingMargin" constant="90" id="SNS-KG-6Ad"/>
+                            <constraint firstAttribute="trailing" secondItem="zel-rd-26c" secondAttribute="trailing" id="Z5O-0d-QWX"/>
+                            <constraint firstItem="K8O-Si-Ku4" firstAttribute="top" secondItem="zel-rd-26c" secondAttribute="bottom" id="ahs-0g-wEB"/>
+                            <constraint firstItem="zel-rd-26c" firstAttribute="top" secondItem="nJ0-fy-OeM" secondAttribute="bottom" id="mNC-eK-L0C"/>
                         </constraints>
                     </view>
                     <connections>
@@ -96,4 +103,7 @@
             <point key="canvasLocation" x="1804" y="261"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BackgroundLogin" width="1920" height="1080"/>
+    </resources>
 </document>
