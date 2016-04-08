@@ -63,6 +63,8 @@ class TrelloManager {
         }
     }
     
+    var member:TBOMember?
+    
     private let CheckTokenLimitAttempts = 1500
     
     private var checkTokenAttempts = 0
@@ -114,7 +116,13 @@ class TrelloManager {
         if let token = obj["token"] as? String where !token.isEmpty {
             self.token = token
             obj.deleteInBackgroundWithBlock(self.deleteAuthentication)
-            TrelloManager.sharedInstance.delegate?.didAuthenticate()
+            TrelloManager.sharedInstance.getMember { (me, error) in
+                if error == nil {
+                    TrelloManager.sharedInstance.delegate?.didFailToAuthenticateWithError(error!)
+                } else {
+                    TrelloManager.sharedInstance.delegate?.didAuthenticate()
+                }
+            }
         } else {
             print("Empty token for Authorization(id: \(obj.objectId!))")
             self.checkForTokenWithAuthenticationId(obj.objectId!)
@@ -145,6 +153,7 @@ class TrelloManager {
                         if isSuccess {
                             let member = TBOMember(dictionary: jsonData)
                             self.currentUserID = member.id!
+                            self.member = member
                             completionHandler?(member,nil)
                         }
                     }

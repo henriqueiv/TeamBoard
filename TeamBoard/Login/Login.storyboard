@@ -20,25 +20,33 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="riT-jU-ag6">
-                                <rect key="frame" x="760" y="295" width="400" height="400"/>
+                                <rect key="frame" x="789" y="369" width="343" height="343"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="THe-w5-AZI"/>
-                                    <constraint firstAttribute="width" constant="400" id="i7M-7n-GuD"/>
+                                    <constraint firstAttribute="height" constant="343" id="THe-w5-AZI"/>
+                                    <constraint firstAttribute="width" constant="343" id="i7M-7n-GuD"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan the QRCode or go to http://inf.ufrgs.br/hivalcanaia/TrelloBoard?id=1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbh-nD-BH1">
-                                <rect key="frame" x="90" y="722" width="1740" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <rect key="frame" x="464" y="772" width="993" height="41"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoTB" translatesAutoresizingMaskIntoConstraints="NO" id="Au9-DS-YZt">
+                                <rect key="frame" x="598" y="174" width="725" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="8CE-Wz-uay"/>
+                                    <constraint firstAttribute="width" constant="725" id="VsL-UU-mE5"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="fbh-nD-BH1" firstAttribute="leading" secondItem="weK-uM-jfn" secondAttribute="leading" constant="90" id="B5b-iA-mzq"/>
-                            <constraint firstItem="riT-jU-ag6" firstAttribute="top" secondItem="qSb-rg-N40" secondAttribute="bottom" constant="295" id="bTg-wv-Fg0"/>
-                            <constraint firstItem="fbh-nD-BH1" firstAttribute="top" secondItem="riT-jU-ag6" secondAttribute="bottom" constant="27" id="bu0-sx-lej"/>
-                            <constraint firstAttribute="trailing" secondItem="fbh-nD-BH1" secondAttribute="trailing" constant="90" id="d5v-SU-AWQ"/>
+                            <constraint firstItem="fbh-nD-BH1" firstAttribute="top" secondItem="riT-jU-ag6" secondAttribute="bottom" constant="60" id="4Re-V1-txf"/>
+                            <constraint firstItem="fbh-nD-BH1" firstAttribute="centerX" secondItem="weK-uM-jfn" secondAttribute="centerX" id="D7T-Hr-C9L"/>
+                            <constraint firstItem="Au9-DS-YZt" firstAttribute="centerX" secondItem="weK-uM-jfn" secondAttribute="centerX" id="QNg-BD-2lf"/>
+                            <constraint firstItem="riT-jU-ag6" firstAttribute="top" secondItem="Au9-DS-YZt" secondAttribute="bottom" constant="60" id="XRt-ha-unF"/>
                             <constraint firstItem="riT-jU-ag6" firstAttribute="centerX" secondItem="weK-uM-jfn" secondAttribute="centerX" id="eqR-Ns-fh5"/>
+                            <constraint firstItem="riT-jU-ag6" firstAttribute="centerY" secondItem="weK-uM-jfn" secondAttribute="centerY" id="ivX-sX-uDc"/>
                         </constraints>
                     </view>
                     <connections>
@@ -53,5 +61,6 @@
     </scenes>
     <resources>
         <image name="BackgroundLogin" width="1920" height="1080"/>
+        <image name="LogoTB" width="723" height="150"/>
     </resources>
 </document>
