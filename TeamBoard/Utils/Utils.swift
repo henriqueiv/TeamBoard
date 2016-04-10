@@ -11,7 +11,7 @@ import Foundation
 extension String {
     
     func asRange() -> NSRange {
-        let range = NSRange(location: 0, length: self.characters.count)
+        let range = NSRange(location: 0, length: characters.count)
         return range
     }
     
@@ -43,15 +43,15 @@ enum IndexType: Int {
 extension Array {
     
     func forEachOddIndex(@noescape body: (Generator.Element) throws -> Void) rethrows {
-        try self.forEachWithIndexType(.Odd, body: body)
+        try forEachWithIndexType(.Odd, body: body)
     }
     
     func forEachEvenIndex(@noescape body: (Generator.Element) throws -> Void) rethrows {
-        try self.forEachWithIndexType(.Even, body: body)
+        try forEachWithIndexType(.Even, body: body)
     }
     
     private func forEachWithIndexType(type: IndexType, @noescape body: (Generator.Element) throws -> Void) rethrows {
-        for index in type.rawValue.stride(to: self.count, by: 2) {
+        for index in type.rawValue.stride(to: count, by: 2) {
             try body(self[index])
         }
     }
