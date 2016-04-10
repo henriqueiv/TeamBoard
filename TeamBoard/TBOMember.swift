@@ -13,6 +13,7 @@ class TBOMember: NSObject {
     var username : String?
     var fullname : String?
     var picture : UIImage?
+    var points = 0
     
     init(dictionary: [String : AnyObject]){
         id = dictionary["id"] as? String
