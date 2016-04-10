@@ -15,6 +15,7 @@ class TBOMember: NSObject {
     var picture : UIImage?
     var avatarHash : String?
     var type : MemberType = .Normal
+    var points = 0
     
     enum MemberType {
         case Admin
