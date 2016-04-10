@@ -14,6 +14,12 @@ class TBOMember: NSObject {
     var fullname : String?
     var picture : UIImage?
     var points = 0
+    var type : MemberType = .Normal
+    
+    enum MemberType {
+        case Admin
+        case Normal
+    }
     
     init(dictionary: [String : AnyObject]){
         id = dictionary["id"] as? String

@@ -17,7 +17,8 @@ class OrganizationSelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         let fullName = TrelloManager.sharedInstance.member?.fullname
-        welcomeLabel.text = "Welcome\(fullName == nil ? "!" : fullName) :]"
+        let postfix = (fullName == nil ? "!" : " \(fullName)!")
+        welcomeLabel.text = "Welcome\(postfix) :]"
         
         setupTableView()
         loadData()
@@ -63,6 +64,7 @@ extension OrganizationSelectionViewController: UITableViewDataSource {
     }
     
 }
+
 
 // MARK: - UITableViewDelegate
 extension OrganizationSelectionViewController: UITableViewDelegate {
