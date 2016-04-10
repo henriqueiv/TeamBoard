@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A088ED01CB6D9E100417953 /* CompanyRanking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A088ECE1CB6D9E100417953 /* CompanyRanking.storyboard */; };
 		0A088ED11CB6D9E100417953 /* CompanyRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A088ECF1CB6D9E100417953 /* CompanyRankingViewController.swift */; };
+		0A088ED31CB81A0800417953 /* MembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A088ED21CB81A0800417953 /* MembersViewController.swift */; };
 		0A207EB81CAF10D200EB002A /* member_boards.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A207EB71CAF10D200EB002A /* member_boards.json */; };
 		0A9647DB1CB596BC00573D5E /* TBOCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9647DA1CB596BC00573D5E /* TBOCell.swift */; };
 		6206D4CA1CB442C3005E920C /* TBAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6206D4C91CB442C3005E920C /* TBAuthentication.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		0A088ECE1CB6D9E100417953 /* CompanyRanking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CompanyRanking.storyboard; sourceTree = "<group>"; };
 		0A088ECF1CB6D9E100417953 /* CompanyRankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyRankingViewController.swift; sourceTree = "<group>"; };
+		0A088ED21CB81A0800417953 /* MembersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersViewController.swift; sourceTree = "<group>"; };
 		0A207EB71CAF10D200EB002A /* member_boards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = member_boards.json; sourceTree = "<group>"; };
 		0A9647DA1CB596BC00573D5E /* TBOCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOCell.swift; sourceTree = "<group>"; };
 		61A9C8155577289C04892DD7 /* Pods-TeamBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBoard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamBoard/Pods-TeamBoard.debug.xcconfig"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				0A088ECE1CB6D9E100417953 /* CompanyRanking.storyboard */,
 				0A088ECF1CB6D9E100417953 /* CompanyRankingViewController.swift */,
 				0A9647DA1CB596BC00573D5E /* TBOCell.swift */,
+				0A088ED21CB81A0800417953 /* MembersViewController.swift */,
 			);
 			name = CompanyRanking;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				84D167E71CAEEC2A00E790B3 /* TBOList.swift in Sources */,
 				0A088ED11CB6D9E100417953 /* CompanyRankingViewController.swift in Sources */,
 				84D167E51CAEEC2100E790B3 /* TBOBoard.swift in Sources */,
+				0A088ED31CB81A0800417953 /* MembersViewController.swift in Sources */,
 				0A9647DB1CB596BC00573D5E /* TBOCell.swift in Sources */,
 				84D167E31CAEEC1A00E790B3 /* TBOCard.swift in Sources */,
 				62B8AAAF1CB849E9009EB891 /* Utils.swift in Sources */,

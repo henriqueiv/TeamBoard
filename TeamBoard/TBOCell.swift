@@ -17,6 +17,10 @@ class TBOCell: UITableViewCell {
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var view: UIView!
     
+    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

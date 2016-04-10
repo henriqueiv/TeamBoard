@@ -20,32 +20,17 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         self.iterateCellBoards()
-        
-        
-        // TESTE PRO FRAGA!
-        TrelloManager.sharedInstance.getBoards(organization!.id!) { (boards, error) in
-            guard let boards = boards where error == nil else {
-                return
-            }
-            
-            for board in boards {
-                TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
-                    guard let board = board where error == nil else {
-                        return
-                    }
-                    for member in board.members! {
-                        print(member.fullname)
-                    }
-                })
-            }
-        }
     }
     
     func iterateCellBoards(){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while(true){
               for i in 0..<4{
+<<<<<<< HEAD
                                                      sleep(1)
+=======
+                sleep(2)
+>>>>>>> 7bef6c369821af344b438e003845a6683502c7f5
                  let cellPath = NSIndexPath(forRow: i, inSection: 0)
                  dispatch_async(dispatch_get_main_queue()) {               
                     if(i>0){
@@ -61,7 +46,10 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
                     let cell = self.tableView.cellForRowAtIndexPath(cellPath) as! TBOCell
                     self.expandCellBoard(cell)
                  }
+<<<<<<< HEAD
                // sleep(2)
+=======
+>>>>>>> 7bef6c369821af344b438e003845a6683502c7f5
                 }
             }
         }

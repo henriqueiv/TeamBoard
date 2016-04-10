@@ -257,7 +257,7 @@ class TrelloManager {
     func getCardsFromBoard(boardID:String,completionHandler: CardsCompletionHandler?){
         if let token = token {
             let boardsURL = TrelloManager.baseUrl+"boards/\(boardID)/cards?"
-            Alamofire.request(.GET, boardsURL, parameters: ["checklists":"all", "members":"true","key":TrelloManager.appKey,"token":token])
+            Alamofire.request(.GET, boardsURL, parameters: ["checklists":"all","members":"true","key":TrelloManager.appKey,"token":token])
                 .responseJSON { response in
                     if (response.result.error == nil) {
                         let isSuccess = response.result.isSuccess
