@@ -9,37 +9,13 @@
 import XCTest
 @testable import TeamBoard
 
-class TeamBoardTests: XCTestCase, TrelloManagerDelegate {
+class TeamBoardTests: XCTestCase {
     
     var trelloManagerTest = TrelloManager()
     
-    func didAuthenticate(){
-        print("   >>>>> "+TrelloManager.sharedInstance.token!)
-        let expectation = expectationWithDescription(">>>>> Request error <<<<<")
-        TrelloManager.sharedInstance.getBoards("4eea4ffc91e31d1746000046") { (boards, error) in
-            XCTAssertNil(error)
-            XCTAssertNotNil(boards)
-            //            XCTAssertGreaterThan(boards!.count, 0)
-            expectation.fulfill()
-        }
-        
-        waitForExpectationsWithTimeout(15, handler: nil)
-    }
-    
-    func didFailToCreateAuthenticationOnServer() {
-        
-    }
-    
-    func didCreateAuthenticationOnServerWithId(id: String) {
-        
-    }
-    
-    func didFailToAuthenticateWithError(error: NSError) {
-        
-    }
-    
     override func setUp() {
         super.setUp()
+        
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -53,16 +29,71 @@ class TeamBoardTests: XCTestCase, TrelloManagerDelegate {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
-    func testParser(){
-        trelloManagerTest.delegate = self
-        trelloManagerTest.authenticate()
+    func testGetBoardsByOrganization(){
+        var expectation : XCTestExpectation? = expectationWithDescription(">>>>> Request error <<<<<")
+        TrelloManager.sharedInstance.getMember { (me, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(me)
+            TrelloManager.sharedInstance.getOrganizations({ (organizations, error) in
+                XCTAssertNil(error)
+                XCTAssertNotNil(organizations)
+                for organization in organizations! {
+                    TrelloManager.sharedInstance.getBoards(organization.id!, completionHandler: { (boards, error) in
+                        XCTAssertNil(error)
+                        XCTAssertNotNil(boards)
+                        var boardRequestCounter = 0
+                        for board in boards! {
+                            TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
+                                XCTAssertNil(error)
+                                XCTAssertNotNil(board)
+                                XCTAssertGreaterThan(board!.members!.count, 0)
+                                boardRequestCounter += 1
+                                if boardRequestCounter == boards!.count {
+                                    expectation?.fulfill()
+                                    expectation = nil
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
+        waitForExpectationsWithTimeout(15, handler: nil)
+    }
+ 
+    func testGetCards(){
+        var expectation : XCTestExpectation? = expectationWithDescription(">>>>> Request error <<<<<")
+        TrelloManager.sharedInstance.getMember { (me, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(me)
+            TrelloManager.sharedInstance.getOrganizations({ (organizations, error) in
+                XCTAssertNil(error)
+                XCTAssertNotNil(organizations)
+                for organization in organizations! {
+                    TrelloManager.sharedInstance.getBoards(organization.id!, completionHandler: { (boards, error) in
+                        XCTAssertNil(error)
+                        XCTAssertNotNil(boards)
+                        var cardsRequestCounter = 0
+                        for board in boards! {
+                            TrelloManager.sharedInstance.getCardsFromBoard(board.id!, completionHandler: { (cards, error) in
+                                XCTAssertNil(error)
+                                XCTAssertNotNil(cards)
+                                cardsRequestCounter += 1
+                                if cardsRequestCounter == boards!.count {
+                                    expectation?.fulfill()
+                                    expectation = nil
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
+        waitForExpectationsWithTimeout(10, handler: nil)
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
     }
     
 }
