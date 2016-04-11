@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="erl-jl-huY">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="erl-jl-huY">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -140,8 +140,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundLogin" translatesAutoresizingMaskIntoConstraints="NO" id="R71-eA-1pU">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="226" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="CJP-A2-uSL">
-                                <rect key="frame" x="110" y="60" width="1700" height="960"/>
+                                <rect key="frame" x="110" y="250" width="1700" height="770"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="226" id="gOF-Aw-kO7" customClass="TBOCell" customModule="TeamBoard" customModuleProvider="target">
@@ -185,7 +188,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.5368331755050505" green="0.5368331755050505" blue="0.5368331755050505" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -211,13 +214,34 @@
                                     <outlet property="delegate" destination="Zrj-C4-k6X" id="0Z4-3O-Ccs"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoTB" translatesAutoresizingMaskIntoConstraints="NO" id="7as-wc-1x6">
+                                <rect key="frame" x="1578" y="64" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="2IX-bs-nEh"/>
+                                    <constraint firstAttribute="width" constant="240" id="IQg-Bd-xrP"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyU-g9-O5i">
+                                <rect key="frame" x="129" y="100" width="217" height="52"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="38"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ArB-Oc-BYd" firstAttribute="top" secondItem="CJP-A2-uSL" secondAttribute="bottom" constant="60" id="5iA-yx-dbN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CJP-A2-uSL" secondAttribute="trailing" constant="90" id="Atc-y5-aAK"/>
-                            <constraint firstItem="CJP-A2-uSL" firstAttribute="top" secondItem="LpZ-IB-pCy" secondAttribute="bottom" constant="60" id="a6Q-GA-6np"/>
-                            <constraint firstItem="CJP-A2-uSL" firstAttribute="leading" secondItem="1Ag-l9-HUG" secondAttribute="leadingMargin" constant="90" id="bYB-y9-w8x"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="CJP-A2-uSL" secondAttribute="bottom" constant="60" id="8TQ-Jd-soj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7as-wc-1x6" secondAttribute="trailing" constant="82" id="8nL-ju-VAj"/>
+                            <constraint firstItem="PyU-g9-O5i" firstAttribute="leading" secondItem="1Ag-l9-HUG" secondAttribute="leadingMargin" constant="109" id="GG8-NF-LsE"/>
+                            <constraint firstItem="PyU-g9-O5i" firstAttribute="top" secondItem="LpZ-IB-pCy" secondAttribute="bottom" constant="100" id="GWA-Zo-SAs"/>
+                            <constraint firstAttribute="trailing" secondItem="R71-eA-1pU" secondAttribute="trailing" id="J5n-1X-w2Q"/>
+                            <constraint firstItem="ArB-Oc-BYd" firstAttribute="top" secondItem="R71-eA-1pU" secondAttribute="bottom" id="KOf-GH-ak7"/>
+                            <constraint firstItem="CJP-A2-uSL" firstAttribute="top" secondItem="LpZ-IB-pCy" secondAttribute="bottom" constant="250" id="Ppe-nb-fYj"/>
+                            <constraint firstItem="CJP-A2-uSL" firstAttribute="leading" secondItem="1Ag-l9-HUG" secondAttribute="leadingMargin" constant="90" id="Qro-OM-Gqm"/>
+                            <constraint firstItem="7as-wc-1x6" firstAttribute="top" secondItem="LpZ-IB-pCy" secondAttribute="bottom" constant="64" id="RxX-of-ODy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CJP-A2-uSL" secondAttribute="trailing" constant="90" id="VWP-OW-y8V"/>
+                            <constraint firstItem="R71-eA-1pU" firstAttribute="leading" secondItem="1Ag-l9-HUG" secondAttribute="leading" id="fAg-UL-WkV"/>
+                            <constraint firstItem="R71-eA-1pU" firstAttribute="top" secondItem="LpZ-IB-pCy" secondAttribute="bottom" id="y4W-qK-Coj"/>
                         </constraints>
                     </view>
                     <connections>

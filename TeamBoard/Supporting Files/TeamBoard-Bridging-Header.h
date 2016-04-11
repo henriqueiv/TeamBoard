@@ -9,5 +9,6 @@
 #ifndef TeamBoard_Bridging_Header_h
 #define TeamBoard_Bridging_Header_h
 
+#import "AsyncImageView.h"
 
 #endif /* TeamBoard_Bridging_Header_h */
