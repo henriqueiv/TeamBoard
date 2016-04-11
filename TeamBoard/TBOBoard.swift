@@ -65,6 +65,15 @@ class TBOBoard: NSObject {
 //        }
 //    }
     
+    
+//    func loadPicturesMembers(){
+//        for member in members! {
+//            member.fetchPicture({ (picture, error) in
+//                //nao faz nada
+//            })
+//        }
+//    }
+    
     func fetchListsInBackground(){
         TrelloManager.sharedInstance.getLists(id!) { (lists, error) in
             if let _ = error {
