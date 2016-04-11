@@ -9,20 +9,22 @@
 import Parse
 import UIKit
 
+enum StoryboardName: String, CustomStringConvertible {
+    case Login
+    case CompanyRanking
+    case OrganizationSelection
+    
+    var description: String {
+        return self.rawValue
+    }
+}
+
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
-    private enum StoryboardName: String, CustomStringConvertible {
-        case Login
-        case CompanyRanking
-        case OrganizationSelection
-        
-        var description: String {
-            return self.rawValue
-        }
-    }
     
     private let ParseApplicationID = "Q7fNAQmc6l7aFPm36u97w6SWPLbVFmEmw0q9Fnt5"
     private let ParseClientKey = "71wrEeeiRT8SVkPeeFC4mB8oFnyuOio5mMD3aB9Q"
@@ -48,16 +50,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func initApp() {
-        if TrelloManager.sharedInstance.token == nil {
-            gotoStoryboard(StoryboardName.Login.rawValue)
+        if TrelloManager.sharedInstance.token.isEmpty {
+            gotoStoryboardWithName(.Login)
         } else {
-            gotoStoryboard(StoryboardName.OrganizationSelection.rawValue)
+            gotoStoryboardWithName(.OrganizationSelection)
         }
-     //   gotoStoryboard(StoryboardName.CompanyRanking.rawValue)
+        //   gotoStoryboard(StoryboardName.CompanyRanking.rawValue)
     }
     
-    func gotoStoryboard(initialStoryboard:String){
-        let sb = UIStoryboard(name: initialStoryboard, bundle: nil)
+    func gotoStoryboardWithName(storyboardName:StoryboardName){
+        let sb = UIStoryboard(name: storyboardName.rawValue, bundle: nil)
         let vc = sb.instantiateInitialViewController()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
