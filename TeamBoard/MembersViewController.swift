@@ -53,6 +53,8 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = self.tableview.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TBOCell
         cell.indentifier.text = "#"+String(indexPath.row+1)
         cell.score.text = "4321 Pontos"
+        cell.layer.cornerRadius = cell.frame.size.width/100
+        cell.backgroundColor = UIColor.whiteColor()
         if(indexPath.row == 0){
             let image : UIImage = UIImage(named: "trophy")!
             cell.trophy.image = image
@@ -85,6 +87,7 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
             label.backgroundColor = UIColor.redColor()
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
+            cell.view.layer.cornerRadius = cell.frame.size.width/100
             cell.view.addSubview(label)
         }
         cell.backgroundColor = UIColor.whiteColor()
@@ -94,6 +97,5 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     func normalCellMember(cell:TBOCell){
         cell.teamName.hidden=true
         cell.view.hidden=true
-        cell.backgroundColor = UIColor.clearColor()
     }
 }
