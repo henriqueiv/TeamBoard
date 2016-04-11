@@ -61,7 +61,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
                     let cell = self.tableView.cellForRowAtIndexPath(cellPath) as! TBOCell
                     self.expandCellBoard(cell)
                  }
-               // sleep(2)
+                //sleep(2)
                 }
             }
         }
@@ -79,6 +79,8 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             let x = CGFloat(i * 110) + 106
             imageView  = UIImageView(frame:CGRectMake(x, 14, 73, 61))
             imageView.image = UIImage(named: "user")!
+            cell.layer.cornerRadius = cell.frame.size.width/100
+            cell.backgroundColor = UIColor.whiteColor()
             cell.addSubview(imageView)
         }
         cell.score.text = "4321 Pontos"
@@ -118,7 +120,6 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     func normalCellBoard(cell:TBOCell){
         cell.teamName.hidden=true
         cell.view.hidden=true
-        cell.backgroundColor = UIColor.clearColor()
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

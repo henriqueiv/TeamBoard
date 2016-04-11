@@ -59,6 +59,7 @@ extension OrganizationSelectionViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("OrganizationCell", forIndexPath: indexPath)
         cell.textLabel?.text = organizations[indexPath.row].name
         cell.detailTextLabel?.text = organizations[indexPath.row].desc
+        cell.layer.cornerRadius = cell.frame.size.width/120
         
         return cell
     }
