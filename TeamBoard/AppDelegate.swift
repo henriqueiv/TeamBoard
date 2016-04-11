@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //   gotoStoryboard(StoryboardName.CompanyRanking.rawValue)
     }
     
-    func gotoStoryboardWithName(storyboardName:StoryboardName){
+    private func gotoStoryboardWithName(storyboardName:StoryboardName){
         let sb = UIStoryboard(name: storyboardName.rawValue, bundle: nil)
         let vc = sb.instantiateInitialViewController()
         window?.rootViewController = vc
