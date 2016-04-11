@@ -27,9 +27,10 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             guard let boards = boards where error == nil else {
                 return
             }
+            print(boards)
             for board in boards {
                 TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
-                    self.count = self.count+1
+                    self.count += 1
                    // board?.loadPicturesMembers()
                     self.arrayBoards.addObject(board!)
                     if(self.count == boards.count){
@@ -45,7 +46,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while(true){
               for i in 0..<self.arrayBoards.count{
-                 sleep(1)
+                 sleep(2)
                  let cellPath = NSIndexPath(forRow: i, inSection: 0)
                  dispatch_async(dispatch_get_main_queue()) {               
                     if(i>0){
@@ -75,13 +76,13 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TBOCell
         cell.indentifier.text = "#"+String(indexPath.row+1)
-        let board = arrayBoards.objectAtIndex(0) as! TBOBoard
+        let board = arrayBoards.objectAtIndex(indexPath.row) as! TBOBoard
         for i in 0..<board.members!.count {
             let member = board.members![i]
-            var imageView : UIImageView
             let x = CGFloat(i * 110) + 106
-            imageView  = UIImageView(frame:CGRectMake(x, 14, 73, 61))
-            imageView.image = //
+            let imageView  = AsyncImageView(frame:CGRectMake(x, 14, 73, 61))
+            imageView.imageURL = member.pictureURL
+            print(member.pictureURL)
             cell.layer.cornerRadius = cell.frame.size.width/100
             cell.backgroundColor = UIColor.whiteColor()
             cell.addSubview(imageView)
@@ -110,17 +111,17 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         tableView.beginUpdates()
         cell.teamName.hidden=false
         cell.view.hidden=false
-//        for i in 0..<3 {
-//            let board = self.arrayBoards.objectAtIndex(self.expandedIndexPath.row) as! TBOBoard
-//            let member = board.members![i]
-//            var imageView : UIImageView
-//            let x = CGFloat(i * 110) + 106
-//            imageView  = UIImageView(frame:CGRectMake(x, 14, 73, 61))
-//            imageView.image = member.picture
-//            cell.layer.cornerRadius = cell.frame.size.width/100
-//            cell.backgroundColor = UIColor.whiteColor()
-//            cell.addSubview(imageView)
-//        }
+        let board = self.arrayBoards.objectAtIndex(self.expandedIndexPath.row) as! TBOBoard
+        
+        for i in 0..<board.members!.count {
+            let member = board.members![i]
+            let y = CGFloat(i * 70) + 20
+            let imageView  = AsyncImageView(frame:CGRectMake(70, y, 73, 61))
+            imageView.imageURL = member.pictureURL
+            cell.layer.cornerRadius = cell.frame.size.width/100
+            cell.backgroundColor = UIColor.whiteColor()
+            cell.view.addSubview(imageView)
+        }
         cell.backgroundColor = UIColor.whiteColor()
         tableView.endUpdates()
     }

@@ -28,14 +28,15 @@ class TBOMember {
         username = dictionary["username"] as? String
         fullname = dictionary["fullName"] as? String
         avatarHash = dictionary["avatarHash"] as? String
-        fetchPictureURL()
+        if avatarHash != nil {
+            let stringURL = "https://trello-avatars.s3.amazonaws.com/\(avatarHash!)/50.png"
+            if let avatarImageUrl = NSURL(string: stringURL) {
+                pictureURL = avatarImageUrl
+            } else {
+                print("nao foi possivel montar a url")
+            }
+        }
+        
     }
     
-    private func fetchPictureURL(){
-        if let avatarImageUrl = NSURL(string: "https://trello-avatars.s3.amazonaws.com/\(avatarHash)/50.png") {
-            pictureURL = avatarImageUrl
-        } else {
-            print("nao foi possivel montar a url")
-        }
-    }
 }
