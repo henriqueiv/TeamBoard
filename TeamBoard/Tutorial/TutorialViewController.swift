@@ -42,12 +42,7 @@ class TutorialViewController: UIViewController {
     // MARK: Private helpers
     private func createTips() {
         let tip1 = Tip(text: "Tip 1", image: UIImage())
-        let tip2 = Tip(text: "Tip 2", image: UIImage())
-        let tip3 = Tip(text: "Tip 3", image: UIImage())
-        
         tips += [tip1]
-        tips += [tip2]
-        tips += [tip3]
     }
     
     private func setupGestures() {
@@ -68,8 +63,8 @@ class TutorialViewController: UIViewController {
             
             // TODO: Go to main screen
             let sb = UIStoryboard(name: "OrganizationSelection", bundle: NSBundle.mainBundle())
-            let vc = sb.instantiateInitialViewController() as! OrganizationSelectionViewController
-            presentViewController(vc, animated: true, completion: nil)
+            let vc = sb.instantiateInitialViewController()
+            presentViewController(vc!, animated: true, completion: nil)
         }
     }
     

@@ -20,14 +20,25 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         self.iterateCellBoards()
-//        TrelloManager.sharedInstance.getBoards(organization.id!) { (boards, error) in
-//        print((boards![0] as TBOBoard).id)
-//        for(var i=0; i<boards?.count; i++){
-//            TrelloManager.sharedInstance.getBoard((boards![0] as TBOBoard).id!, completionHandler: { (board, error) in
-//                print(board)
-//            })
-//        }
-//        }
+        
+        
+        // TESTE PRO FRAGA!
+        TrelloManager.sharedInstance.getBoards(organization!.id!) { (boards, error) in
+            guard let boards = boards where error == nil else {
+                return
+            }
+            
+            for board in boards {
+                TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
+                    guard let board = board where error == nil else {
+                        return
+                    }
+                    for member in board.members! {
+                        print(member.fullname)
+                    }
+                })
+            }
+        }
     }
     
     func iterateCellBoards(){
@@ -50,7 +61,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
                     let cell = self.tableView.cellForRowAtIndexPath(cellPath) as! TBOCell
                     self.expandCellBoard(cell)
                  }
-               // sleep(2)
+                //sleep(2)
                 }
             }
         }
@@ -68,6 +79,8 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             let x = CGFloat(i * 110) + 106
             imageView  = UIImageView(frame:CGRectMake(x, 14, 73, 61))
             imageView.image = UIImage(named: "user")!
+            cell.layer.cornerRadius = cell.frame.size.width/100
+            cell.backgroundColor = UIColor.whiteColor()
             cell.addSubview(imageView)
         }
         cell.score.text = "4321 Pontos"
@@ -107,7 +120,6 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     func normalCellBoard(cell:TBOCell){
         cell.teamName.hidden=true
         cell.view.hidden=true
-        cell.backgroundColor = UIColor.clearColor()
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

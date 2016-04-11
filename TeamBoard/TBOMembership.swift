@@ -22,4 +22,7 @@ class TBOMembership: NSObject {
             }
         }
     }
+    override init(){
+        super.init()
+    }
 }
