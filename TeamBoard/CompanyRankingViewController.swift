@@ -16,22 +16,28 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     var expandedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     var arrayBoards:NSMutableArray = NSMutableArray()
     var count = 0
+    var changeFocus = false
     
     var organization:TBOOrganization!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TESTE PRO FRAGA!
+        let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedUp:"))
+        swipeUp.direction = .Up
+        view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedDown:"))
+        swipeDown.direction = .Down
+        view.addGestureRecognizer(swipeDown)
+        
         TrelloManager.sharedInstance.getBoards(organization!.id!) { (boards, error) in
             guard let boards = boards where error == nil else {
                 return
             }
-            print(boards)
             for board in boards {
                 TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
                     self.count += 1
-                   // board?.loadPicturesMembers()
                     self.arrayBoards.addObject(board!)
                     if(self.count == boards.count){
                         self.tableView.reloadData()
@@ -45,8 +51,12 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     func iterateCellBoards(){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while(true){
-              for i in 0..<self.arrayBoards.count{
+              for var i in 0..<self.arrayBoards.count{
                  sleep(2)
+                if(self.changeFocus){
+                    i=self.expandedIndexPath.row+1
+                    self.changeFocus=false
+                }
                  let cellPath = NSIndexPath(forRow: i, inSection: 0)
                  dispatch_async(dispatch_get_main_queue()) {               
                     if(i>0){
@@ -141,8 +151,33 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "gotoMembers")
         {
-            let members = (segue.destinationViewController) as! MembersViewController
+            let membersView = (segue.destinationViewController) as! MembersViewController
+            membersView.board = self.arrayBoards.objectAtIndex(self.expandedIndexPath.row) as! TBOBoard
         }
+    }
+    
+    func swipedUp(sender:UISwipeGestureRecognizer){
+        print("swiped up")
+        if(self.expandedIndexPath.row>0){
+            let cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.normalCellBoard(cell)
+            self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row-1, inSection: 0)
+        }
+         let cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+         self.expandCellBoard(cell)
+         changeFocus=true
+    }
+    
+    func swipedDown(sender:UISwipeGestureRecognizer){
+        print("swiped down")
+        if(self.expandedIndexPath.row<self.arrayBoards.count-1){
+            let cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.normalCellBoard(cell)
+            self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row+1, inSection: 0)
+        }
+        let cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+        self.expandCellBoard(cell)
+        changeFocus=true
     }
 }
 

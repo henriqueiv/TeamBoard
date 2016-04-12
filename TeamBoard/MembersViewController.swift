@@ -11,28 +11,41 @@ import UIKit
 class MembersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var tableview: UITableView!
-    let members = ["Camilla Schmidt","Camilla Schmidt","Camilla Schmidt"]
+    var board:TBOBoard!
     var expandedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+    var changeFocus = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.iterateCellMembers()
+        
+        let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedUp:"))
+        swipeUp.direction = .Up
+        view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedDown:"))
+        swipeDown.direction = .Down
+        view.addGestureRecognizer(swipeDown)
+
     }
     
     func iterateCellMembers(){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while(true){
-                for i in 0..<3{
-                    sleep(1)
+                for var i in 0..<self.board.members!.count{
+                    sleep(3)
+                    if(self.changeFocus){
+                        i=self.expandedIndexPath.row+1
+                        self.changeFocus=false
+                    }
                     let cellPath = NSIndexPath(forRow: i, inSection: 0)
                     dispatch_async(dispatch_get_main_queue()) {
-                        
                         if(i>0){
                             let oldCellPath = NSIndexPath(forRow: i-1, inSection: 0)
                             let cell = self.tableview.cellForRowAtIndexPath(oldCellPath) as! TBOCell
                             self.normalCellMember(cell)
                         }else{
-                            let oldCellPath = NSIndexPath(forRow: 2, inSection: 0)
+                            let oldCellPath = NSIndexPath(forRow: self.board.members!.count-1, inSection: 0)
                             let cell = self.tableview.cellForRowAtIndexPath(oldCellPath) as! TBOCell
                             self.normalCellMember(cell)
                         }
@@ -46,7 +59,7 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3;
+        return board.members!.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -59,7 +72,10 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
             let image : UIImage = UIImage(named: "trophy")!
             cell.trophy.image = image
         }
-        cell.teamName.text = String(self.members[indexPath.row])
+        let members = board.members
+        cell.teamName.text = String(members![indexPath.row].fullname!)
+        cell.userName.text = String(members![indexPath.row].username!)
+        cell.userName.text = "sssssssssssssss"
         cell.focusStyle = UITableViewCellFocusStyle.Custom
         cell.view.hidden=true
         return cell
@@ -67,19 +83,20 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if(indexPath.compare(self.expandedIndexPath) == NSComparisonResult.OrderedSame){
-            return 100 + CGFloat(self.members.count*70);
+            let members = board.members
+            return 100 + CGFloat(members!.count*70);
         }
         return 89
     }
     
     func expandCellMember(cell: TBOCell){
         tableview.beginUpdates()
-        cell.teamName.hidden=false
         cell.view.hidden=false
         let image : UIImage = UIImage(named: "user")!
         cell.avatar.image = image
         cell.userName.text = "userName"
-        for i in 0..<members.count{
+        let members = board.members
+        for i in 0..<members!.count{
             var label : UILabel
             let y = CGFloat(i * 70) + 15
             label = UILabel(frame:CGRectMake(309, y, 60, 60))
@@ -95,7 +112,30 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func normalCellMember(cell:TBOCell){
-        cell.teamName.hidden=true
         cell.view.hidden=true
+    }
+    
+    func swipedUp(sender:UISwipeGestureRecognizer){
+        print("swiped up")
+        if(self.expandedIndexPath.row>0){
+            let cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.normalCellMember(cell)
+            self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row-1, inSection: 0)
+        }
+        let cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+        self.expandCellMember(cell)
+        changeFocus=true
+    }
+    
+    func swipedDown(sender:UISwipeGestureRecognizer){
+        print("swiped down")
+        if(self.expandedIndexPath.row<self.board.members!.count){
+            let cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.normalCellMember(cell)
+            self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row+1, inSection: 0)
+        }
+        let cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+        self.expandCellMember(cell)
+        changeFocus=true
     }
 }
