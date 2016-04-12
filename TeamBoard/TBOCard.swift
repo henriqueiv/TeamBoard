@@ -42,10 +42,11 @@ class TBOCard {
         if desc != nil {
             let pattern = "#value\\{(\\d+)\\}"
             let matches = try matchesForRegexInText(pattern, text: desc!)
-            if let points = NSNumberFormatter().numberFromString(matches[1])?.integerValue {
-                self.points = points
+            if matches.count >= 2 {
+                if let points = NSNumberFormatter().numberFromString(matches[1])?.integerValue {
+                    self.points = points
+                }
             }
-            
             print(matches)
         }
     }

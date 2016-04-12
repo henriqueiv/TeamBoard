@@ -21,7 +21,6 @@
 		621359F11CADBC3500353EE8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621359F01CADBC3500353EE8 /* LoginViewController.swift */; };
 		621359F61CADBC3500353EE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 621359F51CADBC3500353EE8 /* Assets.xcassets */; };
 		6220CEDA1CAEF154009C91CC /* TrelloManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6220CED91CAEF154009C91CC /* TrelloManager.swift */; };
-		625956031CB5756B00DA4D33 /* TrelloManager+SDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625956021CB5756B00DA4D33 /* TrelloManager+SDK.swift */; };
 		625956061CB5969200DA4D33 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625956051CB5969200DA4D33 /* TutorialViewController.swift */; };
 		625956081CB5975200DA4D33 /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 625956071CB5975200DA4D33 /* Tutorial.storyboard */; };
 		6259560B1CB6CC7700DA4D33 /* OrganizationSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6259560A1CB6CC7700DA4D33 /* OrganizationSelection.storyboard */; };
@@ -29,8 +28,6 @@
 		62B8AAAF1CB849E9009EB891 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B8AAAE1CB849E9009EB891 /* Utils.swift */; };
 		62B8AAC71CBAD61B009EB891 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B8AAC61CBAD61B009EB891 /* LogOutViewController.swift */; };
 		62D838F71CB33524000044CA /* QRCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D838F61CB33524000044CA /* QRCodeManager.swift */; };
-		62D838F91CB420C8000044CA /* TrelloSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D838F81CB420C8000044CA /* TrelloSDK.swift */; };
-		84B96C3F1CB2D7B000909B00 /* TBOMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C3E1CB2D7B000909B00 /* TBOMembership.swift */; };
 		84B96C411CB2EAD000909B00 /* TBOOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C401CB2EAD000909B00 /* TBOOrganization.swift */; };
 		84B96C491CB2F26C00909B00 /* TeamBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C481CB2F26C00909B00 /* TeamBoardTests.swift */; };
 		84B96C531CB2F9BE00909B00 /* board_members.json in Resources */ = {isa = PBXBuildFile; fileRef = 84B96C521CB2F9BE00909B00 /* board_members.json */; };
@@ -71,7 +68,6 @@
 		621359F51CADBC3500353EE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		621359F71CADBC3500353EE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6220CED91CAEF154009C91CC /* TrelloManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrelloManager.swift; path = TrelloManager/TrelloManager.swift; sourceTree = "<group>"; };
-		625956021CB5756B00DA4D33 /* TrelloManager+SDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TrelloManager+SDK.swift"; path = "TrelloManager/TrelloManager+SDK.swift"; sourceTree = "<group>"; };
 		625956051CB5969200DA4D33 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialViewController.swift; path = Tutorial/TutorialViewController.swift; sourceTree = "<group>"; };
 		625956071CB5975200DA4D33 /* Tutorial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Tutorial.storyboard; path = Tutorial/Tutorial.storyboard; sourceTree = "<group>"; };
 		6259560A1CB6CC7700DA4D33 /* OrganizationSelection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = OrganizationSelection.storyboard; path = OrganizationSelection/OrganizationSelection.storyboard; sourceTree = "<group>"; };
@@ -81,8 +77,6 @@
 		62B8AAAE1CB849E9009EB891 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		62B8AAC61CBAD61B009EB891 /* LogOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogOutViewController.swift; path = LogOut/LogOutViewController.swift; sourceTree = "<group>"; };
 		62D838F61CB33524000044CA /* QRCodeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRCodeManager.swift; path = Utils/QRCodeManager.swift; sourceTree = "<group>"; };
-		62D838F81CB420C8000044CA /* TrelloSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrelloSDK.swift; path = TrelloSDK/TrelloSDK.swift; sourceTree = "<group>"; };
-		84B96C3E1CB2D7B000909B00 /* TBOMembership.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOMembership.swift; sourceTree = "<group>"; };
 		84B96C401CB2EAD000909B00 /* TBOOrganization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOOrganization.swift; sourceTree = "<group>"; };
 		84B96C461CB2F26C00909B00 /* TeamBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeamBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B96C481CB2F26C00909B00 /* TeamBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBoardTests.swift; sourceTree = "<group>"; };
@@ -130,7 +124,6 @@
 			children = (
 				84D167EC1CAEF31700E790B3 /* TBOMember.swift */,
 				84B96C401CB2EAD000909B00 /* TBOOrganization.swift */,
-				84B96C3E1CB2D7B000909B00 /* TBOMembership.swift */,
 				84D167E41CAEEC2100E790B3 /* TBOBoard.swift */,
 				84D167E61CAEEC2A00E790B3 /* TBOList.swift */,
 				84D167E21CAEEC1A00E790B3 /* TBOCard.swift */,
@@ -214,8 +207,6 @@
 			children = (
 				6220CED91CAEF154009C91CC /* TrelloManager.swift */,
 				62D838F61CB33524000044CA /* QRCodeManager.swift */,
-				62D838F81CB420C8000044CA /* TrelloSDK.swift */,
-				625956021CB5756B00DA4D33 /* TrelloManager+SDK.swift */,
 			);
 			name = TrelloManager;
 			sourceTree = "<group>";
@@ -447,7 +438,6 @@
 				62D838F71CB33524000044CA /* QRCodeManager.swift in Sources */,
 				620C8FA01CB6EF45007F5786 /* TeamRankingViewController.swift in Sources */,
 				6206D4CD1CB44A1D005E920C /* AppDelegate.swift in Sources */,
-				62D838F91CB420C8000044CA /* TrelloSDK.swift in Sources */,
 				0A088ED61CBC21B600417953 /* AsyncImageView.m in Sources */,
 				6220CEDA1CAEF154009C91CC /* TrelloManager.swift in Sources */,
 				62B8AAC71CBAD61B009EB891 /* LogOutViewController.swift in Sources */,
@@ -456,7 +446,6 @@
 				6206D4CA1CB442C3005E920C /* TBAuthentication.swift in Sources */,
 				84D167ED1CAEF31700E790B3 /* TBOMember.swift in Sources */,
 				625956061CB5969200DA4D33 /* TutorialViewController.swift in Sources */,
-				625956031CB5756B00DA4D33 /* TrelloManager+SDK.swift in Sources */,
 				84D167E71CAEEC2A00E790B3 /* TBOList.swift in Sources */,
 				0A088ED11CB6D9E100417953 /* CompanyRankingViewController.swift in Sources */,
 				84D167E51CAEEC2100E790B3 /* TBOBoard.swift in Sources */,
@@ -464,7 +453,6 @@
 				0A9647DB1CB596BC00573D5E /* TBOCell.swift in Sources */,
 				84D167E31CAEEC1A00E790B3 /* TBOCard.swift in Sources */,
 				62B8AAAF1CB849E9009EB891 /* Utils.swift in Sources */,
-				84B96C3F1CB2D7B000909B00 /* TBOMembership.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
