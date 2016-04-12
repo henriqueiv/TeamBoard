@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="erl-jl-huY">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="erl-jl-huY">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -120,6 +120,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="companyName" destination="fAp-Hs-6F0" id="rqA-i5-V2d"/>
                         <outlet property="tableView" destination="abU-hk-99U" id="Kn9-Mc-45N"/>
                         <segue destination="Zrj-C4-k6X" kind="show" identifier="gotoMembers" id="x7B-uE-EbD"/>
                     </connections>
@@ -246,6 +247,7 @@
                     </view>
                     <connections>
                         <outlet property="tableview" destination="CJP-A2-uSL" id="YfM-Jw-EGS"/>
+                        <outlet property="teamName" destination="PyU-g9-O5i" id="iOA-rq-2zb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r52-d5-aFg" sceneMemberID="firstResponder"/>

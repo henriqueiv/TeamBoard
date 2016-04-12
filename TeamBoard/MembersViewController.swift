@@ -10,6 +10,7 @@ import UIKit
 
 class MembersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
+    @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var tableview: UITableView!
     var board:TBOBoard!
     var expandedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -17,6 +18,7 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.teamName.text = board.name
         self.iterateCellMembers()
         
         let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedUp:"))

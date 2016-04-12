@@ -10,6 +10,7 @@ import UIKit
 
 class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
+    @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     let cookies = ["Chocolate Chip":0.25,"Oatmeal":0.26,"Peanut Butter":0.02,"Sugar":0.03]
@@ -22,6 +23,8 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.companyName.text = organization.name
         
         let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedUp:"))
         swipeUp.direction = .Up
