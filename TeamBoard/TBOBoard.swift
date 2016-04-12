@@ -15,6 +15,7 @@ class TBOBoard: NSObject {
     var name : String?          // from GET /1/members/<id>/boards
     var members : [TBOMember]?  // from GET /1/members/<id>/boards
     var lists : [TBOList]?      // from GET /1/boards/<id>/lists
+    var totalPoints = 0
     
     convenience init(dictionary: [String : AnyObject]){
        self.init()
@@ -51,21 +52,30 @@ class TBOBoard: NSObject {
     }
     
     func matchPointsWithMembers(cards:[TBOCard]){
+        var idList: String?
+        for list in lists!{
+            if list.name!.caseInsensitiveCompare("Done") == .OrderedSame {
+                idList = list.id
+            }
+        }
         for card in cards {
-            if let boardMembers = members {
-                let membersWithoutPoints = boardMembers.filter({ (boardMember) -> Bool in
-                    if let cardMembers = card.members {
-                        for cardMember in cardMembers {
-                            if cardMember.id == boardMember.id{
-                                return true
+            if card.idList == idList {
+                if let boardMembers = members {
+                    let membersWithoutPoints = boardMembers.filter({ (boardMember) -> Bool in
+                        if let cardMembers = card.members {
+                            for cardMember in cardMembers {
+                                if cardMember.id == boardMember.id{
+                                    return true
+                                }
                             }
                         }
+                        return false
+                    })
+                    
+                    for memberWithoutPoints in membersWithoutPoints {
+                        memberWithoutPoints.points += card.points
+                        self.totalPoints += card.points
                     }
-                    return false
-                })
-                
-                for memberWithoutPoints in membersWithoutPoints {
-                    memberWithoutPoints.points += card.points
                 }
             }
         }

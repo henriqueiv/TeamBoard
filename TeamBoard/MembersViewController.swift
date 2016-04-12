@@ -43,7 +43,6 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                 }
             }
-            self.board.matchPointsWithMembers(cards!)
             self.tableview.reloadData()
             self.iterateCellMembers()
         }

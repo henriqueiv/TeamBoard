@@ -40,12 +40,22 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             }
             for board in boards {
                 TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
-                    self.count += 1
                     self.arrayBoards.addObject(board!)
-                    if(self.count == boards.count){
-                        self.tableView.reloadData()
-                        self.iterateCellBoards()
+                    
+                     TrelloManager.sharedInstance.getCardsFromBoard(board!.id!) { (cards, error) in
+                        self.count += 1
+                        board?.matchPointsWithMembers(cards!)
+                        if(self.count == boards.count){
+//                            self.arrayBoards.addObjectsFromArray(boards.sort({ (board1, board2) -> Bool in
+//                                return board1.totalPoints > board2.totalPoints
+//                            }))
+                            
+                            self.tableView.reloadData()
+                            self.iterateCellBoards()
+                        }
+                        
                     }
+                    
                 })
             }
         }
@@ -106,7 +116,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             cell.setNeedsDisplay()
         }
         cell.teamName.text = board.name
-        cell.score.text = "4321 Pontos"
+        cell.score.text = String(board.totalPoints)
         if(indexPath.row == 0){
             let image : UIImage = UIImage(named: "trophy")!
             cell.trophy.image = image
