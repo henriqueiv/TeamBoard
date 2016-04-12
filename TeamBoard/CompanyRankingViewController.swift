@@ -81,11 +81,15 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             let member = board.members![i]
             let x = CGFloat(i * 110) + 106
             let imageView  = AsyncImageView(frame:CGRectMake(x, 14, 73, 61))
+            imageView.contentMode = UIViewContentMode.ScaleAspectFit
+            imageView.layer.cornerRadius = imageView.frame.width/2
             imageView.imageURL = member.pictureURL
             print(member.pictureURL)
             cell.layer.cornerRadius = cell.frame.size.width/100
             cell.backgroundColor = UIColor.whiteColor()
             cell.addSubview(imageView)
+            cell.layoutIfNeeded()
+            cell.setNeedsDisplay()
         }
         cell.teamName.text = board.name
         cell.score.text = "4321 Pontos"
@@ -117,6 +121,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             let member = board.members![i]
             let y = CGFloat(i * 70) + 20
             let imageView  = AsyncImageView(frame:CGRectMake(70, y, 73, 61))
+            imageView.contentMode = UIViewContentMode.ScaleAspectFit
             imageView.imageURL = member.pictureURL
             cell.layer.cornerRadius = cell.frame.size.width/100
             cell.backgroundColor = UIColor.whiteColor()
