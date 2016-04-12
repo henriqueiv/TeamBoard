@@ -46,14 +46,14 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
                         self.count += 1
                         board?.matchPointsWithMembers(cards!)
                         if(self.count == boards.count){
-//                            self.arrayBoards.addObjectsFromArray(boards.sort({ (board1, board2) -> Bool in
-//                                return board1.totalPoints > board2.totalPoints
-//                            }))
-                            
+                            let ordenedArray = self.arrayBoards.sort({
+                                ($0 as? TBOBoard)!.totalPoints > ($1 as? TBOBoard)!.totalPoints
+                            })
+                            self.arrayBoards.removeAllObjects()
+                            self.arrayBoards.addObjectsFromArray(ordenedArray)
                             self.tableView.reloadData()
                             self.iterateCellBoards()
                         }
-                        
                     }
                     
                 })

@@ -104,7 +104,7 @@ class TeamBoardTests: XCTestCase {
                 }
             })
         }
-        waitForExpectationsWithTimeout(20, handler: nil)
+        waitForExpectationsWithTimeout(30, handler: nil)
     }
     
     func testPerformanceExample() {
