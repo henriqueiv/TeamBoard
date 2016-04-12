@@ -81,6 +81,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             let member = board.members![i]
             let x = CGFloat(i * 110) + 106
             let imageView  = AsyncImageView(frame:CGRectMake(x, 14, 73, 61))
+            imageView.contentMode = UIViewContentMode.ScaleAspectFill
             imageView.layer.cornerRadius = CGRectGetWidth(imageView.frame)/4.0
             imageView.clipsToBounds = true
             imageView.imageURL = member.pictureURL
@@ -121,6 +122,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             let member = board.members![i]
             let y = CGFloat(i * 70) + 20
             let imageView  = AsyncImageView(frame:CGRectMake(70, y, 73, 61))
+            imageView.contentMode = UIViewContentMode.ScaleAspectFill
             imageView.layer.cornerRadius = CGRectGetWidth(imageView.frame)/4.0
             imageView.clipsToBounds = true
             imageView.imageURL = member.pictureURL
