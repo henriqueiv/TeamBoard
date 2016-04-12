@@ -14,6 +14,7 @@ class TBOCard {
     var members: [TBOMember]?
     var desc: String?
     var points = 0
+    var idList: String?
     
     // XXX: Dictionary below needs members only(idMember field are not its concern)
     convenience init(dictionary: [String:AnyObject]){
@@ -21,6 +22,8 @@ class TBOCard {
         id = dictionary["id"] as? String
         name = dictionary["name"] as? String
         desc = dictionary["desc"] as? String
+        idList = dictionary["idList"] as? String
+        members = [TBOMember]()
         if let jsonMembers = dictionary["members"] as? [[String:AnyObject]] {
             for jsonMember in jsonMembers {
                 let member = TBOMember(dictionary: jsonMember)

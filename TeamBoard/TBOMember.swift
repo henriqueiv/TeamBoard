@@ -16,6 +16,7 @@ class TBOMember {
     var avatarHash: String?
     var points = 0
     var type: MemberType = .Normal
+    var cards:NSMutableArray = NSMutableArray()
     
     enum MemberType {
         case Admin

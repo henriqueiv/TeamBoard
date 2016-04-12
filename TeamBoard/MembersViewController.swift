@@ -15,11 +15,37 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     var board:TBOBoard!
     var expandedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     var changeFocus = false
+    var idListDoing: String?
+    var cardsDoing:NSMutableArray = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.teamName.text = board.name
-        self.iterateCellMembers()
+        
+        for l in self.board.lists!{
+            if l.name == "DOING"{
+                self.idListDoing = l.id
+                break
+            }
+        }
+        
+        TrelloManager.sharedInstance.getCardsFromBoard(board.id!) { (cards, error) in
+            for card in cards! {
+                if card.idList == self.idListDoing{
+                    self.cardsDoing.addObject(card)
+                    for member in self.board.members!{
+                        for m in card.members!{
+                            if m.id == member.id{
+                                member.cards.addObject(card)
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            self.tableview.reloadData()
+            self.iterateCellMembers()
+        }
         
         let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedUp:"))
         swipeUp.direction = .Up
@@ -28,7 +54,7 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
         let swipeDown:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedDown:"))
         swipeDown.direction = .Down
         view.addGestureRecognizer(swipeDown)
-
+        
     }
     
     func iterateCellMembers(){
@@ -85,8 +111,9 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if(indexPath.compare(self.expandedIndexPath) == NSComparisonResult.OrderedSame){
-            let members = board.members
-            return 100 + CGFloat(members!.count*70);
+            let member = board.members![self.expandedIndexPath.row]
+            if(member.cards.count == 0){return 200}
+            return 120 + CGFloat(member.cards.count * 70);
         }
         return 89
     }
@@ -97,12 +124,13 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
         let image : UIImage = UIImage(named: "user")!
         cell.avatar.image = image
         cell.userName.text = "userName"
-        let members = board.members
-        for i in 0..<members!.count{
+        let member = board.members![self.expandedIndexPath.row]
+        for i in 0..<member.cards.count{
             var label : UILabel
             let y = CGFloat(i * 70) + 15
-            label = UILabel(frame:CGRectMake(309, y, 60, 60))
-            label.text = "task"
+            label = UILabel(frame:CGRectMake(309, y, 300, 60))
+            let card = member.cards[i] as! TBOCard
+            label.text = card.name!
             label.backgroundColor = UIColor.redColor()
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true

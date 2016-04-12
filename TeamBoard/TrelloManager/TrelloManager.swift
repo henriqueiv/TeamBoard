@@ -323,6 +323,7 @@ class TrelloManager {
             Alamofire.request(.GET, membersFromBoardURL, parameters: ["key":TrelloManager.appKey,"token":token])
                 .responseJSON { response in
                     if (response.result.error == nil) {
+                        print(response.result.value)
                         let jsonData = response.result.value as! [String : AnyObject]
                         if jsonData["Success"] != nil {
                             var lists = [TBOList]()
@@ -345,8 +346,6 @@ class TrelloManager {
             completionHandler?(nil,serviceError)
         }
     }
-    
-    
 }
 
 
