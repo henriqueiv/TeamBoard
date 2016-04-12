@@ -61,7 +61,7 @@ class TeamBoardTests: XCTestCase {
         waitForExpectationsWithTimeout(15, handler: nil)
     }
  
-    func testGetCards(){
+    func testGetCardsAndMatchPointsWithBoardMembers(){
         var expectation : XCTestExpectation? = expectationWithDescription(">>>>> Request error <<<<<")
         TrelloManager.sharedInstance.getMember { (me, error) in
             XCTAssertNil(error)
@@ -69,17 +69,32 @@ class TeamBoardTests: XCTestCase {
             TrelloManager.sharedInstance.getOrganizations({ (organizations, error) in
                 XCTAssertNil(error)
                 XCTAssertNotNil(organizations)
+                var boardsRequestCounter = 0
                 for organization in organizations! {
                     TrelloManager.sharedInstance.getBoards(organization.id!, completionHandler: { (boards, error) in
                         XCTAssertNil(error)
                         XCTAssertNotNil(boards)
+                        boardsRequestCounter += 1
                         var cardsRequestCounter = 0
                         for board in boards! {
                             TrelloManager.sharedInstance.getCardsFromBoard(board.id!, completionHandler: { (cards, error) in
                                 XCTAssertNil(error)
                                 XCTAssertNotNil(cards)
                                 cardsRequestCounter += 1
-                                if cardsRequestCounter == boards!.count {
+                                XCTAssertNotNil(board.members)
+                                let cardsWithPoints = cards!.filter({ (card) -> Bool in
+                                    return card.points > 0
+                                })
+                                
+                                if cardsWithPoints.count > 0 {
+                                    board.matchPointsWithMembers(cards!)
+                                    let membersWithPoints = board.members!.filter({ (member) -> Bool in
+                                        return member.points > 0
+                                    })
+                                    XCTAssertGreaterThan(membersWithPoints.count, 0)
+                                }
+                                
+                                if cardsRequestCounter == boards!.count && boardsRequestCounter == organizations!.count {
                                     expectation?.fulfill()
                                     expectation = nil
                                 }
@@ -89,7 +104,7 @@ class TeamBoardTests: XCTestCase {
                 }
             })
         }
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectationsWithTimeout(20, handler: nil)
     }
     
     func testPerformanceExample() {
