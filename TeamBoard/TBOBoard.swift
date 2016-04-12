@@ -50,6 +50,27 @@ class TBOBoard: NSObject {
 //        fetchListsInBackground()
     }
     
+    func matchPointsWithMembers(cards:[TBOCard]){
+        for card in cards {
+            if let boardMembers = members {
+                let membersWithoutPoints = boardMembers.filter({ (boardMember) -> Bool in
+                    if let cardMembers = card.members {
+                        for cardMember in cardMembers {
+                            if cardMember.id == boardMember.id{
+                                return true
+                            }
+                        }
+                    }
+                    return false
+                })
+                
+                for memberWithoutPoints in membersWithoutPoints {
+                    memberWithoutPoints.points = card.points
+                }
+            }
+        }
+    }
+    
 //    func fetchMembersInBackground(){
 //        TrelloManager.sharedInstance.getMembersFromBoard(id!) { (members, error) in
 //            if let _ = error {
