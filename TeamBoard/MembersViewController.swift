@@ -33,7 +33,7 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while(true){
                 for var i in 0..<self.board.members!.count{
-                    sleep(3)
+                    sleep(2)
                     if(self.changeFocus){
                         i=self.expandedIndexPath.row+1
                         self.changeFocus=false
@@ -118,24 +118,24 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     func swipedUp(sender:UISwipeGestureRecognizer){
         print("swiped up")
         if(self.expandedIndexPath.row>0){
-            let cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            var cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
             self.normalCellMember(cell)
             self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row-1, inSection: 0)
+            cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.expandCellMember(cell)
+            changeFocus=true
         }
-        let cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-        self.expandCellMember(cell)
-        changeFocus=true
     }
     
     func swipedDown(sender:UISwipeGestureRecognizer){
         print("swiped down")
         if(self.expandedIndexPath.row<self.board.members!.count){
-            let cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            var cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
             self.normalCellMember(cell)
             self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row+1, inSection: 0)
+            cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.expandCellMember(cell)
+            changeFocus=true
         }
-        let cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-        self.expandCellMember(cell)
-        changeFocus=true
     }
 }

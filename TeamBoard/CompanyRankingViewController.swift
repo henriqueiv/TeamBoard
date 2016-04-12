@@ -165,25 +165,28 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     func swipedUp(sender:UISwipeGestureRecognizer){
         print("swiped up")
         if(self.expandedIndexPath.row>0){
-            let cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            var cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
             self.normalCellBoard(cell)
             self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row-1, inSection: 0)
+            cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.expandCellBoard(cell)
+            changeFocus=true
+
         }
-         let cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-         self.expandCellBoard(cell)
-         changeFocus=true
     }
     
     func swipedDown(sender:UISwipeGestureRecognizer){
         print("swiped down")
         if(self.expandedIndexPath.row<self.arrayBoards.count-1){
-            let cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            var cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
             self.normalCellBoard(cell)
             self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row+1, inSection: 0)
+            cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.expandCellBoard(cell)
+            changeFocus=true
+        }else{
+            print("aqui")
         }
-        let cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-        self.expandCellBoard(cell)
-        changeFocus=true
     }
 }
 
