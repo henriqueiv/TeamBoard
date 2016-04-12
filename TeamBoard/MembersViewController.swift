@@ -132,7 +132,8 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
             label = UILabel(frame:CGRectMake(309, y, 300, 60))
             let card = member.cards[i] as! TBOCard
             label.text = card.name!
-            label.backgroundColor = UIColor.redColor()
+            label.backgroundColor = UIColor(red:232.0/255.0, green:232.0/255.0, blue:232.0/255.0, alpha:1.0)
+            label.font = UIFont(name: label.font.fontName, size: 24)
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
             cell.view.layer.cornerRadius = cell.frame.size.width/100
