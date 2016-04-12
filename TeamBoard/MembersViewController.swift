@@ -43,6 +43,7 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                 }
             }
+            self.board.matchPointsWithMembers(cards!)
             self.tableview.reloadData()
             self.iterateCellMembers()
         }
@@ -93,7 +94,6 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableview.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TBOCell
         cell.indentifier.text = "#"+String(indexPath.row+1)
-        cell.score.text = "4321 Pontos"
         cell.layer.cornerRadius = cell.frame.size.width/100
         cell.backgroundColor = UIColor.whiteColor()
         if(indexPath.row == 0){
@@ -101,6 +101,7 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.trophy.image = image
         }
         let members = board.members
+        cell.score.text =  String(members![indexPath.row].points)
         cell.teamName.text = String(members![indexPath.row].fullname!)
         cell.userName.text = String(members![indexPath.row].username!)
         cell.userName.text = "sssssssssssssss"

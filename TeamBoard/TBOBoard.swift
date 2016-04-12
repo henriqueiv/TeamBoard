@@ -65,7 +65,7 @@ class TBOBoard: NSObject {
                 })
                 
                 for memberWithoutPoints in membersWithoutPoints {
-                    memberWithoutPoints.points = card.points
+                    memberWithoutPoints.points += card.points
                 }
             }
         }
