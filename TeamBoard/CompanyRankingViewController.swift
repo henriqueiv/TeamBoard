@@ -61,10 +61,15 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func iterateCellBoards(){
+        var isFirst = true
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while(true){
               for var i in 0..<self.arrayBoards.count{
-                 sleep(2)
+                if(isFirst){
+                    sleep(2)
+                }else{
+                    sleep(10)
+                }
                 if(self.changeFocus){
                     i=self.expandedIndexPath.row+1
                     self.changeFocus=false
@@ -84,6 +89,10 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
                     let cell = self.tableView.cellForRowAtIndexPath(cellPath) as! TBOCell
                     self.expandCellBoard(cell)
                  }
+                if(isFirst){
+                    sleep(8)
+                    isFirst = false
+                }
                 //sleep(2)
                 }
             }
