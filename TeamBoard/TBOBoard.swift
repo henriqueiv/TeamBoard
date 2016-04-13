@@ -15,12 +15,14 @@ class TBOBoard: NSObject {
     var name : String?          // from GET /1/members/<id>/boards
     var members : [TBOMember]?  // from GET /1/members/<id>/boards
     var lists : [TBOList]?      // from GET /1/boards/<id>/lists
+    var cards : [TBOCard]?
     var totalPoints = 0
     
     convenience init(dictionary: [String : AnyObject]){
        self.init()
         id = dictionary["id"] as? String
         name = dictionary["name"] as? String
+        cards = [TBOCard]()
         members = [TBOMember]()
         if let jsonMembers = dictionary["members"] as? [[String:AnyObject]] {
             for jsonMember in jsonMembers {
@@ -47,8 +49,6 @@ class TBOBoard: NSObject {
                 lists!.append(list)
             }
         }
-//        fetchMembersInBackground()
-//        fetchListsInBackground()
     }
     
     func matchPointsWithMembers(cards:[TBOCard]){
@@ -80,42 +80,4 @@ class TBOBoard: NSObject {
             }
         }
     }
-    
-//    func fetchMembersInBackground(){
-//        TrelloManager.sharedInstance.getMembersFromBoard(id!) { (members, error) in
-//            if let _ = error {
-//              print(">> FetchMembers Error >>\n\(error.debugDescription)")
-//            }
-//            else {
-//                if let members = members {
-//                    for member in members {
-//                        self.membership?.members.append([member.id! : member])
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-    
-//    func loadPicturesMembers(){
-//        for member in members! {
-//            member.fetchPicture({ (picture, error) in
-//                //nao faz nada
-//            })
-//        }
-//    }
-    
-    func fetchListsInBackground(){
-        TrelloManager.sharedInstance.getLists(id!) { (lists, error) in
-            if let _ = error {
-                print(">> FetchLists Error >>\n\(error.debugDescription)")
-            }
-            else {
-                if let lists = lists {
-                    self.lists = lists
-                }
-            }
-        }
-    }
-    
 }

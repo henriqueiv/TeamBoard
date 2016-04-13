@@ -10,6 +10,8 @@ import UIKit
 
 class MembersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
+    static let cardColor = UIColor(red:232.0/255.0, green:232.0/255.0, blue:232.0/255.0, alpha:1.0)
+    
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var tableview: UITableView!
     var board:TBOBoard!
@@ -22,15 +24,17 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         self.teamName.text = board.name
         
-        for l in self.board.lists!{
-            if l.name == "DOING"{
-                self.idListDoing = l.id
+        for list in self.board.lists!{
+            if list.name == "DOING"{
+                self.idListDoing = list.id
                 break
             }
         }
         
-        TrelloManager.sharedInstance.getCardsFromBoard(board.id!) { (cards, error) in
-            for card in cards! {
+        let ordenedBoardMembers = board.members?.sort({ $0.points > $1.points })
+        board.members = ordenedBoardMembers
+        //TrelloManager.sharedInstance.getCardsFromBoard(board.id!) { (cards, error) in
+            for card in board.cards! {
                 if card.idList == self.idListDoing{
                     self.cardsDoing.addObject(card)
                     for member in self.board.members!{
@@ -45,7 +49,7 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             self.tableview.reloadData()
             self.iterateCellMembers()
-        }
+        //}
         
         let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedUp:"))
         swipeUp.direction = .Up
@@ -124,18 +128,19 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.view.hidden=false
         let image : UIImage = UIImage(named: "user")!
         cell.avatar.image = image
-        cell.userName.text = "userName"
+        cell.userName.text = "" // FIXME: why?! There is a name on cell header
         let member = board.members![self.expandedIndexPath.row]
         for i in 0..<member.cards.count{
             var label : UILabel
-            let y = CGFloat(i * 70) + 15
+            let y = CGFloat(i * 70) + 15 // FIXME: calculate middle of space - half card height
             label = UILabel(frame:CGRectMake(309, y, 300, 60))
             let card = member.cards[i] as! TBOCard
             label.text = card.name!
-            label.backgroundColor = UIColor(red:232.0/255.0, green:232.0/255.0, blue:232.0/255.0, alpha:1.0)
+            label.backgroundColor = MembersViewController.cardColor
             label.font = UIFont(name: label.font.fontName, size: 24)
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
+            label.textAlignment = .Center
             cell.view.layer.cornerRadius = cell.frame.size.width/100
             cell.view.addSubview(label)
         }
