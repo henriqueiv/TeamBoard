@@ -44,6 +44,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
                     
                     TrelloManager.sharedInstance.getCardsFromBoard(board!.id!) { (cards, error) in
                         self.count += 1
+                        board?.cards = cards
                         board?.matchPointsWithMembers(cards!)
                         if(self.count == boards.count) {
                             let ordenedArray = self.arrayBoards.sort {
