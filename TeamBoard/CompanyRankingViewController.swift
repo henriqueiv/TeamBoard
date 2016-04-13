@@ -13,7 +13,6 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    let cookies = ["Chocolate Chip":0.25,"Oatmeal":0.26,"Peanut Butter":0.02,"Sugar":0.03]
     var expandedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     var arrayBoards:NSMutableArray = NSMutableArray()
     var count = 0
@@ -63,10 +62,15 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func iterateCellBoards(){
+        var isFirst = true
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while(true){
               for var i in 0..<self.arrayBoards.count{
-                 sleep(2)
+                if(isFirst){
+                    sleep(2)
+                }else{
+                    sleep(10)
+                }
                 if(self.changeFocus){
                     i=self.expandedIndexPath.row+1
                     self.changeFocus=false
@@ -86,6 +90,10 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
                     let cell = self.tableView.cellForRowAtIndexPath(cellPath) as! TBOCell
                     self.expandCellBoard(cell)
                  }
+                if(isFirst){
+                    sleep(8)
+                    isFirst = false
+                }
                 //sleep(2)
                 }
             }
@@ -154,7 +162,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         
         for i in 0..<board.members!.count {
             let member = board.members![i]
-            let y = CGFloat(i * 70) + 20
+            let y = CGFloat(i * 75) + 20
             let imageView  = AsyncImageView(frame:CGRectMake(70, y, 70, 70))
             imageView.layer.cornerRadius = CGRectGetWidth(imageView.frame)/4.0
             imageView.clipsToBounds = true
@@ -201,7 +209,8 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if(indexPath.compare(self.expandedIndexPath) == NSComparisonResult.OrderedSame){
-            return 100 + CGFloat(self.cookies.count*65);
+            let board = self.arrayBoards[expandedIndexPath.row] as! TBOBoard
+            return 100 + CGFloat((board.members?.count)!*80);
         }
         return 89
     }
