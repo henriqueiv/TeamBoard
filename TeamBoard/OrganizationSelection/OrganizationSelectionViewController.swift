@@ -16,10 +16,13 @@ class OrganizationSelectionViewController: UIViewController {
     private var organizations = [TBOOrganization]()
     
     override func viewDidLoad() {
-        let fullName = TrelloManager.sharedInstance.member?.fullname
-        let postfix = (fullName == nil ? "!" : " \(fullName)!")
-        welcomeLabel.text = "Welcome\(postfix) :]"
-        
+        if let member = TrelloManager.sharedInstance.member {
+            var postfix = "!"
+            if let fullName = member.fullname {
+                postfix = " \(fullName)!"
+            } 
+            welcomeLabel.text = "Welcome\(postfix) :]"
+        }
         setupTableView()
         loadData()
     }
@@ -57,6 +60,9 @@ extension OrganizationSelectionViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("OrganizationCell", forIndexPath: indexPath)
+        
+        cell.indentationLevel = 1
+        cell.indentationWidth = 20
         cell.textLabel?.text = organizations[indexPath.row].name
         cell.detailTextLabel?.text = organizations[indexPath.row].desc
         cell.layer.cornerRadius = cell.frame.size.width/120

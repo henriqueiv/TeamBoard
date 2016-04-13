@@ -69,12 +69,10 @@ class TrelloManager {
     
     var member:TBOMember?
     
-    private let CheckTokenLimitAttempts = 1500
+    private let CheckTokenLimitAttempts = Int.max
     
     private var checkTokenAttempts = 0
     private var cancelTokenCheck = false
-    
-    //    private queue:NSQueue
     
     func authenticate() {
         self.checkTokenAttempts = 0

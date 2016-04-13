@@ -17,7 +17,7 @@ class TBOCell: UITableViewCell {
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var view: UIView!
     
-    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var avatar: AsyncImageView!
     @IBOutlet weak var userName: UILabel!
     
     
@@ -31,4 +31,5 @@ class TBOCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 }

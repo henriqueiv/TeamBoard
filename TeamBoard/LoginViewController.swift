@@ -48,6 +48,7 @@ class LoginViewController: UIViewController {
 }
 
 extension UILabel {
+    
     func setTextWithFade(text:String) {
         let duration:Double = 1
         UIView.animateWithDuration(duration/2, animations: {
@@ -59,6 +60,19 @@ extension UILabel {
             }
         }
     }
+    
+    func setAttributedTextWithFade(text:NSAttributedString) {
+        let duration:Double = 1
+        UIView.animateWithDuration(duration/2, animations: {
+            self.alpha = 0.0
+        }) { (finished) in
+            self.attributedText = text
+            UIView.animateWithDuration(duration/2) {
+                self.alpha = 1.0
+            }
+        }
+    }
+    
 }
 
 extension UIImageView {
@@ -104,7 +118,11 @@ extension LoginViewController: TrelloManagerDelegate {
             activityIndicator?.removeFromSuperview()
             qrCodeImageView.setImageWithFade(UIImage(CIImage: image))
             
-            loginUrlLabel.setTextWithFade("Scan the QRCode or go to \(loginUrl) to log in")
+            let loginUrlAttributedString = NSAttributedString(string: loginUrl, attributes: [NSFontAttributeName : UIFont.boldSystemFontOfSize(loginUrlLabel.font.pointSize)])
+            let mutableAttrString = NSMutableAttributedString(string: "Scan the QRCode or go to ")
+            mutableAttrString.appendAttributedString(loginUrlAttributedString)
+            mutableAttrString.appendAttributedString(NSAttributedString(string: " to log in"))
+            loginUrlLabel.setAttributedTextWithFade(mutableAttrString)
         } catch let error as QRCodeManagerError {
             switch error {
             case .ErrorCreatingFilter:

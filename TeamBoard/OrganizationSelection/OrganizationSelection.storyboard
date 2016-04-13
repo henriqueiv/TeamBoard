@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="yix-fy-OPC">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="Q1I-Nr-rr2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Organization Selection View Controller-->
+        <!--Organizations-->
         <scene sceneID="bjp-h0-pPE">
             <objects>
                 <viewController id="yix-fy-OPC" customClass="OrganizationSelectionViewController" customModule="TeamBoard" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="159" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="LCT-I6-Vva">
-                                <rect key="frame" x="110" y="138" width="1700" height="882"/>
+                                <rect key="frame" x="110" y="255" width="1700" height="765"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OrganizationCell" textLabel="Mkx-4y-tTM" detailTextLabel="6IO-sW-QO8" rowHeight="159" style="IBUITableViewCellStyleSubtitle" id="Tkw-4e-GuF">
@@ -51,19 +50,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome dear user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLP-td-6Gg">
-                                <rect key="frame" x="110" y="60" width="1700" height="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome dear user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLP-td-6Gg">
+                                <rect key="frame" x="110" y="165" width="1700" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="FLP-td-6Gg" secondAttribute="trailing" constant="90" id="Dga-ch-sNE"/>
-                            <constraint firstItem="FLP-td-6Gg" firstAttribute="top" secondItem="Bud-Tu-xLJ" secondAttribute="bottom" constant="60" id="GxU-ni-L0J"/>
-                            <constraint firstItem="FLP-td-6Gg" firstAttribute="leading" secondItem="FnW-8i-60e" secondAttribute="leadingMargin" constant="90" id="yEa-bS-L3V"/>
-                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Organizations" id="KvA-mX-wiF"/>
                     <connections>
                         <outlet property="tableView" destination="LCT-I6-Vva" id="EKC-nQ-DpB"/>
                         <outlet property="welcomeLabel" destination="FLP-td-6Gg" id="Irf-5l-eDd"/>
@@ -71,7 +66,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhD-pv-2cg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="818" y="301"/>
+            <point key="canvasLocation" x="4090" y="317"/>
+        </scene>
+        <!--Log out-->
+        <scene sceneID="kFf-rL-cgY">
+            <objects>
+                <viewController id="iWh-lY-Z1f" customClass="LogOutViewController" customModule="TeamBoard" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jjf-Q9-szw"/>
+                        <viewControllerLayoutGuide type="bottom" id="ev4-4S-45B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b4R-I3-yOm">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Log out" id="zDK-jm-L9f"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tGN-dT-ubx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3168" y="1672"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="E57-xG-qs8">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Q1I-Nr-rr2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="M9D-9t-BQk">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="yix-fy-OPC" kind="relationship" relationship="viewControllers" id="7h4-sM-ZNL"/>
+                        <segue destination="iWh-lY-Z1f" kind="relationship" relationship="viewControllers" id="ed6-c8-ZTe"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvX-0J-fy3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1958" y="317"/>
         </scene>
     </scenes>
     <resources>
