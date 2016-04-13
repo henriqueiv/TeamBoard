@@ -95,6 +95,7 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.indentifier.text = "#"+String(indexPath.row+1)
         cell.layer.cornerRadius = cell.frame.size.width/100
         cell.backgroundColor = UIColor.whiteColor()
+        cell.alpha = 0.7
         if(indexPath.row == 0){
             let image : UIImage = UIImage(named: "trophy")!
             cell.trophy.image = image
@@ -143,7 +144,8 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func normalCellMember(cell:TBOCell){
-        cell.view.hidden=true
+        cell.view.hidden = true
+        cell.view.alpha = 0.7
     }
     
     func swipedUp(sender:UISwipeGestureRecognizer){

@@ -100,6 +100,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TBOCell
         cell.indentifier.text = "#"+String(indexPath.row+1)
         let board = arrayBoards.objectAtIndex(indexPath.row) as! TBOBoard
+        
         for i in 0..<board.members!.count {
             let member = board.members![i]
             let x = CGFloat(i * 110) + 106
@@ -107,11 +108,20 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             imageView.contentMode = UIViewContentMode.ScaleAspectFill
             imageView.layer.cornerRadius = CGRectGetWidth(imageView.frame)/4.0
             imageView.clipsToBounds = true
-            imageView.imageURL = member.pictureURL
+            if(member.pictureURL == nil)
+            {
+                imageView.image = UIImage.init(named: "userwithoutphoto")
+                imageView.contentMode = UIViewContentMode.ScaleAspectFit
+            }
+            else
+            {
+                imageView.imageURL = member.pictureURL
+            }
             print(member.pictureURL)
             cell.layer.cornerRadius = cell.frame.size.width/100
             cell.backgroundColor = UIColor.whiteColor()
             cell.addSubview(imageView)
+
             cell.layoutIfNeeded()
             cell.setNeedsDisplay()
         }
@@ -123,7 +133,7 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         if(indexPath.row > 0){
-            cell.teamName.hidden = true
+            cell.teamName.hidden = false
         }
         cell.focusStyle = UITableViewCellFocusStyle.Custom
         return cell
@@ -144,21 +154,47 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         for i in 0..<board.members!.count {
             let member = board.members![i]
             let y = CGFloat(i * 70) + 20
-            let imageView  = AsyncImageView(frame:CGRectMake(70, y, 73, 61))
-            imageView.contentMode = UIViewContentMode.ScaleAspectFill
+            let imageView  = AsyncImageView(frame:CGRectMake(70, y, 70, 70))
             imageView.layer.cornerRadius = CGRectGetWidth(imageView.frame)/4.0
             imageView.clipsToBounds = true
-            imageView.imageURL = member.pictureURL
+            
+            if(member.pictureURL == nil)
+            {
+                imageView.image = UIImage.init(named: "userwithoutphoto")
+            }
+            else
+            {
+                imageView.contentMode = UIViewContentMode.ScaleAspectFill
+                imageView.imageURL = member.pictureURL
+            }
             cell.layer.cornerRadius = cell.frame.size.width/100
             cell.backgroundColor = UIColor.whiteColor()
             cell.view.addSubview(imageView)
+            
+            var view : UIView
+            let sizeViewPoints = CGFloat(((member.points)*100)/((board.totalPoints)+1))
+            print(String(sizeViewPoints/100))
+            view = UIView(frame:CGRectMake(150, (y+30), (400*(sizeViewPoints/100)), 20))
+            view.backgroundColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
+            view.layer.cornerRadius = 12
+            view.layer.masksToBounds = true
+            cell.view.addSubview(view)
+            
+            var label : UILabel
+            label = UILabel(frame:CGRectMake((160+(400*(sizeViewPoints/100))), (y+30), 20, 20))
+            label.text = String(member.points)
+            label.font = UIFont(name: label.font.fontName, size: 18)
+            label.textColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
+            cell.view.addSubview(label)
+            
+            
         }
         cell.backgroundColor = UIColor.whiteColor()
         tableView.endUpdates()
     }
     
     func normalCellBoard(cell:TBOCell){
-        cell.teamName.hidden=true
+        cell.teamName.hidden=false
         cell.view.hidden=true
     }
 
