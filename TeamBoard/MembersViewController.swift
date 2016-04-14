@@ -9,7 +9,7 @@
 import UIKit
 
 class MembersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
-
+    
     static let cardColor = UIColor(red:232.0/255.0, green:232.0/255.0, blue:232.0/255.0, alpha:1.0)
     
     @IBOutlet weak var teamName: UILabel!
@@ -34,21 +34,21 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
         let ordenedBoardMembers = board.members?.sort({ $0.points > $1.points })
         board.members = ordenedBoardMembers
         //TrelloManager.sharedInstance.getCardsFromBoard(board.id!) { (cards, error) in
-            for card in board.cards! {
-                if card.idList == self.idListDoing{
-                    self.cardsDoing.addObject(card)
-                    for member in self.board.members!{
-                        for m in card.members!{
-                            if m.id == member.id{
-                                member.cards.addObject(card)
-                                break
-                            }
+        for card in board.cards! {
+            if card.idList == self.idListDoing{
+                self.cardsDoing.addObject(card)
+                for member in self.board.members!{
+                    for m in card.members!{
+                        if m.id == member.id{
+                            member.cards.addObject(card)
+                            break
                         }
                     }
                 }
             }
-            self.tableview.reloadData()
-            self.iterateCellMembers()
+        }
+        self.tableview.reloadData()
+        self.iterateCellMembers()
         //}
         
         let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: Selector("swipedUp:"))
@@ -82,14 +82,15 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
                             self.normalCellMember(cell)
                         }
                         self.expandedIndexPath = cellPath
-                        let cell = self.tableview.cellForRowAtIndexPath(cellPath) as! TBOCell
-                        self.expandCellMember(cell)
+                        if let cell = self.tableview.cellForRowAtIndexPath(cellPath) as? TBOCell {
+                            self.expandCellMember(cell)
+                        }
                     }
                 }
             }
         }
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return board.members!.count;
     }
@@ -104,13 +105,15 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
             let image : UIImage = UIImage(named: "trophy")!
             cell.trophy.image = image
         }
-        let members = board.members
-        cell.score.text =  String(members![indexPath.row].points)
-        cell.teamName.text = String(members![indexPath.row].fullname!)
-        cell.userName.text = String(members![indexPath.row].username!)
-        cell.userName.text = "sssssssssssssss"
-        cell.focusStyle = UITableViewCellFocusStyle.Custom
-        cell.view.hidden=true
+        
+        if  let members = board.members {
+            cell.score.text =  String(members[indexPath.row].points)
+            cell.teamName.text = members[indexPath.row].fullname == nil ? "" : members[indexPath.row].fullname!
+            cell.userName.text = members[indexPath.row].username == nil ? "" : members[indexPath.row].username!
+        }
+        cell.focusStyle = .Custom
+        cell.view.hidden = true
+        
         return cell
     }
     
@@ -125,11 +128,17 @@ class MembersViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func expandCellMember(cell: TBOCell){
         tableview.beginUpdates()
-        cell.view.hidden=false
-        let image : UIImage = UIImage(named: "user")!
-        cell.avatar.image = image
+        cell.view.hidden = false
+        
         cell.userName.text = "" // FIXME: why?! There is a name on cell header
         let member = board.members![self.expandedIndexPath.row]
+        
+        let pictureURL = (member.pictureURL == nil) ? NSURL() : member.pictureURL!
+        cell.avatar.imageURL = pictureURL
+        print(pictureURL)
+        cell.avatar.layer.cornerRadius = cell.avatar.frame.height/4
+        cell.avatar.clipsToBounds = true
+        
         for i in 0..<member.cards.count{
             var label : UILabel
             let y = CGFloat(i * 70) + 15 // FIXME: calculate middle of space - half card height

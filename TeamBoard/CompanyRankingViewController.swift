@@ -64,31 +64,41 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    private func iterateCellBoards() {
+    func iterateCellBoards(){
+        var isFirst = true
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            while(true) {
-                for var i in 0..<self.arrayBoards.count {
-                    sleep(self.expandedCellTime)
-                    if(self.changeFocus) {
-                        i = self.expandedIndexPath.row + 1
-                        self.changeFocus = false
+            while(true){
+                for var i in 0..<self.arrayBoards.count{
+                    if(isFirst){
+                        sleep(2)
+                    }else{
+                        sleep(3)
                     }
-                    
+                    if(self.changeFocus){
+                        i=self.expandedIndexPath.row+1
+                        self.changeFocus=false
+                    }
                     let cellPath = NSIndexPath(forRow: i, inSection: 0)
                     dispatch_async(dispatch_get_main_queue()) {
-                        if(i > 0) {
+                        if(i>0){
                             let oldCellPath = NSIndexPath(forRow: i-1, inSection: 0)
                             let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
                             self.normalCellBoard(cell)
-                        } else {
+                        }else{
                             let oldCellPath = NSIndexPath(forRow: self.arrayBoards.count-1, inSection: 0)
                             let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
                             self.normalCellBoard(cell)
                         }
                         self.expandedIndexPath = cellPath
-                        let cell = self.tableView.cellForRowAtIndexPath(cellPath) as! TBOCell
-                        self.expandCellBoard(cell)
+                        if let cell = self.tableView.cellForRowAtIndexPath(cellPath) as? TBOCell{
+                            self.expandCellBoard(cell)
+                        }
                     }
+                    if(isFirst){
+                        sleep(8)
+                        isFirst = false
+                    }
+                    //sleep(2)
                 }
             }
         }
@@ -108,12 +118,9 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             let member = board.members![i]
             let x = CGFloat(i * 110) + 106
             let imageView  = AsyncImageView(frame:CGRectMake(x, 14, 73, 61))
-            imageView.showActivityIndicator = true
-            imageView.activityIndicatorStyle = .White
             imageView.contentMode = .ScaleAspectFill
             imageView.layer.cornerRadius = CGRectGetWidth(imageView.frame)/4
             imageView.clipsToBounds = true
-            imageView.tag = 11 * i
             if(member.pictureURL == nil) {
                 imageView.image = UIImage(named: "userwithoutphoto")
                 imageView.contentMode = .ScaleAspectFit

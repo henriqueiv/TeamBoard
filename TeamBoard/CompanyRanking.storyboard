@@ -179,7 +179,7 @@
                                                 <view autoresizesSubviews="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B3W-ci-7jX">
                                                     <rect key="frame" x="18" y="75" width="1658" height="120"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgf-f2-eGZ">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgf-f2-eGZ" customClass="AsyncImageView">
                                                             <rect key="frame" x="30" y="8" width="84" height="84"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gX8-yi-M7y">
@@ -200,7 +200,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="avatar" destination="sgf-f2-eGZ" id="NTH-4N-737"/>
+                                            <outlet property="avatar" destination="sgf-f2-eGZ" id="EPn-MX-v5O"/>
                                             <outlet property="indentifier" destination="J0W-IF-8JG" id="qCd-Wa-pDM"/>
                                             <outlet property="score" destination="eHt-v2-nbj" id="13T-ZL-3kP"/>
                                             <outlet property="teamName" destination="Phq-BX-ePp" id="1Xp-2M-zxw"/>
