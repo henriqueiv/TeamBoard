@@ -28,6 +28,7 @@
 		62B8AAAF1CB849E9009EB891 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B8AAAE1CB849E9009EB891 /* Utils.swift */; };
 		62B8AAC71CBAD61B009EB891 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B8AAC61CBAD61B009EB891 /* LogOutViewController.swift */; };
 		62D838F71CB33524000044CA /* QRCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D838F61CB33524000044CA /* QRCodeManager.swift */; };
+		8491B0E51CC1B88B00689D9F /* TBOInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8491B0E41CC1B88B00689D9F /* TBOInteractionController.swift */; };
 		84B96C411CB2EAD000909B00 /* TBOOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C401CB2EAD000909B00 /* TBOOrganization.swift */; };
 		84B96C491CB2F26C00909B00 /* TeamBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C481CB2F26C00909B00 /* TeamBoardTests.swift */; };
 		84B96C531CB2F9BE00909B00 /* board_members.json in Resources */ = {isa = PBXBuildFile; fileRef = 84B96C521CB2F9BE00909B00 /* board_members.json */; };
@@ -77,6 +78,7 @@
 		62B8AAAE1CB849E9009EB891 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		62B8AAC61CBAD61B009EB891 /* LogOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogOutViewController.swift; path = LogOut/LogOutViewController.swift; sourceTree = "<group>"; };
 		62D838F61CB33524000044CA /* QRCodeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRCodeManager.swift; path = Utils/QRCodeManager.swift; sourceTree = "<group>"; };
+		8491B0E41CC1B88B00689D9F /* TBOInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOInteractionController.swift; sourceTree = "<group>"; };
 		84B96C401CB2EAD000909B00 /* TBOOrganization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOOrganization.swift; sourceTree = "<group>"; };
 		84B96C461CB2F26C00909B00 /* TeamBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeamBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B96C481CB2F26C00909B00 /* TeamBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBoardTests.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				0A088ECF1CB6D9E100417953 /* CompanyRankingViewController.swift */,
 				0A9647DA1CB596BC00573D5E /* TBOCell.swift */,
 				0A088ED21CB81A0800417953 /* MembersViewController.swift */,
+				8491B0E41CC1B88B00689D9F /* TBOInteractionController.swift */,
 			);
 			name = CompanyRanking;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				625956061CB5969200DA4D33 /* TutorialViewController.swift in Sources */,
 				84D167E71CAEEC2A00E790B3 /* TBOList.swift in Sources */,
 				0A088ED11CB6D9E100417953 /* CompanyRankingViewController.swift in Sources */,
+				8491B0E51CC1B88B00689D9F /* TBOInteractionController.swift in Sources */,
 				84D167E51CAEEC2100E790B3 /* TBOBoard.swift in Sources */,
 				0A088ED31CB81A0800417953 /* MembersViewController.swift in Sources */,
 				0A9647DB1CB596BC00573D5E /* TBOCell.swift in Sources */,

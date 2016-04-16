@@ -32,4 +32,8 @@ class TBOCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    // TODO: Implement expand()
+    
+    // TODO: Implement retract()
+    
 }
