@@ -65,6 +65,7 @@ class TBOCell: UITableViewCell {
             label.font = UIFont(name: label.font.fontName, size: 18)
             label.textColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
             self.view.addSubview(label)
+            self.view.hidden = true
         }
     }
     
@@ -76,4 +77,11 @@ class TBOCell: UITableViewCell {
         self.backgroundColor = nonFocusedCellColor
     }
     
+    func showView(){
+        view.hidden = false
+    }
+    
+    func hiddenView(){
+        view.hidden = true
+    }
 }

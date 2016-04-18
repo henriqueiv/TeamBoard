@@ -52,11 +52,20 @@ class CellMember: UITableViewCell {
             self.view.addSubview(label)
         }
         self.backgroundColor = UIColor.whiteColor()
+        self.view.hidden = true
     }
     
     func retract(){
         let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
         self.view.hidden = true
         self.backgroundColor = nonFocusedCellColor
+    }
+    
+    func showView(){
+        view.hidden = false
+    }
+    
+    func hiddenView(){
+        view.hidden = true
     }
 }
