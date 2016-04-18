@@ -234,7 +234,6 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
                 return 100 + CGFloat(members.count*90);
             }
         }
-        
         return 89
     }
     
@@ -254,7 +253,6 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
             cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
             self.expandCellBoard(cell)
             changeFocus=true
-            
         }
     }
     
@@ -273,7 +271,6 @@ class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(tableView: UITableView, didUpdateFocusInContext context: UITableViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        
     }
     
     func tableView(tableView: UITableView, shouldUpdateFocusInContext context: UITableViewFocusUpdateContext) -> Bool {
