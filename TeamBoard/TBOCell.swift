@@ -32,7 +32,7 @@ class TBOCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func expandCell(members: [TBOMember], points: Int){
+    func expandCellWithMembers(members: [TBOMember], andPoints points: Int){
         let innerCellViewColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
         teamName.hidden = false
         view.hidden = false
@@ -54,7 +54,6 @@ class TBOCell: UITableViewCell {
             self.view.addSubview(imageView)
             
             let sizeViewPoints = CGFloat(((member.points)*100)/((points)+1))
-            print(String(sizeViewPoints/100))
             let view = UIView(frame:CGRectMake(150, (y+30), (400*(sizeViewPoints/100)), 20))
             view.backgroundColor = innerCellViewColor
             view.layer.cornerRadius = view.layer.frame.height/2

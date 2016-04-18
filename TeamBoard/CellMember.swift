@@ -40,11 +40,11 @@ class CellMember: UITableViewCell {
         for i in 0..<member.cards.count{
             var label : UILabel
             let y = CGFloat(i * 70) + 15 // FIXME: calculate middle of space - half card height
-            label = UILabel(frame:CGRectMake(309, y, 300, 60))
+            label = UILabel(frame:CGRectMake(309, y, 500, 60))
             let card = member.cards[i] as! TBOCard
             label.text = card.name!
             label.backgroundColor = cardColor
-            label.font = UIFont(name: label.font.fontName, size: 24)
+            label.font = UIFont(name: label.font.fontName, size: 28)
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
             label.textAlignment = .Center

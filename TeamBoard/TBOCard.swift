@@ -50,7 +50,6 @@ class TBOCard {
                     self.points = points
                 }
             }
-            print(matches)
         }
     }
     
