@@ -57,3 +57,47 @@ extension Array {
     }
     
 }
+
+extension UILabel {
+    
+    func setTextWithFade(text:String) {
+        let duration:Double = 1
+        UIView.animateWithDuration(duration/2, animations: {
+            self.alpha = 0.0
+        }) { (finished) in
+            self.text = text
+            UIView.animateWithDuration(duration/2) {
+                self.alpha = 1.0
+            }
+        }
+    }
+    
+    func setAttributedTextWithFade(text:NSAttributedString) {
+        let duration:Double = 1
+        UIView.animateWithDuration(duration/2, animations: {
+            self.alpha = 0.0
+        }) { (finished) in
+            self.attributedText = text
+            UIView.animateWithDuration(duration/2) {
+                self.alpha = 1.0
+            }
+        }
+    }
+    
+}
+
+extension UIImageView {
+    
+    func setImageWithFade(image:UIImage) {
+        let duration:Double = 1
+        UIView.animateWithDuration(duration/2, animations: {
+            self.alpha = 0.0
+        }) { (finished) in
+            self.image = image
+            UIView.animateWithDuration(duration/2) {
+                self.alpha = 1.0
+            }
+        }
+    }
+    
+}
