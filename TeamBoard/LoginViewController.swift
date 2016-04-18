@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
     
     // MARK: Private helpers
     private func setupView() {
-        loginUrlLabel.text = ""
+        loginUrlLabel.setTextWithFade("Generating login URL...")
         
         activityIndicator = UIActivityIndicatorView(frame: qrCodeImageView.frame)
         activityIndicator!.startAnimating()
@@ -47,69 +47,33 @@ class LoginViewController: UIViewController {
     
 }
 
-extension UILabel {
-    
-    func setTextWithFade(text:String) {
-        let duration:Double = 1
-        UIView.animateWithDuration(duration/2, animations: {
-            self.alpha = 0.0
-        }) { (finished) in
-            self.text = text
-            UIView.animateWithDuration(duration/2) {
-                self.alpha = 1.0
-            }
-        }
-    }
-    
-    func setAttributedTextWithFade(text:NSAttributedString) {
-        let duration:Double = 1
-        UIView.animateWithDuration(duration/2, animations: {
-            self.alpha = 0.0
-        }) { (finished) in
-            self.attributedText = text
-            UIView.animateWithDuration(duration/2) {
-                self.alpha = 1.0
-            }
-        }
-    }
-    
-}
-
-extension UIImageView {
-    func setImageWithFade(image:UIImage) {
-        let duration:Double = 1
-        UIView.animateWithDuration(duration/2, animations: {
-            self.alpha = 0.0
-        }) { (finished) in
-            self.image = image
-            UIView.animateWithDuration(duration/2) {
-                self.alpha = 1.0
-            }
-        }
-    }
-}
-
 // MARK: - TrelloManagerDelegate
 extension LoginViewController: TrelloManagerDelegate {
     
-    func didFailToAuthenticateWithError(error:NSError) {
-        loginUrlLabel.setTextWithFade("An error occurred while trying to authenticate. :(")
+    func didFailToAuthenticateWithError(error: NSError) {
+        loginUrlLabel.setTextWithFade("An error occurred while trying to authenticate, trying again...")
+        TrelloManager.sharedInstance.authenticate()
     }
     
+    //TODO: Simplify the if maybe?
     func didAuthenticate() {
         TrelloManager.sharedInstance.getMember { (me, error) in
-            guard let _ = me where error == nil else {
-                return
+            if error == nil {
+                if me != nil {
+                    self.goToTutorial()
+                } else {
+                    self.loginUrlLabel.setTextWithFade("An error occurred while trying to authenticate, trying again...")
+                    TrelloManager.sharedInstance.authenticate()
+                }
+            } else {
+                self.loginUrlLabel.setTextWithFade("An error occurred while trying to authenticate, trying again...")
+                TrelloManager.sharedInstance.authenticate()
             }
-            
-            self.goToTutorial()
         }
         
     }
     
-    func didCreateAuthenticationOnServerWithId(id:String) {
-        print("criou authentication no server: \(id)")
-        
+    func didCreateAuthenticationOnServerWithId(id: String) {
         do {
             let manager = QRCodeManager.sharedInstance
             let loginUrl = "http://inf.ufrgs.br/~hivalcanaia/TrelloBoard?id=\(id)"
@@ -133,12 +97,14 @@ extension LoginViewController: TrelloManagerDelegate {
                 print("erro ao obter a imagem de saída")
             }
         } catch let error {
+            TrelloManager.sharedInstance.authenticate()
             print(error)
         }
     }
     
     func didFailToCreateAuthenticationOnServer() {
-        print("erro ao criar objeto de autenticacao no servidor!")
+        loginUrlLabel.setTextWithFade("An error occurred while trying to authenticate, trying again...")
+        TrelloManager.sharedInstance.authenticate()
     }
     
 }
