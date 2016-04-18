@@ -197,6 +197,11 @@ extension CompanyRankingViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        defer {
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TBOCell {
+//                cell.animate()
+            }
+        }
         if(indexPath.compare(expandedIndexPath) == NSComparisonResult.OrderedSame){
             if let members = boards[indexPath.row].members {
                 return 100 + CGFloat(members.count * 90);
