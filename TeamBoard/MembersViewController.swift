@@ -10,7 +10,7 @@ import UIKit
 
 class MembersViewController: UIViewController {
     
-    private let cardColor = UIColor(red:232.0/255.0, green:232.0/255.0, blue:232.0/255.0, alpha:1.0)
+    //private let cardColor = UIColor(red:232.0/255.0, green:232.0/255.0, blue:232.0/255.0, alpha:1.0)
     private let expandedCellTime:UInt32 = 3
     private let interactionCheckTime:NSTimeInterval = 5
     private let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
@@ -83,15 +83,15 @@ class MembersViewController: UIViewController {
                         dispatch_async(dispatch_get_main_queue()) {
                             if(i>0){
                                 let oldCellPath = NSIndexPath(forRow: i-1, inSection: 0)
-                                let cell = self.tableview.cellForRowAtIndexPath(oldCellPath) as! TBOCell
-                                self.normalCellMember(cell)
+                                let cell = self.tableview.cellForRowAtIndexPath(oldCellPath) as! CellMember
+                                cell.retract()
                             }else{
                                 let oldCellPath = NSIndexPath(forRow: self.board.members!.count-1, inSection: 0)
-                                let cell = self.tableview.cellForRowAtIndexPath(oldCellPath) as! TBOCell
-                                self.normalCellMember(cell)
+                                let cell = self.tableview.cellForRowAtIndexPath(oldCellPath) as! CellMember
+                                cell.retract()
                             }
                             self.expandedIndexPath = cellPath
-                            if let cell = self.tableview.cellForRowAtIndexPath(cellPath) as? TBOCell {
+                            if let cell = self.tableview.cellForRowAtIndexPath(cellPath) as? CellMember {
                                 self.expandCellMember(cell)
                             }
                         }
@@ -105,48 +105,18 @@ class MembersViewController: UIViewController {
         }
     }
     
-    func expandCellMember(cell: TBOCell){
+    func expandCellMember(cell: CellMember){
         setAllNormalCells()
         tableview.beginUpdates()
-        cell.view.hidden = false
-        
-        cell.userName.text = "" // FIXME: why?! There is a name on cell header
-        let member = board.members![self.expandedIndexPath.row]
-        
-        let pictureURL = (member.pictureURL == nil) ? NSURL() : member.pictureURL!
-        cell.avatar.imageURL = pictureURL
-        print(pictureURL)
-        cell.avatar.layer.cornerRadius = cell.avatar.frame.height/4
-        cell.avatar.clipsToBounds = true
-        
-        for i in 0..<member.cards.count{
-            var label : UILabel
-            let y = CGFloat(i * 70) + 15 // FIXME: calculate middle of space - half card height
-            label = UILabel(frame:CGRectMake(309, y, 300, 60))
-            let card = member.cards[i] as! TBOCard
-            label.text = card.name!
-            label.backgroundColor = cardColor
-            label.font = UIFont(name: label.font.fontName, size: 24)
-            label.layer.cornerRadius = 8
-            label.layer.masksToBounds = true
-            label.textAlignment = .Center
-            cell.view.layer.cornerRadius = cell.frame.size.width/100
-            cell.view.addSubview(label)
-        }
-        cell.backgroundColor = UIColor.whiteColor()
+        cell.expand(board.members![self.expandedIndexPath.row])
         tableview.endUpdates()
-    }
-    
-    func normalCellMember(cell:TBOCell){
-        cell.view.hidden = true
-        cell.backgroundColor = nonFocusedCellColor
     }
     
     func setAllNormalCells(){
         for i in 0...tableview.numberOfRowsInSection(0) {
             let cellIndexPath = NSIndexPath(forRow: i, inSection: 0)
-            if let cell = tableview.cellForRowAtIndexPath(cellIndexPath) as? TBOCell {
-                normalCellMember(cell)
+            if let cell = tableview.cellForRowAtIndexPath(cellIndexPath) as? CellMember {
+                cell.retract()
             }
         }
     }
@@ -196,7 +166,7 @@ extension MembersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableview.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TBOCell
+        let cell = self.tableview.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CellMember
         cell.indentifier.text = "#"+String(indexPath.row+1)
         cell.layer.cornerRadius = cell.frame.size.width/100
         cell.backgroundColor = nonFocusedCellColor
@@ -232,11 +202,11 @@ extension MembersViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let focusedIndexPath = context.nextFocusedIndexPath,
-            let focusedCell = tableView.cellForRowAtIndexPath(focusedIndexPath) as? TBOCell {
+            let focusedCell = tableView.cellForRowAtIndexPath(focusedIndexPath) as? CellMember {
             var cellsToReload = [focusedIndexPath]
             if let lastFocusedIndexPath = context.previouslyFocusedIndexPath,
-                let lastFocusedCell = tableView.cellForRowAtIndexPath(lastFocusedIndexPath) as? TBOCell {
-                normalCellMember(lastFocusedCell)
+                let lastFocusedCell = tableView.cellForRowAtIndexPath(lastFocusedIndexPath) as? CellMember {
+                lastFocusedCell.retract()
                 //                lastFocusedCell.backgroundColor = UIColor.blueColor() // DEBUG UTIL
                 cellsToReload.append(lastFocusedIndexPath)
                 lastFocusedCell.layoutIfNeeded()

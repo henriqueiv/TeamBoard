@@ -31,7 +31,7 @@ class CompanyRankingViewController: UIViewController {
     private let expandedCellTime:UInt32 = 3
     private let interactionCheckTime:NSTimeInterval = 5
     private let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-  //  private let innerCellViewColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
+    private let innerCellViewColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,11 +98,11 @@ class CompanyRankingViewController: UIViewController {
                             if(i>0){
                                 let oldCellPath = NSIndexPath(forRow: i-1, inSection: 0)
                                 let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
-                                cell.retract()
+                                self.normalCellBoard(cell)
                             }else{
                                 let oldCellPath = NSIndexPath(forRow: self.arrayBoards.count-1, inSection: 0)
                                 let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
-                                cell.retract()
+                                self.normalCellBoard(cell)
                             }
                             self.expandedIndexPath = cellPath
                             if let cell = self.tableView.cellForRowAtIndexPath(cellPath) as? TBOCell{
@@ -122,16 +122,56 @@ class CompanyRankingViewController: UIViewController {
     func expandCellBoard(cell: TBOCell){
         setAllNormalCells()
         tableView.beginUpdates()
+        cell.teamName.hidden = false
+        cell.view.hidden = false
         let board = arrayBoards.objectAtIndex(expandedIndexPath.row) as! TBOBoard
-        cell.expandCell(board.members!, points: board.totalPoints)
+        
+        for i in 0..<board.members!.count {
+            let member = board.members![i]
+            let y = CGFloat(i * 90) + 20
+            let imageView  = AsyncImageView(frame:CGRectMake(70, y, 70, 70))
+            imageView.layer.cornerRadius = CGRectGetWidth(imageView.frame)/2
+            imageView.clipsToBounds = true
+            
+            if(member.pictureURL == nil) {
+                imageView.image = UIImage(named: "userwithoutphoto")
+            } else {
+                imageView.contentMode = UIViewContentMode.ScaleAspectFill
+                imageView.imageURL = member.pictureURL
+            }
+            cell.layer.cornerRadius = cell.frame.size.width/100
+            cell.backgroundColor = UIColor.whiteColor()
+            cell.view.addSubview(imageView)
+            
+            let sizeViewPoints = CGFloat(((member.points)*100)/((board.totalPoints)+1))
+            print(String(sizeViewPoints/100))
+            let view = UIView(frame:CGRectMake(150, (y+30), (400*(sizeViewPoints/100)), 20))
+            view.backgroundColor = innerCellViewColor
+            view.layer.cornerRadius = view.layer.frame.height/2
+            view.layer.masksToBounds = true
+            cell.view.addSubview(view)
+            
+            let label = UILabel(frame:CGRectMake((160+(400*(sizeViewPoints/100))), (y+30), 200, 20))
+            label.text = String(member.points)
+            label.font = UIFont(name: label.font.fontName, size: 18)
+            label.textColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
+            cell.view.addSubview(label)
+            
+        }
         tableView.endUpdates()
+    }
+    
+    func normalCellBoard(cell:TBOCell){
+        cell.teamName.hidden = false
+        cell.view.hidden = true
+        cell.backgroundColor = nonFocusedCellColor
     }
     
     func setAllNormalCells(){
         for i in 0...tableView.numberOfRowsInSection(0) {
             let cellIndexPath = NSIndexPath(forRow: i, inSection: 0)
             if let cell = tableView.cellForRowAtIndexPath(cellIndexPath) as? TBOCell {
-                cell.retract()
+                normalCellBoard(cell)
             }
         }
     }
@@ -236,6 +276,7 @@ extension CompanyRankingViewController : UITableViewDelegate, UITableViewDataSou
                 return 100 + CGFloat(members.count*90);
             }
         }
+        
         return 89
     }
     
@@ -249,7 +290,7 @@ extension CompanyRankingViewController : UITableViewDelegate, UITableViewDataSou
             var cellsToReload = [focusedIndexPath]
             if let lastFocusedIndexPath = context.previouslyFocusedIndexPath,
                 let lastFocusedCell = tableView.cellForRowAtIndexPath(lastFocusedIndexPath) as? TBOCell {
-                lastFocusedCell.retract()
+                normalCellBoard(lastFocusedCell)
                 //                lastFocusedCell.backgroundColor = UIColor.blueColor() // DEBUG UTIL
                 cellsToReload.append(lastFocusedIndexPath)
                 lastFocusedCell.layoutIfNeeded()

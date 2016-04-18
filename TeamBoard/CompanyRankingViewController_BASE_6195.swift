@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CompanyRankingViewController: UIViewController {
+class CompanyRankingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -18,7 +18,7 @@ class CompanyRankingViewController: UIViewController {
     var count = 0
     var changeFocus = false
     var organization:TBOOrganization!
-    var interactionController = TBOInteractionController()
+    var currentState = InteractionState.WaitingForInteraction
     var interactionCheckTimer : NSTimer!
     var isFirstAction = true
     
@@ -29,9 +29,9 @@ class CompanyRankingViewController: UIViewController {
     }
     
     private let expandedCellTime:UInt32 = 3
-    private let interactionCheckTime:NSTimeInterval = 5
+    private let interactionCheckTime:NSTimeInterval = 10
     private let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
-  //  private let innerCellViewColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
+    private let innerCellViewColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,8 @@ class CompanyRankingViewController: UIViewController {
                             self.arrayBoards.removeAllObjects()
                             self.arrayBoards.addObjectsFromArray(ordenedArray)
                             self.tableView.reloadData()
-//                            self.iterateCellBoards()                            
+//                            self.iterateCellBoards()
+                            self.interactionCheckTimer.fire()
                         }
                     }
                     
@@ -84,101 +85,50 @@ class CompanyRankingViewController: UIViewController {
     // FIXME: we need to control the active cell outside of the func. Call this func just to control the state and update the active focused cell
     func iterateCellBoards() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.interactionController.updateState()
-            while(self.interactionController.state == .Inactive) {
-                self.interactionCheckTimer.invalidate()
+            switch(self.currentState){
+            case .Active:
+                self.currentState = .WaitingForInteraction
+                break
+            case .WaitingForInteraction:
+                self.currentState = .Inactive
+                break
+            case .Inactive:
+                return
+            }
+            
+            while(self.currentState == .Inactive) {
                 for var i in 0..<self.arrayBoards.count {
-                    if self.interactionController.state == .Inactive {
-                        if(self.changeFocus) {
-                            i = self.expandedIndexPath.row + 1
-                            self.changeFocus = false
-                        }
-                        let cellPath = NSIndexPath(forRow: i, inSection: 0)
-                        dispatch_async(dispatch_get_main_queue()) {
-                            if(i>0){
-                                let oldCellPath = NSIndexPath(forRow: i-1, inSection: 0)
-                                let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
-                                cell.retract()
-                            }else{
-                                let oldCellPath = NSIndexPath(forRow: self.arrayBoards.count-1, inSection: 0)
-                                let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
-                                cell.retract()
-                            }
-                            self.expandedIndexPath = cellPath
-                            if let cell = self.tableView.cellForRowAtIndexPath(cellPath) as? TBOCell{
-                                self.expandCellBoard(cell)
-                            }
-                        }
-                        sleep(self.expandedCellTime)
+                    if self.currentState == .Inactive {
+                     sleep(self.expandedCellTime)
                     }
                     else {
                         return
                     }
+                    if(self.changeFocus) {
+                        i = self.expandedIndexPath.row + 1
+                        self.changeFocus = false
+                    }
+                    let cellPath = NSIndexPath(forRow: i, inSection: 0)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if(i>0){
+                            let oldCellPath = NSIndexPath(forRow: i-1, inSection: 0)
+                            let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
+                            self.normalCellBoard(cell)
+                        }else{
+                            let oldCellPath = NSIndexPath(forRow: self.arrayBoards.count-1, inSection: 0)
+                            let cell = self.tableView.cellForRowAtIndexPath(oldCellPath) as! TBOCell
+                            self.normalCellBoard(cell)
+                        }
+                        self.expandedIndexPath = cellPath
+                        if let cell = self.tableView.cellForRowAtIndexPath(cellPath) as? TBOCell{
+                            self.expandCellBoard(cell)
+                        }
+                    }                    
                 }
             }
         }
     }
     
-    func expandCellBoard(cell: TBOCell){
-        setAllNormalCells()
-        tableView.beginUpdates()
-        let board = arrayBoards.objectAtIndex(expandedIndexPath.row) as! TBOBoard
-        cell.expandCell(board.members!, points: board.totalPoints)
-        tableView.endUpdates()
-    }
-    
-    func setAllNormalCells(){
-        for i in 0...tableView.numberOfRowsInSection(0) {
-            let cellIndexPath = NSIndexPath(forRow: i, inSection: 0)
-            if let cell = tableView.cellForRowAtIndexPath(cellIndexPath) as? TBOCell {
-                cell.retract()
-            }
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "gotoMembers") {
-            let membersView = (segue.destinationViewController) as! MembersViewController
-            membersView.board = self.arrayBoards.objectAtIndex(self.expandedIndexPath.row) as! TBOBoard
-        }
-    }
-    
-    func swipedUp(sender:UISwipeGestureRecognizer){
-        print("swiped up")
-        if(self.expandedIndexPath.row > 0){
-//            var cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-//            self.normalCellBoard(cell)
-//            self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row-1, inSection: 0)
-//            cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-//            self.expandCellBoard(cell)
-//            changeFocus = true
-        }
-    }
-    
-    func swipedDown(sender:UISwipeGestureRecognizer){
-        print("swiped down")
-        if(self.expandedIndexPath.row < self.arrayBoards.count-1){
-//            var cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-//            self.normalCellBoard(cell)
-//            self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row + 1, inSection: 0)
-//            cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-//            self.expandCellBoard(cell)
-//            changeFocus = true
-        }else{
-            print("aqui")
-        }
-    }
-    
-    override func shouldUpdateFocusInContext(context: UIFocusUpdateContext) -> Bool {
-        interactionController.setActive()
-        if !interactionCheckTimer.valid {
-            interactionCheckTimer = NSTimer.scheduledTimerWithTimeInterval(interactionCheckTime, target: self, selector: #selector(iterateCellBoards), userInfo: nil, repeats: true)
-        }
-        return true
-    }
-}
-
-extension CompanyRankingViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayBoards.count
     }
@@ -225,9 +175,57 @@ extension CompanyRankingViewController : UITableViewDelegate, UITableViewDataSou
         return cell
     }
     
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("gotoMembers", sender: nil)
         print(self.expandedIndexPath.row)
+    }
+    
+    func expandCellBoard(cell: TBOCell){
+        tableView.beginUpdates()
+        cell.teamName.hidden = false
+        cell.view.hidden = false
+        let board = arrayBoards.objectAtIndex(expandedIndexPath.row) as! TBOBoard
+        
+        for i in 0..<board.members!.count {
+            let member = board.members![i]
+            let y = CGFloat(i * 90) + 20
+            let imageView  = AsyncImageView(frame:CGRectMake(70, y, 70, 70))
+            imageView.layer.cornerRadius = CGRectGetWidth(imageView.frame)/2
+            imageView.clipsToBounds = true
+            
+            if(member.pictureURL == nil) {
+                imageView.image = UIImage(named: "userwithoutphoto")
+            } else {
+                imageView.contentMode = UIViewContentMode.ScaleAspectFill
+                imageView.imageURL = member.pictureURL
+            }
+            cell.layer.cornerRadius = cell.frame.size.width/100
+            cell.backgroundColor = UIColor.whiteColor()
+            cell.view.addSubview(imageView)
+            
+            let sizeViewPoints = CGFloat(((member.points)*100)/((board.totalPoints)+1))
+            print(String(sizeViewPoints/100))
+            let view = UIView(frame:CGRectMake(150, (y+30), (400*(sizeViewPoints/100)), 20))
+            view.backgroundColor = innerCellViewColor
+            view.layer.cornerRadius = view.layer.frame.height/2
+            view.layer.masksToBounds = true
+            cell.view.addSubview(view)
+            
+            let label = UILabel(frame:CGRectMake((160+(400*(sizeViewPoints/100))), (y+30), 200, 20))
+            label.text = String(member.points)
+            label.font = UIFont(name: label.font.fontName, size: 18)
+            label.textColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
+            cell.view.addSubview(label)
+            
+        }
+        tableView.endUpdates()
+    }
+    
+    func normalCellBoard(cell:TBOCell){
+        cell.teamName.hidden = false
+        cell.view.hidden = true
+        cell.backgroundColor = nonFocusedCellColor
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -236,12 +234,56 @@ extension CompanyRankingViewController : UITableViewDelegate, UITableViewDataSou
                 return 100 + CGFloat(members.count*90);
             }
         }
+        
         return 89
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "gotoMembers") {
+            let membersView = (segue.destinationViewController) as! MembersViewController
+            membersView.board = self.arrayBoards.objectAtIndex(self.expandedIndexPath.row) as! TBOBoard
+        }
+    }
+    
+    func swipedUp(sender:UISwipeGestureRecognizer){
+        print("swiped up")
+        if(self.expandedIndexPath.row > 0){
+            var cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.normalCellBoard(cell)
+            self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row-1, inSection: 0)
+            cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.expandCellBoard(cell)
+            changeFocus=true
+            
+        }
+    }
+    
+    func swipedDown(sender:UISwipeGestureRecognizer){
+        print("swiped down")
+        if(self.expandedIndexPath.row < self.arrayBoards.count-1){
+            var cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.normalCellBoard(cell)
+            self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row + 1, inSection: 0)
+            cell = self.tableView.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
+            self.expandCellBoard(cell)
+            changeFocus = true
+        }else{
+            print("aqui")
+        }
+    }
+    
+    func tableView(tableView: UITableView, didUpdateFocusInContext context: UITableViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        
     }
     
     func tableView(tableView: UITableView, shouldUpdateFocusInContext context: UITableViewFocusUpdateContext) -> Bool {
         if isFirstAction {
-            setAllNormalCells()
+            for i in 0...tableView.numberOfRowsInSection(0) {
+                let cellIndexPath = NSIndexPath(forRow: i, inSection: 0)
+                if let cell = tableView.cellForRowAtIndexPath(cellIndexPath) as? TBOCell {
+                    normalCellBoard(cell)
+                }
+            }
         }
         
         if let focusedIndexPath = context.nextFocusedIndexPath,
@@ -249,8 +291,8 @@ extension CompanyRankingViewController : UITableViewDelegate, UITableViewDataSou
             var cellsToReload = [focusedIndexPath]
             if let lastFocusedIndexPath = context.previouslyFocusedIndexPath,
                 let lastFocusedCell = tableView.cellForRowAtIndexPath(lastFocusedIndexPath) as? TBOCell {
-                lastFocusedCell.retract()
-                //                lastFocusedCell.backgroundColor = UIColor.blueColor() // DEBUG UTIL
+                normalCellBoard(lastFocusedCell)
+//                lastFocusedCell.backgroundColor = UIColor.blueColor() // DEBUG UTIL
                 cellsToReload.append(lastFocusedIndexPath)
                 lastFocusedCell.layoutIfNeeded()
                 lastFocusedCell.setNeedsDisplay()
@@ -258,10 +300,17 @@ extension CompanyRankingViewController : UITableViewDelegate, UITableViewDataSou
             }
             expandedIndexPath = focusedIndexPath
             expandCellBoard(focusedCell)
-            //            focusedCell.backgroundColor = UIColor.redColor() // DEBUG UTIL
+//            focusedCell.backgroundColor = UIColor.redColor() // DEBUG UTIL
             focusedCell.layoutIfNeeded()
             focusedCell.setNeedsDisplay()
         }
         return true
     }
+    
+    override func shouldUpdateFocusInContext(context: UIFocusUpdateContext) -> Bool {
+        currentState = .Active
+        print(currentState)
+        return true
+    }
 }
+
