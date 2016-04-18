@@ -108,32 +108,7 @@ class MembersViewController: UIViewController {
     func expandCellMember(cell: CellMember){
         setAllNormalCells()
         tableview.beginUpdates()
-        cell.view.hidden = false
-        
-        cell.userName.text = "" // FIXME: why?! There is a name on cell header
-        let member = board.members![self.expandedIndexPath.row]
-        
-        let pictureURL = (member.pictureURL == nil) ? NSURL() : member.pictureURL!
-        cell.avatar.imageURL = pictureURL
-        print(pictureURL)
-        cell.avatar.layer.cornerRadius = cell.avatar.frame.height/4
-        cell.avatar.clipsToBounds = true
-        
-        for i in 0..<member.cards.count{
-            var label : UILabel
-            let y = CGFloat(i * 70) + 15 // FIXME: calculate middle of space - half card height
-            label = UILabel(frame:CGRectMake(300, y, 600, 60))
-            let card = member.cards[i] as! TBOCard
-            label.text = card.name!
-            label.backgroundColor = cardColor
-            label.font = UIFont(name: label.font.fontName, size: 28)
-            label.layer.cornerRadius = 8
-            label.layer.masksToBounds = true
-            label.textAlignment = .Center
-            cell.view.layer.cornerRadius = cell.frame.size.width/100
-            cell.view.addSubview(label)
-        }
-        cell.backgroundColor = UIColor.whiteColor()
+        cell.expand(board.members![self.expandedIndexPath.row])
         tableview.endUpdates()
     }
     
