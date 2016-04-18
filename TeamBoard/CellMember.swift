@@ -52,7 +52,7 @@ class CellMember: UITableViewCell {
             self.view.addSubview(label)
         }
         self.backgroundColor = UIColor.whiteColor()
-      //  self.view.hidden = true
+        self.view.hidden = true
     }
     
     func retract(){
