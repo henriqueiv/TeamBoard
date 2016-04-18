@@ -21,6 +21,7 @@ class CompanyRankingViewController: UIViewController {
     var interactionController = TBOInteractionController()
     var interactionCheckTimer : NSTimer!
     var isFirstAction = true
+    var colorMembers: [String] = ["A10054", "11A695", "005EA1", "A71D1D", "50A14B", "5E3AA4", "C06233", "D7C61F"]
     
     enum InteractionState {
         case Active
