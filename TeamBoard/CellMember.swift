@@ -30,6 +30,11 @@ class CellMember: UITableViewCell {
     }
     
     func expand(member: TBOMember){
+        for subview in self.view.subviews{
+            if (subview.tag == 100) {
+                subview.removeFromSuperview()
+            }
+        }
         let cardColor = UIColor(red:232.0/255.0, green:232.0/255.0, blue:232.0/255.0, alpha:1.0)
         self.view.hidden = false
         self.userName.text = "" // FIXME: why?! There is a name on cell header
@@ -48,6 +53,7 @@ class CellMember: UITableViewCell {
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
             label.textAlignment = .Center
+            label.tag = 100
             self.view.layer.cornerRadius = self.frame.size.width/100
             self.view.addSubview(label)
         }
