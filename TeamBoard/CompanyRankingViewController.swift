@@ -172,41 +172,7 @@ extension CompanyRankingViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TBOCell
-        cell.indentifier.text = "#\(indexPath.row + 1)"
-        
-        let board = boards[indexPath.row]
-        for (index, member) in board.members!.enumerate() {
-            let x = CGFloat(index * 110) + 106
-            let imageView  = AsyncImageView(frame:CGRectMake(x, 14, 73, 61))
-            imageView.contentMode = .ScaleAspectFill
-            imageView.layer.cornerRadius = CGRectGetWidth(imageView.frame)/4
-            imageView.clipsToBounds = true
-            if(member.pictureURL == nil) {
-                imageView.image = UIImage(named: "userwithoutphoto")
-                imageView.contentMode = .ScaleAspectFit
-            } else {
-                imageView.imageURL = member.pictureURL
-            }
-//            cell.layer.cornerRadius = cell.frame.size.width/100
-            cell.backgroundColor = nonFocusedCellColor
-            cell.addSubview(imageView)
-            
-            cell.layoutIfNeeded()
-            cell.setNeedsDisplay()
-        }
-        
-        cell.teamName.text = board.name
-        cell.score.text = String(board.totalPoints)
-        if(indexPath.row == 0){
-            let image : UIImage = UIImage(named: "trophy")!
-            cell.trophy.image = image
-        }
-        
-        if(indexPath.row > 0){
-            cell.teamName.hidden = false
-        }
-        cell.focusStyle = .Custom
-        
+        cell.configCell(boards[indexPath.row], index: indexPath.row)
         return cell
     }
     
