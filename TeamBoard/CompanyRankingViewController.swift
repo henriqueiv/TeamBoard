@@ -8,12 +8,26 @@
 
 import UIKit
 
+func delay(delay:Double, closure:()->()) {
+    dispatch_after(
+        dispatch_time(
+            DISPATCH_TIME_NOW,
+            Int64(delay * Double(NSEC_PER_SEC))
+        ),
+        dispatch_get_main_queue(), closure)
+}
+
 class CompanyRankingViewController: UIViewController {
     
     @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - THE GAMBI, THE MAGIC, THE DARKNESS, THE POWER, THE UNKNOWN, THE ~DO NOT TOUCH~ PIECE OF SHIT
     var expandedIndexPath = NSIndexPath(forRow: -1, inSection: 0) {
+        willSet {
+            self.retractExpandedCell()
+        }
+        
         didSet {
             self.expandCell()
         }
@@ -25,7 +39,6 @@ class CompanyRankingViewController: UIViewController {
     var interactionController = TBOInteractionController()
     var interactionCheckTimer: NSTimer?
     var isFirstAction = true
-    var colorMembers = ["A10054", "11A695", "005EA1", "A71D1D", "50A14B", "5E3AA4", "C06233", "D7C61F"]
     
     enum InteractionState {
         case Active
@@ -33,7 +46,7 @@ class CompanyRankingViewController: UIViewController {
         case Inactive
     }
     
-    private let expandedCellTime:UInt32 = 3
+    private let expandedCellTime:UInt32 = 1
     private let interactionCheckTime:NSTimeInterval = 5
     private let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
     //  private let innerCellViewColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
@@ -66,7 +79,6 @@ class CompanyRankingViewController: UIViewController {
             for board in boards {
                 TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
                     self.boards += [board!]
-                    
                     TrelloManager.sharedInstance.getCardsFromBoard(board!.id!) { (cards, error) in
                         self.count += 1
                         board?.cards = cards
@@ -83,7 +95,6 @@ class CompanyRankingViewController: UIViewController {
                             block()
                         }
                     }
-                    
                 })
             }
         }
@@ -100,20 +111,27 @@ class CompanyRankingViewController: UIViewController {
     }
     
     private func expandCell() {
-        retractAlllCells()
         tableView.beginUpdates()
         let board = boards[expandedIndexPath.row]
         let cell = tableView.cellForRowAtIndexPath(expandedIndexPath) as! TBOCell
         cell.expandCellWithMembers(board.members!, andPoints: board.totalPoints)
         tableView.endUpdates()
+        
+        // MARK: - THE GAMBI, THE MAGIC, THE DARKNESS, THE POWER, THE UNKNOWN, THE ~DO NOT TOUCH~ PIECE OF SHIT
+        let delayTime = Double(board.members!.count) * 0.1
+        delay(delayTime) {
+            cell.showViewWithCompletionBlock({ (suc) in
+                // do nothing
+            })
+        }
     }
     
-    private func retractAlllCells() {
-        for row in 0...tableView.numberOfRowsInSection(0) {
-            let cellIndexPath = NSIndexPath(forRow: row, inSection: 0)
-            if let cell = tableView.cellForRowAtIndexPath(cellIndexPath) as? TBOCell {
+    private func retractExpandedCell() {
+        // MARK: - THE GAMBI, THE MAGIC, THE DARKNESS, THE POWER, THE UNKNOWN, THE ~DO NOT TOUCH~ PIECE OF SHIT
+        if let cell = tableView.cellForRowAtIndexPath(expandedIndexPath) as? TBOCell {
+            cell.hideViewWithCompletionBlock({ (suc) in
                 cell.retract()
-            }
+            })
         }
     }
     
@@ -154,7 +172,7 @@ extension CompanyRankingViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TBOCell
-        cell.indentifier.text = "#"+String(indexPath.row+1)
+        cell.indentifier.text = "#\(indexPath.row + 1)"
         
         let board = boards[indexPath.row]
         for (index, member) in board.members!.enumerate() {
@@ -169,7 +187,7 @@ extension CompanyRankingViewController: UITableViewDelegate, UITableViewDataSour
             } else {
                 imageView.imageURL = member.pictureURL
             }
-            cell.layer.cornerRadius = cell.frame.size.width/100
+//            cell.layer.cornerRadius = cell.frame.size.width/100
             cell.backgroundColor = nonFocusedCellColor
             cell.addSubview(imageView)
             

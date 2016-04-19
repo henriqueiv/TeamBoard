@@ -18,15 +18,20 @@ class CellMember: UITableViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var userName: UILabel!
     
+    private let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        layer.cornerRadius = frame.size.width/100
+        layer.masksToBounds = true
+        backgroundColor = nonFocusedCellColor
+        alpha = 0.7
+        focusStyle = .Custom
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func expand(member: TBOMember){
@@ -36,7 +41,7 @@ class CellMember: UITableViewCell {
             }
         }
         let cardColor = UIColor(red:232.0/255.0, green:232.0/255.0, blue:232.0/255.0, alpha:1.0)
-        self.view.hidden = false
+        hideView()
         self.userName.text = "" // FIXME: why?! There is a name on cell header
         let pictureURL = (member.pictureURL == nil) ? NSURL() : member.pictureURL!
         self.avatar.imageURL = pictureURL
@@ -58,12 +63,11 @@ class CellMember: UITableViewCell {
             self.view.addSubview(label)
         }
         self.backgroundColor = UIColor.whiteColor()
-        self.view.hidden = true
+        showView()
     }
     
     func retract(){
-        let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
-        self.view.hidden = true
+        hideView()
         self.backgroundColor = nonFocusedCellColor
     }
     
@@ -71,7 +75,7 @@ class CellMember: UITableViewCell {
         view.hidden = false
     }
     
-    func hiddenView(){
+    func hideView(){
         view.hidden = true
     }
 }

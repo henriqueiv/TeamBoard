@@ -13,12 +13,11 @@ class MembersViewController: UIViewController {
     //private let cardColor = UIColor(red:232.0/255.0, green:232.0/255.0, blue:232.0/255.0, alpha:1.0)
     private let expandedCellTime:UInt32 = 3
     private let interactionCheckTime:NSTimeInterval = 5
-    private let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.7)
     private let innerCellViewColor = UIColor(red:163.0/255.0, green:63.0/255.0, blue:107.0/255.0, alpha:1.0)
-    
     
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var tableview: UITableView!
+    
     var board:TBOBoard!
     var expandedIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     var interactionController = TBOInteractionController()
@@ -26,29 +25,27 @@ class MembersViewController: UIViewController {
     var isFirstAction = true
     var changeFocus = false
     var idListDoing: String?
-    var cardsDoing:NSMutableArray = NSMutableArray()
-    
-    
+    var cardsDoing = [TBOCard]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.teamName.text = board.name
         
-        for list in self.board.lists!{
-            if list.name == "DOING"{
+        for list in self.board.lists! {
+            if list.name?.uppercaseString == "DOING" {
                 self.idListDoing = list.id
                 break
             }
         }
         
-        let ordenedBoardMembers = board.members?.sort({ $0.points > $1.points })
-        board.members = ordenedBoardMembers
+        let orderedBoardMembers = board.members?.sort({ $0.points > $1.points })
+        board.members = orderedBoardMembers
         for card in board.cards! {
-            if card.idList == self.idListDoing{
-                self.cardsDoing.addObject(card)
-                for member in self.board.members!{
-                    for m in card.members!{
-                        if m.id == member.id{
+            if card.idList == self.idListDoing {
+                self.cardsDoing += [card]
+                for member in self.board.members! {
+                    for m in card.members! {
+                        if m.id == member.id {
                             member.cards.addObject(card)
                             break
                         }
@@ -56,8 +53,10 @@ class MembersViewController: UIViewController {
                 }
             }
         }
+        
         interactionCheckTimer = NSTimer.scheduledTimerWithTimeInterval(interactionCheckTime, target: self, selector: #selector(iterateCellMembers), userInfo: nil, repeats: true)
-        self.tableview.reloadData()
+        tableview.reloadData()
+        
         let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipedUp))
         swipeUp.direction = .Up
         view.addGestureRecognizer(swipeUp)
@@ -125,27 +124,11 @@ class MembersViewController: UIViewController {
     /// FIXME: Under analize removing this func
     func swipedUp(sender:UISwipeGestureRecognizer){
         print("swiped up")
-        if(self.expandedIndexPath.row>0){
-//            var cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-//            self.normalCellMember(cell)
-//            self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row-1, inSection: 0)
-//            cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-//            self.expandCellMember(cell)
-//            changeFocus=true
-        }
     }
     
     /// FIXME: Under analize removing this func
     func swipedDown(sender:UISwipeGestureRecognizer){
         print("swiped down")
-        if(self.expandedIndexPath.row<self.board.members!.count){
-//            var cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-//            self.normalCellMember(cell)
-//            self.expandedIndexPath = NSIndexPath(forRow: self.expandedIndexPath.row+1, inSection: 0)
-//            cell = self.tableview.cellForRowAtIndexPath(self.expandedIndexPath) as! TBOCell
-//            self.expandCellMember(cell)
-//            changeFocus=true
-        }
     }
     
     override func shouldUpdateFocusInContext(context: UIFocusUpdateContext) -> Bool {
@@ -157,10 +140,9 @@ class MembersViewController: UIViewController {
     }
 }
 
-// ---------------------------------------------
-// MARK: - Tableview Delegates Extension
-// ---------------------------------------------
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension MembersViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return board.members!.count;
     }
@@ -168,9 +150,6 @@ extension MembersViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableview.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CellMember
         cell.indentifier.text = "#"+String(indexPath.row+1)
-        cell.layer.cornerRadius = cell.frame.size.width/100
-        cell.backgroundColor = nonFocusedCellColor
-        cell.alpha = 0.7
         if(indexPath.row == 0){
             let image : UIImage = UIImage(named: "trophy")!
             cell.trophy.image = image
@@ -181,18 +160,21 @@ extension MembersViewController: UITableViewDelegate, UITableViewDataSource {
             cell.teamName.text = members[indexPath.row].fullname == nil ? "" : members[indexPath.row].fullname!
             cell.userName.text = members[indexPath.row].username == nil ? "" : members[indexPath.row].username!
         }
-        cell.focusStyle = .Custom
         cell.view.hidden = true
         
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if(indexPath.compare(self.expandedIndexPath) == NSComparisonResult.OrderedSame){
+        if indexPath == expandedIndexPath {
             let member = board.members![self.expandedIndexPath.row]
-            if(member.cards.count == 0){return 200}
-            return 120 + CGFloat(member.cards.count * 70);
+            if (member.cards.count == 0) {
+                return 200
+            } else {
+                return 120 + CGFloat(member.cards.count * 70);
+            }
         }
+        
         return 89
     }
     
