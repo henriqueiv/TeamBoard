@@ -149,19 +149,7 @@ extension MembersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableview.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CellMember
-        cell.indentifier.text = "#"+String(indexPath.row+1)
-        if(indexPath.row == 0){
-            let image : UIImage = UIImage(named: "trophy")!
-            cell.trophy.image = image
-        }
-        
-        if  let members = board.members {
-            cell.score.text =  String(members[indexPath.row].points)
-            cell.teamName.text = members[indexPath.row].fullname == nil ? "" : members[indexPath.row].fullname!
-            cell.userName.text = members[indexPath.row].username == nil ? "" : members[indexPath.row].username!
-        }
-        cell.view.hidden = true
-        
+        cell.configCell(board.members!, index: indexPath.row)
         return cell
     }
     

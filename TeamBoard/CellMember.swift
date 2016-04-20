@@ -34,6 +34,20 @@ class CellMember: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    
+    func configCell(members: [TBOMember], index: Int){
+        self.indentifier.text = "#"+String(index+1)
+        if(index == 0){
+            let image : UIImage = UIImage(named: "trophy")!
+            self.trophy.image = image
+        }
+
+        self.score.text =  String(members[index].points)
+        self.teamName.text = members[index].fullname == nil ? "" : members[index].fullname!
+        self.userName.text = members[index].username == nil ? "" : members[index].username!
+        self.view.hidden = true
+    }
+    
     func expand(member: TBOMember){
         for subview in self.view.subviews{
             if (subview.tag == 100) {

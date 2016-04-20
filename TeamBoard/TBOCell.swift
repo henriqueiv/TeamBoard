@@ -40,6 +40,7 @@ class TBOCell: UITableViewCell {
     
     private let colorMembers = ["A10054", "11A695", "005EA1", "A71D1D", "50A14B", "5E3AA4", "C06233", "D7C61F"]
     private let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
