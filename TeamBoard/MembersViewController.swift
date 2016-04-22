@@ -108,7 +108,7 @@ class MembersViewController: UIViewController {
     func expandCellMember(cell: TBOCell){
         setAllNormalCells()
         tableview.beginUpdates()
-        cell.view.hidden = false
+//        cell.view.hidden = false
         
         cell.userName.text = "" // FIXME: why?! There is a name on cell header
         let member = board.members![self.expandedIndexPath.row]

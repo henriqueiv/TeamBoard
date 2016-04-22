@@ -49,21 +49,30 @@ class CompanyRankingViewController: UIViewController {
         
         TrelloManager.sharedInstance.getBoards(organization!.id!) { (boards, error) in
             guard let boards = boards where error == nil else {
+                self.showUnknownError()
                 return
             }
             for board in boards {
                 TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
-                    self.arrayBoards.addObject(board!)
+                    guard let board = board where error == nil else {
+                        // self.showUnknownError()
+                        return
+                    }
+                    self.arrayBoards.addObject(board)
                     
-                    TrelloManager.sharedInstance.getCardsFromBoard(board!.id!) { (cards, error) in
+                    TrelloManager.sharedInstance.getCardsFromBoard(board.id!) { (cards, error) in
+                        guard let cards = cards where error == nil else {
+                            // self.showUnknownError()
+                            return
+                        }
                         self.count += 1
-                        board?.cards = cards
-                        board?.matchPointsWithMembers(cards!)
+                        board.cards = cards
+                        board.matchPointsWithMembers(cards)
                         if(self.count == boards.count) {
                             let ordenedArray = self.arrayBoards.sort {
                                 ($0 as! TBOBoard).totalPoints > ($1 as! TBOBoard).totalPoints
                             }
-                            board?.members?.sortInPlace { $0.points > $1.points }
+                            board.members?.sortInPlace { $0.points > $1.points }
                             
                             self.arrayBoards.removeAllObjects()
                             self.arrayBoards.addObjectsFromArray(ordenedArray)
@@ -122,8 +131,8 @@ class CompanyRankingViewController: UIViewController {
     func expandCellBoard(cell: TBOCell){
         setAllNormalCells()
         tableView.beginUpdates()
-        cell.teamName.hidden = false
-        cell.view.hidden = false
+//        cell.teamName.hidden = false
+//        cell.view.hidden = false
         let board = arrayBoards.objectAtIndex(expandedIndexPath.row) as! TBOBoard
         
         for i in 0..<board.members!.count {
@@ -304,5 +313,11 @@ extension CompanyRankingViewController : UITableViewDelegate, UITableViewDataSou
             focusedCell.setNeedsDisplay()
         }
         return true
+    }
+    func showUnknownError(){
+        let errorRequest = UIAlertController(title: "Ops..", message: "Check your connection.", preferredStyle: .Alert)
+        let cancelErrorRequest = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
+        errorRequest.addAction(cancelErrorRequest)
+        self.presentViewController(errorRequest, animated: true, completion: nil)
     }
 }
