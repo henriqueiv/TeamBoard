@@ -217,5 +217,4 @@ extension MembersViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return true
     }
-    
 }

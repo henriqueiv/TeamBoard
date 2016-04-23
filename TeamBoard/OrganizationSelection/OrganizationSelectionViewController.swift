@@ -9,8 +9,7 @@
 import UIKit
 
 class OrganizationSelectionViewController: UIViewController {
-    
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: TBOTableView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
     private var organizations = [TBOOrganization]()
@@ -27,9 +26,12 @@ class OrganizationSelectionViewController: UIViewController {
         loadData()
     }
     
-    private func loadData() {
+    @objc private func loadData() {
+        tableView.showLoader()
         TrelloManager.sharedInstance.getOrganizations { (organizations, error) in
+            self.tableView.hideLoader()
             guard let organizations = organizations where error == nil else {
+                self.showUnknownError()
                 return
             }
             for organization in organizations {
@@ -45,11 +47,19 @@ class OrganizationSelectionViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    func showUnknownError(){
+        let errorRequest = UIAlertController(title: "Ops..", message: "Check your connection.", preferredStyle: .Alert)
+        let errorRequestReloadAction = UIAlertAction(title: "Reload", style: .Default) { (reloadAction) in
+            self.loadData()
+        }
+        
+        errorRequest.addAction(errorRequestReloadAction)
+        self.presentViewController(errorRequest, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension OrganizationSelectionViewController: UITableViewDataSource {
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -75,13 +85,12 @@ extension OrganizationSelectionViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension OrganizationSelectionViewController: UITableViewDelegate {
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let sb = UIStoryboard(name: "CompanyRanking", bundle: NSBundle.mainBundle())
         let vc = sb.instantiateInitialViewController() as! CompanyRankingViewController
         vc.organization = organizations[indexPath.row]
         presentViewController(vc, animated: true, completion: nil)
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)        
         print(indexPath)
     }
     

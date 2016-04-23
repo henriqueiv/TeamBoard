@@ -29,6 +29,7 @@
 		62B8AAAF1CB849E9009EB891 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B8AAAE1CB849E9009EB891 /* Utils.swift */; };
 		62B8AAC71CBAD61B009EB891 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B8AAC61CBAD61B009EB891 /* LogOutViewController.swift */; };
 		62D838F71CB33524000044CA /* QRCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D838F61CB33524000044CA /* QRCodeManager.swift */; };
+		847068161CCACCEA0059C938 /* TBOTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847068151CCACCEA0059C938 /* TBOTableView.swift */; };
 		8491B0E51CC1B88B00689D9F /* TBOInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8491B0E41CC1B88B00689D9F /* TBOInteractionController.swift */; };
 		84B96C411CB2EAD000909B00 /* TBOOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C401CB2EAD000909B00 /* TBOOrganization.swift */; };
 		84B96C491CB2F26C00909B00 /* TeamBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B96C481CB2F26C00909B00 /* TeamBoardTests.swift */; };
@@ -80,6 +81,7 @@
 		62B8AAAE1CB849E9009EB891 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		62B8AAC61CBAD61B009EB891 /* LogOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogOutViewController.swift; path = LogOut/LogOutViewController.swift; sourceTree = "<group>"; };
 		62D838F61CB33524000044CA /* QRCodeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRCodeManager.swift; path = Utils/QRCodeManager.swift; sourceTree = "<group>"; };
+		847068151CCACCEA0059C938 /* TBOTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOTableView.swift; sourceTree = "<group>"; };
 		8491B0E41CC1B88B00689D9F /* TBOInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOInteractionController.swift; sourceTree = "<group>"; };
 		84B96C401CB2EAD000909B00 /* TBOOrganization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBOOrganization.swift; sourceTree = "<group>"; };
 		84B96C461CB2F26C00909B00 /* TeamBoardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeamBoardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				621359EE1CADBC3500353EE8 /* AppDelegate.swift */,
+				8418A76D1CCAD0C800504FF1 /* UIComponents */,
 				62B6378F1CAEC120005BC35C /* CompanyRanking */,
 				62B8AAC51CBAD5D0009EB891 /* Log out */,
 				6206D4C81CB44282005E920C /* Login */,
@@ -238,7 +241,6 @@
 			children = (
 				0A088ECE1CB6D9E100417953 /* CompanyRanking.storyboard */,
 				0A088ECF1CB6D9E100417953 /* CompanyRankingViewController.swift */,
-				0A9647DA1CB596BC00573D5E /* TBOCell.swift */,
 				0A088ED21CB81A0800417953 /* MembersViewController.swift */,
 				8491B0E41CC1B88B00689D9F /* TBOInteractionController.swift */,
 				0A73A0961CC5440400115923 /* CellMember.swift */,
@@ -261,6 +263,15 @@
 				62B8AAC61CBAD61B009EB891 /* LogOutViewController.swift */,
 			);
 			name = "Log out";
+			sourceTree = "<group>";
+		};
+		8418A76D1CCAD0C800504FF1 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				847068151CCACCEA0059C938 /* TBOTableView.swift */,
+				0A9647DA1CB596BC00573D5E /* TBOCell.swift */,
+			);
+			name = UIComponents;
 			sourceTree = "<group>";
 		};
 		84B96C471CB2F26C00909B00 /* TeamBoardTests */ = {
@@ -441,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				621359F11CADBC3500353EE8 /* LoginViewController.swift in Sources */,
+				847068161CCACCEA0059C938 /* TBOTableView.swift in Sources */,
 				62D838F71CB33524000044CA /* QRCodeManager.swift in Sources */,
 				620C8FA01CB6EF45007F5786 /* TeamRankingViewController.swift in Sources */,
 				6206D4CD1CB44A1D005E920C /* AppDelegate.swift in Sources */,

@@ -20,7 +20,7 @@ func delay(delay:Double, closure:()->()) {
 class CompanyRankingViewController: UIViewController {
     
     @IBOutlet weak var companyName: UILabel!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: TBOTableView!
     
     // MARK: - THE GAMBI, THE MAGIC, THE DARKNESS, THE POWER, THE UNKNOWN, THE ~DO NOT TOUCH~ PIECE OF SHIT
     var expandedIndexPath = NSIndexPath(forRow: -1, inSection: 0) {
@@ -55,7 +55,7 @@ class CompanyRankingViewController: UIViewController {
         
         //        tableViewConfiguration()
         createGestureRecognizers()
-        loadDataWithCompletionBlock {
+        loadData {
             self.tableView.reloadData()
             self.resetTimer()
         }
@@ -69,7 +69,8 @@ class CompanyRankingViewController: UIViewController {
     }
     
     // MARK: Private helpers
-    private func loadDataWithCompletionBlock(block:()->()) {
+    private func loadData(completionBlock:(()->())?) {
+        tableView.showLoader()
         TrelloManager.sharedInstance.getBoards(organization!.id!) { (boards, error) in
             guard let boards = boards where error == nil else {
                 self.showUnknownError()
@@ -99,8 +100,8 @@ class CompanyRankingViewController: UIViewController {
                             
                             self.boards.removeAll()
                             self.boards = orderedArray
-                            
-                            block()
+                            self.tableView.hideLoader()
+                            completionBlock?()
                         }
                     }
                 })
@@ -172,6 +173,18 @@ class CompanyRankingViewController: UIViewController {
         resetTimer()
     }
     
+    func showUnknownError(){
+        let errorRequest = UIAlertController(title: "Ops..", message: "Check your connection.", preferredStyle: .Alert)
+        let errorRequestReloadAction = UIAlertAction(title: "Reload", style: .Default) { (reloadAction) in
+            self.loadData {
+                self.tableView.reloadData()
+                self.resetTimer()
+            }
+        }
+        
+        errorRequest.addAction(errorRequestReloadAction)
+        self.presentViewController(errorRequest, animated: true, completion: nil)
+    }
 }
 
 extension CompanyRankingViewController: UITableViewDelegate, UITableViewDataSource {
@@ -188,6 +201,7 @@ extension CompanyRankingViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("gotoMembers", sender: nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -224,11 +238,5 @@ extension CompanyRankingViewController: UITableViewDelegate, UITableViewDataSour
 //        }
 //        return true
 //    }
-    
-    func showUnknownError(){
-        let errorRequest = UIAlertController(title: "Ops..", message: "Check your connection.", preferredStyle: .Alert)
-        let cancelErrorRequest = UIAlertAction(title: "Ok", style: .Cancel, handler: nil)
-        errorRequest.addAction(cancelErrorRequest)
-        self.presentViewController(errorRequest, animated: true, completion: nil)
-    }
 }
+
