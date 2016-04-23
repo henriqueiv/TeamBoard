@@ -39,7 +39,6 @@ class TBOCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     
     private let colorMembers = ["A10054", "11A695", "005EA1", "A71D1D", "50A14B", "5E3AA4", "C06233", "D7C61F"]
-    private let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,41 +51,8 @@ class TBOCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configCell(board: TBOBoard, index: Int){
-        self.indentifier.text = "#\(index + 1)"
-        for (index, member) in board.members!.enumerate() {
-            let x = CGFloat(index * 110) + 106
-            let imageView  = AsyncImageView(frame:CGRectMake(x, 14, 73, 61))
-            imageView.contentMode = .ScaleAspectFill
-            imageView.layer.cornerRadius = CGRectGetWidth(imageView.frame)/4
-            imageView.clipsToBounds = true
-            if(member.pictureURL == nil) {
-                imageView.image = UIImage(named: "userwithoutphoto")
-                imageView.contentMode = .ScaleAspectFit
-            } else {
-                imageView.imageURL = member.pictureURL
-            }
-            self.backgroundColor = nonFocusedCellColor
-            self.addSubview(imageView)
-            
-            self.layoutIfNeeded()
-            self.setNeedsDisplay()
-        }
-        self.teamName.text = board.name
-        self.score.text = String(board.totalPoints)
-        if(index == 0){
-            let image : UIImage = UIImage(named: "trophy")!
-            self.trophy.image = image
-        }
-        if(index > 0){
-            self.teamName.hidden = false
-        }
-        self.focusStyle = .Custom
-    }
-    
     func expandCellWithMembers(members: [TBOMember], andPoints points: Int){
         teamName.hidden = false
-        self.view.subviews.forEach({ $0.removeFromSuperview() })
         for (index, member) in members.enumerate() {
             let randomColorIndex = Int.random(0...colorMembers.count-1)
             let randomColor = UIColor(hexString: colorMembers[randomColorIndex])
@@ -122,6 +88,7 @@ class TBOCell: UITableViewCell {
     
     func retract(){
         self.teamName.hidden = false
+        let nonFocusedCellColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         self.backgroundColor = nonFocusedCellColor
     }
     

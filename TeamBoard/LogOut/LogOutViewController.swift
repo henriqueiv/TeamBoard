@@ -18,8 +18,11 @@ class LogOutViewController: UIViewController {
     private func logOut() {
         TrelloManager.sharedInstance.logOut()
         let sb = UIStoryboard(name: StoryboardName.Login.rawValue, bundle: nil)
-        let vc = sb.instantiateInitialViewController()
-        presentViewController(vc!, animated: true, completion: nil)
+        if let vc = sb.instantiateInitialViewController() {
+            presentViewController(vc, animated: true, completion: nil)
+        } else {
+            print("Unable to instantiateInitialViewController")
+        }
     }
     
 }

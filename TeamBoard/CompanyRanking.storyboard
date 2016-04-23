@@ -68,7 +68,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="img" destination="D4l-pq-TVo" id="tMt-MC-9Cp"/>
-                                            <outlet property="indentifier" destination="Nzw-5P-hsl" id="UjK-6J-HPf"/>
+                                            <outlet property="indentifier" destination="Nzw-5P-hsl" id="U9K-l1-xfF"/>
                                             <outlet property="score" destination="jY8-E2-RRi" id="t4Z-tV-Tt0"/>
                                             <outlet property="teamName" destination="M2D-l5-4U2" id="lI7-Nf-QWz"/>
                                             <outlet property="trophy" destination="npO-A8-5o8" id="oAA-4J-1DU"/>
@@ -148,7 +148,7 @@
                                 <rect key="frame" x="110" y="250" width="1700" height="770"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="226" id="gOF-Aw-kO7" customClass="TBOCell" customModule="TeamBoard" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="226" id="gOF-Aw-kO7" customClass="CellMember" customModule="TeamBoard" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="54" width="1700" height="226"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gOF-Aw-kO7" id="g3I-5n-DYz">
@@ -180,10 +180,10 @@
                                                     <rect key="frame" x="18" y="75" width="1658" height="120"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgf-f2-eGZ" customClass="AsyncImageView">
-                                                            <rect key="frame" x="30" y="8" width="84" height="84"/>
+                                                            <rect key="frame" x="118" y="8" width="105" height="105"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gX8-yi-M7y">
-                                                            <rect key="frame" x="15" y="91" width="115" height="21"/>
+                                                            <rect key="frame" x="103" y="91" width="115" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
