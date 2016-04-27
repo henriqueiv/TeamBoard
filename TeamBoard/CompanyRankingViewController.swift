@@ -53,10 +53,9 @@ class CompanyRankingViewController: UIViewController {
         super.viewDidLoad()
         companyName.text = organization.name
         
-        //        tableViewConfiguration()
-        createGestureRecognizers()
         loadData {
             self.tableView.reloadData()
+            self.createGestureRecognizers()
             self.resetTimer()
         }
     }
