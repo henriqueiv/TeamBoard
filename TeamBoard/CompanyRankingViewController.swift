@@ -158,7 +158,7 @@ class CompanyRankingViewController: UIViewController {
     
     func swipedUp(sender: UISwipeGestureRecognizer){
         print("swiped up")
-        let row = (expandedIndexPath.row == 0) ? boards.count-1 : expandedIndexPath.row - 1
+        let row = (expandedIndexPath.row <= 0) ? boards.count-1 : expandedIndexPath.row - 1
         let section = expandedIndexPath.section
         expandedIndexPath = NSIndexPath(forRow: row, inSection: section)
         resetTimer()
@@ -166,7 +166,7 @@ class CompanyRankingViewController: UIViewController {
     
     func swipedDown(sender:UISwipeGestureRecognizer){
         print("swiped down")
-        let row = (expandedIndexPath.row == boards.count-1) ? 0 : expandedIndexPath.row + 1
+        let row = (expandedIndexPath.row >= boards.count-1) ? 0 : expandedIndexPath.row + 1
         let section = expandedIndexPath.section
         expandedIndexPath = NSIndexPath(forRow: row, inSection: section)
         resetTimer()
