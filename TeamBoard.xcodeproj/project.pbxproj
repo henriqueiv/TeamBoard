@@ -345,7 +345,7 @@
 				TargetAttributes = {
 					621359EA1CADBC3500353EE8 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 8WCPHDZJPJ;
+						DevelopmentTeam = Q86BQK3N72;
 					};
 					84B96C451CB2F26C00909B00 = {
 						CreatedOnToolsVersion = 7.3;
@@ -584,17 +584,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Fabio Innocente Alves (Q86BQK3N72)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution: Fabio Innocente Alves (Q86BQK3N72)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TeamBoard",
 				);
 				INFOPLIST_FILE = TeamBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.bepid.poa.TeamBoard;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teamboardfortv.teamboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1735d139-c02e-4fc7-a67c-6188adde6318";
 				SWIFT_OBJC_BRIDGING_HEADER = "TeamBoard/Supporting Files/TeamBoard-Bridging-Header.h";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -606,17 +606,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Fabio Innocente Alves (Q86BQK3N72)";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution: Fabio Innocente Alves (Q86BQK3N72)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TeamBoard",
 				);
 				INFOPLIST_FILE = TeamBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.bepid.poa.TeamBoard;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teamboardfortv.teamboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1735d139-c02e-4fc7-a67c-6188adde6318";
 				SWIFT_OBJC_BRIDGING_HEADER = "TeamBoard/Supporting Files/TeamBoard-Bridging-Header.h";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
