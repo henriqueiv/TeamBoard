@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "621359EA1CADBC3500353EE8"
-               BuildableName = "TeamBoard.app"
+               BuildableName = "Henrique Indalencio Valcanaia.app"
                BlueprintName = "TeamBoard"
                ReferencedContainer = "container:TeamBoard.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "621359EA1CADBC3500353EE8"
-            BuildableName = "TeamBoard.app"
+            BuildableName = "Henrique Indalencio Valcanaia.app"
             BlueprintName = "TeamBoard"
             ReferencedContainer = "container:TeamBoard.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "621359EA1CADBC3500353EE8"
-            BuildableName = "TeamBoard.app"
+            BuildableName = "Henrique Indalencio Valcanaia.app"
             BlueprintName = "TeamBoard"
             ReferencedContainer = "container:TeamBoard.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "621359EA1CADBC3500353EE8"
-            BuildableName = "TeamBoard.app"
+            BuildableName = "Henrique Indalencio Valcanaia.app"
             BlueprintName = "TeamBoard"
             ReferencedContainer = "container:TeamBoard.xcodeproj">
          </BuildableReference>

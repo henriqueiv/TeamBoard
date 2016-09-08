@@ -19,36 +19,31 @@ func delay(delay:Double, closure:()->()) {
 
 class CompanyRankingViewController: UIViewController {
     
+    // MARK: Outlets
     @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var tableView: TBOTableView!
     
-    // MARK: - THE GAMBI, THE MAGIC, THE DARKNESS, THE POWER, THE UNKNOWN, THE ~DO NOT TOUCH~ PIECE OF SHIT
-    var expandedIndexPath = NSIndexPath(forRow: -1, inSection: 0) {
+    // MARK: Private vars
+    private var count = 0
+    private var boards = [TBOBoard]()
+    private var interactionCheckTimer: NSTimer?
+    private var expandedIndexPath = NSIndexPath(forRow: -1, inSection: 0) {
         willSet {
-            self.retractExpandedCell()
+            retractExpandedCell()
         }
         
         didSet {
-            self.expandCell()
+            expandCell()
         }
     }
-    var boards = [TBOBoard]()
-    var count = 0
-    var changeFocus = false
-    var organization:TBOOrganization!
-    var interactionController = TBOInteractionController()
-    var interactionCheckTimer: NSTimer?
-    var isFirstAction = true
     
-    enum InteractionState {
-        case Active
-        case WaitingForInteraction
-        case Inactive
-    }
-    
-    private let expandedCellTime:UInt32 = 1
+    // MARK: Private consts
     private let interactionCheckTime:NSTimeInterval = 5
     
+    // MARK: Public vars
+    var organization:TBOOrganization!
+    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         companyName.text = organization.name
@@ -70,22 +65,20 @@ class CompanyRankingViewController: UIViewController {
     // MARK: Private helpers
     private func loadData(completionBlock:(()->())?) {
         tableView.showLoader()
-        TrelloManager.sharedInstance.getBoards(organization!.id!) { (boards, error) in
+        TrelloManager.sharedInstance.getBoards(organization!.id!) { [unowned self] (boards, error) in
             guard let boards = boards where error == nil else {
                 self.showUnknownError()
                 return
             }
             for board in boards {
-                TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { (board, error) in
+                TrelloManager.sharedInstance.getBoard(board.id!, completionHandler: { [unowned self] (board, error) in
                     guard let board = board where error == nil else {
-                        // self.showUnknownError()
                         return
                     }
                     self.boards += [board]
                     
-                    TrelloManager.sharedInstance.getCardsFromBoard(board.id!) { (cards, error) in
+                    TrelloManager.sharedInstance.getCardsFromBoard(board.id!) { [unowned self] (cards, error) in
                         guard let cards = cards where error == nil else {
-                            // self.showUnknownError()
                             return
                         }
                         self.count += 1
@@ -120,14 +113,11 @@ class CompanyRankingViewController: UIViewController {
     
     private func expandCell() {
         tableView.beginUpdates()
-//        cell.teamName.hidden = false
-//        cell.view.hidden = false
         let board = boards[expandedIndexPath.row]
         let cell = tableView.cellForRowAtIndexPath(expandedIndexPath) as! TBOCell
         cell.expandCellWithMembers(board.members!, andPoints: board.totalPoints)
         tableView.endUpdates()
         
-        // MARK: - THE GAMBI, THE MAGIC, THE DARKNESS, THE POWER, THE UNKNOWN, THE ~DO NOT TOUCH~ PIECE OF SHIT
         let delayTime = Double(board.members!.count) * 0.1
         delay(delayTime) {
             cell.showViewWithCompletionBlock({ (suc) in
@@ -137,7 +127,6 @@ class CompanyRankingViewController: UIViewController {
     }
     
     private func retractExpandedCell() {
-        // MARK: - THE GAMBI, THE MAGIC, THE DARKNESS, THE POWER, THE UNKNOWN, THE ~DO NOT TOUCH~ PIECE OF SHIT
         if let cell = tableView.cellForRowAtIndexPath(expandedIndexPath) as? TBOCell {
             cell.hideViewWithCompletionBlock({ (suc) in
                 cell.retract()
@@ -182,60 +171,40 @@ class CompanyRankingViewController: UIViewController {
         }
         
         errorRequest.addAction(errorRequestReloadAction)
-        self.presentViewController(errorRequest, animated: true, completion: nil)
+        presentViewController(errorRequest, animated: true, completion: nil)
     }
 }
 
-extension CompanyRankingViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDataSource
+extension CompanyRankingViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return boards.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TBOCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TBOCell
         cell.configCell(boards[indexPath.row], index: indexPath.row)
         return cell
     }
     
+}
+
+// MARK: - UITableViewDelegate
+extension CompanyRankingViewController: UITableViewDelegate {
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("gotoMembers", sender: nil)
+        performSegueWithIdentifier("gotoMembers", sender: nil)
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if(indexPath.compare(expandedIndexPath) == NSComparisonResult.OrderedSame){
-           if let members = boards[indexPath.row].members {
+        if(indexPath.compare(expandedIndexPath) == NSComparisonResult.OrderedSame) {
+            if let members = boards[indexPath.row].members {
                 return 100 + CGFloat(members.count * 90);
             }
         }
         return 89
     }
     
-//    func tableView(tableView: UITableView, shouldUpdateFocusInContext context: UITableViewFocusUpdateContext) -> Bool {
-//        if isFirstAction {
-//            setAllNormalCells()
-//        }
-//        
-//        if let focusedIndexPath = context.nextFocusedIndexPath,
-//            let focusedCell = tableView.cellForRowAtIndexPath(focusedIndexPath) as? TBOCell {
-//            var cellsToReload = [focusedIndexPath]
-//            if let lastFocusedIndexPath = context.previouslyFocusedIndexPath,
-//                let lastFocusedCell = tableView.cellForRowAtIndexPath(lastFocusedIndexPath) as? TBOCell {
-//                normalCellBoard(lastFocusedCell)
-//                //                lastFocusedCell.backgroundColor = UIColor.blueColor() // DEBUG UTIL
-//                cellsToReload.append(lastFocusedIndexPath)
-//                lastFocusedCell.layoutIfNeeded()
-//                lastFocusedCell.setNeedsDisplay()
-//                
-//            }
-//            expandedIndexPath = focusedIndexPath
-//            expandCellBoard(focusedCell)
-//            //            focusedCell.backgroundColor = UIColor.redColor() // DEBUG UTIL
-//            focusedCell.layoutIfNeeded()
-//            focusedCell.setNeedsDisplay()
-//        }
-//        return true
-//    }
 }
-

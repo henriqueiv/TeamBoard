@@ -66,7 +66,7 @@
 		6206D4CB1CB448B2005E920C /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Login/Login.storyboard; sourceTree = "<group>"; };
 		620C8F9D1CB6E40B007F5786 /* TeamRanking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TeamRanking.storyboard; path = TeamRanking/TeamRanking.storyboard; sourceTree = "<group>"; };
 		620C8F9F1CB6EF45007F5786 /* TeamRankingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamRankingViewController.swift; path = TeamRanking/TeamRankingViewController.swift; sourceTree = "<group>"; };
-		621359EB1CADBC3500353EE8 /* TeamBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		621359EB1CADBC3500353EE8 /* Henrique Indalencio Valcanaia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Henrique Indalencio Valcanaia.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		621359EE1CADBC3500353EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		621359F01CADBC3500353EE8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		621359F51CADBC3500353EE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		621359EC1CADBC3500353EE8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				621359EB1CADBC3500353EE8 /* TeamBoard.app */,
+				621359EB1CADBC3500353EE8 /* Henrique Indalencio Valcanaia.app */,
 				84B96C461CB2F26C00909B00 /* TeamBoardTests.xctest */,
 			);
 			name = Products;
@@ -312,7 +312,7 @@
 			);
 			name = TeamBoard;
 			productName = TeamBoard;
-			productReference = 621359EB1CADBC3500353EE8 /* TeamBoard.app */;
+			productReference = 621359EB1CADBC3500353EE8 /* Henrique Indalencio Valcanaia.app */;
 			productType = "com.apple.product-type.application";
 		};
 		84B96C451CB2F26C00909B00 /* TeamBoardTests */ = {
@@ -345,7 +345,6 @@
 				TargetAttributes = {
 					621359EA1CADBC3500353EE8 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = Q86BQK3N72;
 					};
 					84B96C451CB2F26C00909B00 = {
 						CreatedOnToolsVersion = 7.3;
@@ -584,8 +583,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Fabio Innocente Alves (Q86BQK3N72)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution: Fabio Innocente Alves (Q86BQK3N72)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TeamBoard",
@@ -593,8 +592,8 @@
 				INFOPLIST_FILE = TeamBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamboardfortv.teamboard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1735d139-c02e-4fc7-a67c-6188adde6318";
+				PRODUCT_NAME = "Henrique Indalencio Valcanaia";
+				PROVISIONING_PROFILE = "c8b2961f-bcd6-4234-be5f-79ca6e431d44";
 				SWIFT_OBJC_BRIDGING_HEADER = "TeamBoard/Supporting Files/TeamBoard-Bridging-Header.h";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -606,8 +605,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Fabio Innocente Alves (Q86BQK3N72)";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution: Fabio Innocente Alves (Q86BQK3N72)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TeamBoard",
@@ -615,8 +614,8 @@
 				INFOPLIST_FILE = TeamBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamboardfortv.teamboard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1735d139-c02e-4fc7-a67c-6188adde6318";
+				PRODUCT_NAME = "Henrique Indalencio Valcanaia";
+				PROVISIONING_PROFILE = "c8b2961f-bcd6-4234-be5f-79ca6e431d44";
 				SWIFT_OBJC_BRIDGING_HEADER = "TeamBoard/Supporting Files/TeamBoard-Bridging-Header.h";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};

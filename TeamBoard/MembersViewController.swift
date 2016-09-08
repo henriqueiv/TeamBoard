@@ -70,21 +70,22 @@ class MembersViewController: UIViewController {
     func iterateCellMembers(){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             self.interactionController.updateState()
-            while(self.interactionController.state == .Inactive){
+            while(self.interactionController.state == .Inactive) {
                 self.interactionCheckTimer.invalidate()
-                for var i in 0..<self.board.members!.count{
+                for var i in 0..<self.board.members!.count {
                     if self.interactionController.state == .Inactive {
                         if(self.changeFocus){
-                            i=self.expandedIndexPath.row+1
+                            i = self.expandedIndexPath.row+1
                             self.changeFocus=false
                         }
                         let cellPath = NSIndexPath(forRow: i, inSection: 0)
+                        
                         dispatch_async(dispatch_get_main_queue()) {
-                            if(i>0){
+                            if(i > 0) {
                                 let oldCellPath = NSIndexPath(forRow: i-1, inSection: 0)
                                 let cell = self.tableview.cellForRowAtIndexPath(oldCellPath) as! CellMember
                                 cell.retract()
-                            }else{
+                            } else {
                                 let oldCellPath = NSIndexPath(forRow: self.board.members!.count-1, inSection: 0)
                                 let cell = self.tableview.cellForRowAtIndexPath(oldCellPath) as! CellMember
                                 cell.retract()
@@ -94,9 +95,9 @@ class MembersViewController: UIViewController {
                                 self.expandCellMember(cell)
                             }
                         }
+                        
                         sleep(self.expandedCellTime)
-                    }
-                    else {
+                    } else {
                         return
                     }
                 }
@@ -107,32 +108,6 @@ class MembersViewController: UIViewController {
     func expandCellMember(cell: CellMember){
         setAllNormalCells()
         tableview.beginUpdates()
-        
-//        cell.userName.text = "" // FIXME: why?! There is a name on cell header
-//        let member = board.members![self.expandedIndexPath.row]
-//        
-//        let pictureURL = (member.pictureURL == nil) ? NSURL() : member.pictureURL!
-//        cell.avatar.imageURL = pictureURL
-//        print(pictureURL)
-//        cell.avatar.layer.cornerRadius = cell.avatar.frame.height/4
-//        cell.avatar.clipsToBounds = true
-//        
-//        for i in 0..<member.cards.count{
-//            var label : UILabel
-//            let y = CGFloat(i * 70) + 15 // FIXME: calculate middle of space - half card height
-//            label = UILabel(frame:CGRectMake(309, y, 300, 60))
-//            let card = member.cards[i] as! TBOCard
-//            label.text = card.name!
-//            label.backgroundColor = cardColor
-//            label.font = UIFont(name: label.font.fontName, size: 24)
-//            label.layer.cornerRadius = 8
-//            label.layer.masksToBounds = true
-//            label.textAlignment = .Center
-//            cell.view.layer.cornerRadius = cell.frame.size.width/100
-//            cell.view.addSubview(label)
-//        }
-//        cell.backgroundColor = UIColor.whiteColor()
-
         cell.expand(board.members![self.expandedIndexPath.row])
         tableview.endUpdates()
     }
@@ -203,7 +178,6 @@ extension MembersViewController: UITableViewDelegate, UITableViewDataSource {
             if let lastFocusedIndexPath = context.previouslyFocusedIndexPath,
                 let lastFocusedCell = tableView.cellForRowAtIndexPath(lastFocusedIndexPath) as? CellMember {
                 lastFocusedCell.retract()
-                //                lastFocusedCell.backgroundColor = UIColor.blueColor() // DEBUG UTIL
                 cellsToReload.append(lastFocusedIndexPath)
                 lastFocusedCell.layoutIfNeeded()
                 lastFocusedCell.setNeedsDisplay()
@@ -211,7 +185,6 @@ extension MembersViewController: UITableViewDelegate, UITableViewDataSource {
             }
             expandedIndexPath = focusedIndexPath
             expandCellMember(focusedCell)
-            //            focusedCell.backgroundColor = UIColor.redColor() // DEBUG UTIL
             focusedCell.layoutIfNeeded()
             focusedCell.setNeedsDisplay()
         }
